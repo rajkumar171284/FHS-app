@@ -82,7 +82,6 @@ client.on("connect", function () {
 
 client.subscribe(register) // Function to subscribed the topics to read from mqtt
 
-
 client.on('message', function (topic, message, packet) {
     var messagejson = JSON.parse(message.toString());
     pool.query(

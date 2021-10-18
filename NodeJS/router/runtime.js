@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const { Pool } = require("pg");
+var config1 = require('../config.json');
+const user = config1.user;
+const host = config1.host;
+const password = config1.password;
+const port = config1.port;
 
   const pool = new Pool({
     user: user,
