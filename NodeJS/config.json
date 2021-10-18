@@ -1,0 +1,10 @@
+﻿{
+    "user": "postgres",
+    "host": "localhost",
+    "password": "amaraja",
+    "port": 5432
+}
+
+
+
+
