@@ -38,9 +38,9 @@ let d=new Promise((myResolve,myreject)=>
 
     }
     else{
-       
+      //Alertid int NOT NULL AUTO_INCREMENT,
       pool.query(
-        "CREATE TABLE Alert_table(sensorID text, operator text,value text,name text, phoneNO text, Modified_Date timestamp not null )",
+        "CREATE TABLE Alert_table(alertid      SERIAL          ,sensorID text, operator text,value text,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL )",
           (err, res) => {
             console.log('Alert Table created')
           }
@@ -90,7 +90,6 @@ client.subscribe(register) // Function to subscribed the topics to read from mqt
 
 client.on('message', function (topic, message, packet) {
     var messagejson = JSON.parse(message.toString());
-    console.log(typeof(messagejson.D))
     pool.query(
         "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, value, Date) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+messagejson.value+"','"+messagejson.D+"')",
         (err, res) => {
