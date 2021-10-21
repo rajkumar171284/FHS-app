@@ -54,7 +54,7 @@ router.post('/edit', async (req,res1) => {
         })
     })
 
-    router.get('/delete', async (req,res1) => {
+    router.post('/delete', async (req,res1) => {
         console.log("Alert-delete")
         pool.query(
             "DELETE FROM Alert_table WHERE alertid='"+req.body.id+"'       ",
