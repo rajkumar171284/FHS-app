@@ -46,8 +46,20 @@ router.post('/edit', async (req,res1) => {
     pool.query(
         "Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',value='"+req.body.value+"',name='"+req.body.name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'",
         (err, res) => {
-            console.log('Data Editted')
-            res1.json('Data Editted')
+            if(err) res1.json(err)
+            else
+           { console.log(res)
+            res1.json('Data Editted')}
+            
         })
     })
+
+    router.get('/delete', async (req,res1) => {
+        console.log("Alert-delete")
+        pool.query(
+            "DELETE FROM Alert_table WHERE alertid='"+req.body.id+"'       ",
+            (err, res) => {
+                console.log('Data deleted')
+            })
+        })
 module.exports=router
