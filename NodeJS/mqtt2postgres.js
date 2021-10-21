@@ -39,14 +39,20 @@ let d=new Promise((myResolve,myreject)=>
     }
     else{
        
-           
+      pool.query(
+        "CREATE TABLE Alert_table(sensorID text, operator text,value text,name text, phoneNO text, Modified_Date timestamp not null )",
+          (err, res) => {
+            console.log('Alert Table created')
+          }
+      ); 
             pool.query(
               "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,value text,Date timestamp not null )",
                 (err, res) => {
-                  console.log('Table created')
+                  console.log('Sensor Table created')
                   myResolve(1)
                 }
             ); 
+            
     }
   });
 })
@@ -84,6 +90,7 @@ client.subscribe(register) // Function to subscribed the topics to read from mqt
 
 client.on('message', function (topic, message, packet) {
     var messagejson = JSON.parse(message.toString());
+    console.log(typeof(messagejson.D))
     pool.query(
         "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, value, Date) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+messagejson.value+"','"+messagejson.D+"')",
         (err, res) => {
