@@ -40,7 +40,7 @@ let d=new Promise((myResolve,myreject)=>
     else{
       //Alertid int NOT NULL AUTO_INCREMENT,
       pool.query(
-        "CREATE TABLE Alert_table(alertid      SERIAL          ,sensorID text, operator text,value text,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL )",
+        "CREATE TABLE Alert_table(alertid SERIAL ,sensorID text, operator text,value text,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL, Lastmodified timestamp)",
           (err, res) => {
             console.log('Alert Table created')
           }

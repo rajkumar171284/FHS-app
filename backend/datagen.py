@@ -19,7 +19,6 @@ from_hardware = {}#"A-R-001":[1,26,52,54],"W-R-001":[1],"R-R-001":[1],"P-R-001":
 
 sensors_df = pd.read_sql_query("SELECT * FROM activeSensors",conn)
 topics_list = [i for i in sensors_df['sensorID']]
-topics_list.pop()
 def sendMQTT(json_data):
     try:
         client.connect(broker_address,port=1883,keepalive=60)
