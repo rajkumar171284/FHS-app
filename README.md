@@ -12,9 +12,5 @@ Web application
 * Mosquitto **MQTT**
 
 ## Run
-1. '''python
-python datagen.py
-'''
-2. '''javascript
-node mqtt2postgres.js
-'''
+> python datagen.py
+> node mqtt2postgres.js
