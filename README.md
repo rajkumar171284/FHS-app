@@ -15,3 +15,9 @@ Web application
 > python datagen.py <br>
 > node mqtt2postgres.js <br>
 > python sendSMS.py <br>
+
+### API calls
+Name | URL | Input params | Output params
+-----|-----|--------------|--------------
+sendSMS | http://localhost:8000/sendSMS/ | receiver_number,sms_body | gateway_connectivity_status, sms_sent_successfully, receiver_number, sms_body
+
