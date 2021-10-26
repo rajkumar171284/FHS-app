@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request
 import uvicorn
 import json
 
-# API call: http://localhost:8000/sendSMS/?receiver_number=6382573460&sms_body=Hi!%20Welcome%20Buddy
+# API call: http://localhost:8000/sendSMS?receiver_number=6382573460&sms_body=Hi!%20Welcome%20Buddy
 # Output parameters: {"gateway_connectivity_status":'OK',"sms_sent_successfully":'OK'}
 
 app = FastAPI()

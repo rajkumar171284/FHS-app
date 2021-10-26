@@ -12,11 +12,15 @@ Web application
 * Mosquitto **MQTT**
 
 ### Run(In backend)
+> runMe.bat <br>
+
+Or
+
 > python datagen.py <br>
 > node mqtt2postgres.js <br>
 > python sendSMS.py <br>
 > npm start <br>
-> node alertusingnode.js
+> node alertusingnode.js <br>
 
 ### API calls
 Name | URL | Input params | Output params
