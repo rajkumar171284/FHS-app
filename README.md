@@ -8,7 +8,8 @@ Web application
 Prerequisite:
 * Install python
 * Install node
-* Install Postgres as service
+* Install Postgres as service and store credentials in config.json
+* Mosquitto MQTT
 
 Run
 1. python datagen.py
