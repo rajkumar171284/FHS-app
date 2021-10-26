@@ -15,7 +15,7 @@ Web application
 > python datagen.py <br>
 > node mqtt2postgres.js <br>
 > python sendSMS.py <br>
-> npm start
+> npm start <br>
 > node alertusingnode.js
 
 ### API calls
