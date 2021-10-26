@@ -6,7 +6,7 @@ from datetime import datetime
 import numpy as np
 import json
 import random
-'''I am hotstar'''
+
 DBFILE = "AR_config.db"
 conn = sqlite3.connect(DBFILE)
 broker_address="127.0.0.1"
