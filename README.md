@@ -11,10 +11,12 @@ Web application
 * Install **Postgres** as service and store credentials in ***config.json***
 * Mosquitto **MQTT**
 
-### Run
+### Run(In backend)
 > python datagen.py <br>
 > node mqtt2postgres.js <br>
 > python sendSMS.py <br>
+> npm start
+> node alertusingnode.js
 
 ### API calls
 Name | URL | Input params | Output params
