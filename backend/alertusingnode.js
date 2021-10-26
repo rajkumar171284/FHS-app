@@ -19,11 +19,10 @@ async function asyncfunction()
 {
     mypromise=new Promise(function(myResolve, myReject) {
         pool.query(
-        "Select * from Alert_table where status = true",
+        "Select * from alert_table where (status = true) and (lastmodified IS NULL OR lastmodified > now() - interval '1 minute')      ",
         (err, res) => {
             myResolve(res.rows)
         })
-
     })
     let Alertarray=await mypromise
     Alertarray.forEach((element,index) => {
@@ -37,27 +36,30 @@ async function asyncfunction()
                 //   console.log(parseFloat(element1.value)) //from sensortable
                   if(element.operator=='lessthan')
                   {
-                      if(element1.value<element.value)
-                      {
-                          console.log('Alert with value '+ element1.value+' less than '+element.value+' in date time '+element1.date)
+                      if(parseFloat(element1.value)<parseFloat(element.value))
+                      {     console.log(1)
+                          let message='Alert in sensor '+ element1.sensorid +' with value '+ element1.value+' less than '+element.value+' in date time '+element1.date
+                          let phone=element.phoneno
+                          console.log(message,phone)
                       }
                   }
                   if(element.operator=='greaterthan')
-                  {
-                      if(element1.value>element.value)
-                      {
-                        console.log('Alert with value '+ element1.value+' greater than '+element.value+' in date time '+element1.date)
+                  { console.log(2)
+                    if(parseFloat(element1.value)>parseFloat(element.value))
+                    {
+                        let message='Alert in sensor '+ element1.sensorid +' with value '+ element1.value+' greater than '+element.value+' in date time '+element1.date
+                        let phone=element.phoneno
+                        console.log(message,phone)
+
                     }
                   }
                });
            }
-           else console.log('No data')
         })
 
     });
 }
 
-setInterval(() => {
 asyncfunction()
-}, 1000);
+setInterval(() => {asyncfunction()}, 1000);
 
