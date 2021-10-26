@@ -1,4 +1,4 @@
-# Hire Hydrant Monitoring system
+# Fire Hydrant Monitoring system
 Web application 
 
 
@@ -12,5 +12,5 @@ Prerequisite:
 * Mosquitto MQTT
 
 Run
-1. python datagen.py
-2. node mqtt2postgres.js
+1. '''python datagen.py'''
+2. '''node mqtt2postgres.js'''
