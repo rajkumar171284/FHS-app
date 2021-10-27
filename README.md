@@ -24,8 +24,8 @@ Or
 
 ### API calls
 
-Realtime call |  | Post call No parameter <br>
-alert add | 10.1.1.16:4107/runtime | Post call| {
+Realtime call |  10.1.1.16:4107/runtime | Post call No parameter <br>
+alert add | 10.1.1.16:4107/alert/add | Post call| {
     "sensorID":"502",
     "operator":"lessthan",
     "value":2.2,
