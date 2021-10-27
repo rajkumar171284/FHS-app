@@ -1,9 +1,9 @@
-start C:\Users\User\AppData\Local\Programs\Python\Python39\python.exe E:\Inspirisys\Init\AmaraRaja\software\FHS\backend\datagen.py
+start C:\Users\kirshnan\AppData\Local\Programs\Python\Python39\python.exe .\datagen.py
 timeout 1
-start C:\Program Files\nodejs\node.exe E:\Inspirisys\Init\AmaraRaja\software\FHS\backend\mqtt2postgres.js
+start "C:\Program Files\nodejs\node.exe" .\mqtt2postgres.js
 timeout 1
-start C:\Users\User\AppData\Local\Programs\Python\Python39\python.exe E:\Inspirisys\Init\AmaraRaja\software\FHS\backend\sendSMS.py
+start C:\Users\kirshnan\AppData\Local\Programs\Python\Python39 .\sendSMS.py
 timeout 1
-start C:\Program Files\nodejs\node.exe E:\Inspirisys\Init\AmaraRaja\software\FHS\backend\alertusingnode.js
+start "C:\Program Files\nodejs\node.exe" .\alertusingnode.js
 timeout 1
-start C:\Program Files\nodejs\node.exe E:\Inspirisys\Init\AmaraRaja\software\FHS\backend\index.js
+start "C:\Program Files\nodejs\node.exe" .\index.js
