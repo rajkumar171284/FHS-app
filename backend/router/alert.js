@@ -34,7 +34,6 @@ router.get('/show', async (req,res1) => {
     pool.query(
         "Select * from Alert_table",
         (err, res) => {
-            console.log('Data Added')
             res1.json(res.rows)
         })
     })
