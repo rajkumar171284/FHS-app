@@ -122,6 +122,6 @@ async function asyncfunction()
   
 }
 
-while(1){
+
 asyncfunction()
- }
+ 
