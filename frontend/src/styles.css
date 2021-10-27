@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '~font-awesome/css/font-awesome.css'; */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~primeicons/primeicons.css';
+/* @import '~primeng-lts/resources/themes/saga-blue/theme.css'; */
+@import '~primeng-lts/resources/primeng.min.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.list-header{
+    background: #166c7e
+    ;
+    color: #fff;
+    padding-right: 10px;text-align: right!important;
+  }
+  .a-tleft-bdr{
+    border-top-left-radius:30px;    
+    
+  }
+  .a-tright-bdr{
+    border-top-right-radius:30px;    
+  }
+  .a-bleft-bdr{
+    border-bottom-left-radius:30px;    
+  }
+  .a-bright-bdr{
+    border-bottom-right-radius:30px;    
+  }
+  .panel{
+    background: transparent;
+    border-color: transparent;
+  
+  }
+  .bdr1{
+    border:1px solid #19798c
+    ;padding: 0;
+    overflow: hidden;
+  }
+  .card {
+    margin-bottom: 0px!important;
+    background-color: #f3f3f3
+
+    ;
+  }
+  .row-eq-height{
+    margin-bottom: 5px!important;
+  }

@@ -1,0 +1,110 @@
+/* svg {
+    width: 150px;
+    height: 150px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+} */
+.logo{
+    height: 230px;
+}
+
+@media only screen and (min-width : 481px) {
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .flex-row > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-row.row:after, 
+    .flex-row.row:before {
+        display: flex;
+    }
+}
+.svg-container2 {
+    width: 10em;
+  }
+.container-fluid,.container{position: relative;}
+
+.logo,svg{
+  transform: scale(.7);        
+   } 
+@media screen and (max-width:769px){
+    .logo,svg,object{
+        transform: rotateZ(90deg) translate(-88%, 0%) scale(.7);
+        transform-origin: 50% 50%;
+        
+       }    
+}
+@media screen and (max-width:992px) and (max-width:1200px) {
+    .logo,svg,object{
+        transform: rotateZ(90deg) translate(-97%, 0%) scale(.7);
+        transform-origin: 50% 50%;
+    }    
+}
+
+@media screen and (min-width:1100px) {
+    .logo,svg,object{
+        transform: rotateZ(90deg) translate(-400px, 0%) scale(.7);
+        transform-origin: 50% 50%;        
+    }    
+}
+@media screen and (min-width:1200px) {
+    .logo,svg,object{
+        transform: rotateZ(90deg) translate(1em, 0%) scale(.6);
+        transform-origin: 50% 50%;        
+    }    
+}
+@media screen and (min-width:1300px) {
+    .logo,svg,object{
+        transform: rotateZ(90deg) translate(1em, -243px) scale(2.3);
+        
+    }    
+}
+svg text {
+    font-family: FontAwesome;
+ }
+ .c-tspan8496::after{
+    font-family: FontAwesome;
+
+    content: "\f0c9"; 
+ }
+ 
+#path80{
+    fill: red!important;
+}
+svg #svg5{
+    background: red;
+}
+#datalist{
+    position: absolute;top:100px;left:110px;z-index: 7;width: 25px;
+    height: 25px;background: red;border-radius: 50% ;
+    box-shadow: 0 1px 2px #000;
+}
+.svg-container {
+    width: 10em;
+  }
+  svg {
+    max-width: 100%
+  }
+  
+.a-abs{color:#fff;
+    padding: 2px;
+    z-index:9;width: 100px;height: 60px;
+    position: absolute;
+    ;border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px #444;-moz-box-shadow: 0 1px 2px #444;
+    -o-box-shadow: 0 1px 2px #444;
+    box-shadow: 0 1px 2px #444;
+    -moz-background: rgba(0,0,0,.4);
+    -webkit-background: rgba(0,0,0,.4);
+    -o-background: rgba(0,0,0,.4);
+    background: rgba(0,0,0,.4)
+}
+.s-plp{
+    font-family:'Fontawesome';content:'/sds'
+}

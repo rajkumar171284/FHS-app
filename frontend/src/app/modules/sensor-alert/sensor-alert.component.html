@@ -1,0 +1,108 @@
+<p-dialog header="Title" [style]="{padding:'30px' ,width: '50vw',background:'#fff'}" [modal]="true" [(visible)]="display">
+    <form [formGroup]="newForm">
+    <div class="row">
+        <div class="col-md-12 card">
+            <div class="row">
+                <!-- <input type="text" [(ngModel)]="data1" class="form-control"> -->
+
+                <!-- <div class="col-md-6" *ngFor="let a of newLabel;let i=index">
+                    <div class="form-group">
+                        <label>{{a}}</label>
+                        <div class="form-input">
+                        </div>
+                    </div>
+        
+                </div> -->
+
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Sensor Id:</label>
+                        <div class="form-input">
+                            <input class="form-control" type="text" formControlName="sensorID">
+
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Operator:</label>
+                        <div class="form-input">
+                            <select class="form-control" formControlName="operator">
+                                <option  [value]="a.value" *ngFor="let a of myClass.operatorList">{{a.key}}
+
+                                </option>
+                            </select>
+                            <!-- <input class="form-control" type="text" formControlName="operator"> -->
+
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Value:</label>
+                        <div class="form-input">
+                            <input  class="form-control" type="text" formControlName="value">
+
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <div class="form-input">
+                            <input class="form-control" type="text" formControlName="name">
+
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-md-4 text-center">
+                    <button  (click)="saveForm('add')" class="btn btn-success btn-sm btn-block">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</p-dialog>
+<div class="list-header ">
+    <div class="title-container">
+        List of Sensor Alerts
+    </div>
+    <div class="sort-container">
+        <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange()" [style]="{'min-width':'140px'}"></p-dropdown> -->
+    </div>
+</div>
+<p-virtualScroller [value]="myClass.data" scrollHeight="200px" [itemSize]="20">
+    <p-header>
+
+    </p-header>
+    <ng-template let-car pTemplate="item" let-i="index">
+        <div class="car-details">
+            <!-- <div>
+                <img class="car-item-image" src="assets/showcase/images/demo/car/{{car.brand}}.png">
+                <div>
+                    <b>{{car.vin}}</b>
+                    <div>{{car.year}} - {{car.color}}</div> 
+                </div>
+            </div> -->
+            <!-- <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)"></button> -->
+        </div>
+        <p-overlayPanel [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #op [dismissable]="true"
+            [showCloseIcon]="true">
+            <ng-template pTemplate>
+                Content
+            </ng-template>
+        </p-overlayPanel>
+    </ng-template>
+</p-virtualScroller>
+<div #actualTarget></div>
+<div class="text-right">
+    <button class=" btn-link  pull-right" type="text " (click)="display=!display">Manage</button>
+
+</div>
