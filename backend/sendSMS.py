@@ -11,13 +11,14 @@ PORT = 8000
 default_number = "6382573460"
 default_sms_body = "Testing"
 gateway_url = "http://192.168.2.1/cgi-bin/"
-
+request_timeout = 2 # 2 seconds
 
 @app.get("/sendSMS/")
 async def SMSsender(receiver_number: str = default_number,sms_body: str = default_sms_body): # Default SMS parameters
     def checkGatewayConnectivity():
         try:
-            http_req = requests.get(url=gateway_url+"luci/admin")
+            http_req = requests.get(url=gateway_url+"luci/admin",timeout=request_timeout)
+            print("Connectivity check : ",http_req.elapsed)
             resp_status = http_req.status_code
             if resp_status == 403:
                 return 'OK'
@@ -30,7 +31,8 @@ async def SMSsender(receiver_number: str = default_number,sms_body: str = defaul
         sms_passwd = "tsunami"
         sms_params = {"username":sms_uname,"password":sms_passwd,"number":receiver_number,"text":sms_body}
         try:
-            http_req = requests.get(url=gateway_url+"sms_send",params=sms_params)
+            http_req = requests.get(url=gateway_url+"sms_send",params=sms_params,timeout=request_timeout)
+            print("SMS send operation : ",http_req.elapsed)
             resp_status = http_req.text
             resp_status = resp_status[:2] # Response is "OK\n", so clipping just "OK"
             return resp_status
