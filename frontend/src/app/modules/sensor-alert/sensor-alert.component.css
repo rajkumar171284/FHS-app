@@ -1,4 +1,8 @@
 [class*="col-"]{
-    background-color: #fff!important;
-    border: 1px solid #fff!important;
+    /* background-color: #fff!important;
+    border: 1px solid #fff!important; */
+}
+.sensor-details{
+padding:10px;
+margin-bottom: 20px;
 }

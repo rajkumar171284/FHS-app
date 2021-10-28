@@ -18,14 +18,14 @@ export class classSensor{
     sensorID="";
     operator="";
     value="";
-    name="";
-    phoneNO:""
+    person_name="";
+    phoneNO=""
 }
 export interface interfaceSensor{
     sensorID;
     operator;
     value;
-    name;
+    person_name;
     phoneNO;
 }
 export interface InterfacePlotlyPattern1{

@@ -54,7 +54,17 @@
                     <div class="form-group">
                         <label>Name:</label>
                         <div class="form-input">
-                            <input class="form-control" type="text" formControlName="name">
+                            <input class="form-control" type="text" formControlName="person_name">
+
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ph:</label>
+                        <div class="form-input">
+                            <input class="form-control" type="text" formControlName="phoneNO">
 
                         </div>
                     </div>
@@ -82,15 +92,27 @@
     <p-header>
 
     </p-header>
-    <ng-template let-car pTemplate="item" let-i="index">
-        <div class="car-details">
-            <!-- <div>
-                <img class="car-item-image" src="assets/showcase/images/demo/car/{{car.brand}}.png">
-                <div>
-                    <b>{{car.vin}}</b>
-                    <div>{{car.year}} - {{car.color}}</div> 
+    <ng-template let-sensor pTemplate="item" let-i="index">
+        <div class="sensor-details card">
+            <div class="row">
+                <div class="col-md-2 bg-info">
+                    <span>
+                        <i class="fa fa-tag" [ngClass]="{'text-success':sensor.status,'text-danger':!sensor.status}"></i>
+                    </span> 
                 </div>
-            </div> -->
+                <div class="col-md-6">
+                    <div>
+                        <b>{{sensor.sensorid}}</b>
+                        <div>{{sensor.value}} - {{sensor.name?sensor.name:''}}</div> 
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div>
+               
+                <!-- <img class="car-item-image" src="assets/showcase/images/demo/car/{{car.brand}}.png"> -->
+                
+            </div>
             <!-- <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)"></button> -->
         </div>
         <p-overlayPanel [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #op [dismissable]="true"
@@ -103,6 +125,6 @@
 </p-virtualScroller>
 <div #actualTarget></div>
 <div class="text-right">
-    <button class=" btn-link  pull-right" type="text " (click)="display=!display">Manage</button>
+    <button class="btn-link  pull-right" type="text " (click)="display=!display">Manage</button>
 
 </div>

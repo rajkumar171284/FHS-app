@@ -4,7 +4,7 @@ import { Myclass, sensorId, classSensor, interfaceSensor } from '../../myclass'
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sensor-alert',
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SensorAlertComponent implements OnInit {
   @Input() alertList: boolean;
-  constructor(private ApiService: ApiService) { }
+  constructor(private ApiService: ApiService,private fb:FormBuilder ) { }
   myClass = new Myclass();
   sortKey: string;
   list = []
@@ -26,11 +26,11 @@ data1;
   newLabel: any = []
   newValues: any = []
 
-  newForm = new FormGroup({
-    sensorID: new FormControl('',Validators.required),
-    operator: new FormControl('',Validators.required),
-    value: new FormControl('',Validators.required),
-    name: new FormControl('',Validators.required),
+  newForm = this.fb.group({
+    sensorID:['',Validators.required],
+    operator: ['',Validators.required],
+    value: ['',Validators.required],
+    person_name: ['',Validators.required],phoneNO: ['',Validators.required],
   });
 
 
@@ -48,10 +48,57 @@ data1;
   }
   getSensorAlerts() {
     //  console.log(this.alertList)
-    this.ApiService.getAlertList({}).subscribe(respone => {
-      this.myClass.data = respone;
-      this.alertList = false;
-    })
+    // this.ApiService.getAlertList({}).subscribe(respone => {
+    //   this.myClass.data = respone;
+    //   this.alertList = false;
+    // })
+    this.myClass.data =[{
+      "sensorID":"502",
+      "operator":"lessthan",
+      "value":2.2,
+      "person_name":"krmk",
+      "phoneNO":"9884000157"
+  }
+,
+{
+  "sensorID":"502",
+  "operator":"lessthan",
+  "value":2.2,
+  "person_name":"krmk",
+  "phoneNO":"9884000157"
+}
+,
+{
+  "sensorID":"502",
+  "operator":"lessthan",
+  "value":2.2,
+  "person_name":"krmk",
+  "phoneNO":"9884000157"
+},
+{
+  "sensorID":"502",
+  "operator":"lessthan",
+  "value":2.2,
+  "person_name":"krmk",
+  "phoneNO":"9884000157"
+}
+,{
+  "sensorID":"502",
+  "operator":"lessthan",
+  "value":2.2,
+  "person_name":"krmk",
+  "phoneNO":"9884000157"
+}
+,
+{
+  "sensorID":"502",
+  "operator":"lessthan",
+  "value":2.2,
+  "person_name":"krmk",
+  "phoneNO":"9884000157"
+}
+
+]
 
     //     this.myClass.data= Array.from({length: 10000}).map(() => this.ApiService.getAlertList({}));
     console.log(this.myClass.data)
@@ -84,8 +131,22 @@ console.log(this.newValues,this.data1,this.newForm)
 
 
 this.myClass.screenLoader=true;
-this.ApiService.addSensorAlert(this.newForm).subscribe(res=>{
+let params:any={}
+params.sensorID= this.newForm.get('sensorID').value;
+params.operator= this.newForm.get('operator').value;
+params.value= this.newForm.get('value').value;
+params.person_name= this.newForm.get('person_name').value;
+
+params.phoneNO= this.newForm.get('phoneNO').value;
+console.log(params)
+
+
+this.ApiService.addSensorAlert(params).subscribe(res=>{
   console.log(res)
+  this.myClass.screenLoader=false;
+
+},(error)=>{
+  console.log(error)
 })
 
     }

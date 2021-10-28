@@ -36,12 +36,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     ;padding: 0;
     overflow: hidden;
   }
-  .card {
-    margin-bottom: 0px!important;
-    background-color: #f3f3f3
-
-    ;
-  }
   .row-eq-height{
     margin-bottom: 5px!important;
   }
