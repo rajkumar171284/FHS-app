@@ -19,7 +19,8 @@ export class classSensor{
     operator="";
     value="";
     person_name="";
-    phoneNO=""
+    phoneNO="";
+    status;
 }
 export interface interfaceSensor{
     sensorID;
@@ -27,6 +28,16 @@ export interface interfaceSensor{
     value;
     person_name;
     phoneNO;
+    status;
+}
+export interface interfaceSensorList{
+    sensorid;
+    operator;
+    value;
+    name;
+    phoneno;
+    status;
+    alertid;
 }
 export interface InterfacePlotlyPattern1{
 data:[],layout:JSON;

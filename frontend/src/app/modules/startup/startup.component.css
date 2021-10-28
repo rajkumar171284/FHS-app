@@ -8,7 +8,7 @@ img {
     height: 100px;
 } */
 .logo{
-    height: 230px;
+    height: 40vh;
 }
 
 @media only screen and (min-width : 481px) {
@@ -61,7 +61,7 @@ img {
 }
 @media screen and (min-width:1300px) {
     .logo,svg,object{
-        transform: rotateZ(90deg) translate(1em, -243px) scale(2.3);
+        transform: rotateZ(90deg) translate(.6em, -243px) scale(2.3);
         
     }    
 }

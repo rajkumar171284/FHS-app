@@ -2,15 +2,18 @@
 /* @import '~font-awesome/css/font-awesome.css'; */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~primeicons/primeicons.css';
-/* @import '~primeng-lts/resources/themes/saga-blue/theme.css'; */
+@import '~primeflex/themes/arya-blue.css';
 @import '~primeng-lts/resources/primeng.min.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.crs{
+  cursor: pointer  ;
+}
 .list-header{
-    background: #166c7e
-    ;
-    color: #fff;
+    background: #ddd   ;
+    color: #444;
     padding-right: 10px;text-align: right!important;
   }
   .a-tleft-bdr{
@@ -26,15 +29,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .a-bright-bdr{
     border-bottom-right-radius:30px;    
   }
+  .bgc1{
+    background-color: #fff!important;background: #fff!important;
+  }
   .panel{
     background: transparent;
     border-color: transparent;
   
   }
   .bdr1{
-    border:1px solid #19798c
-    ;padding: 0;
-    overflow: hidden;
+    /* border:1px solid #ddd; */
+    padding: 0;overflow: hidden;
+    
   }
   .row-eq-height{
     margin-bottom: 5px!important;

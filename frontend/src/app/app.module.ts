@@ -9,6 +9,7 @@ import { StartupComponent } from './modules/startup/startup.component';
 import {HttpClientModule,HttpClient} from '@angular/common/http';
 import { FilesComponent } from './modules/files/files.component';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import{ScrollingModule} from '@angular/cdk/scrolling';
@@ -28,7 +29,8 @@ import {TableModule} from 'primeng/table';
 import { PlotlyPieComponent } from './modules/plotly-pie/plotly-pie.component';
 import { SensorAlertComponent } from './modules/sensor-alert/sensor-alert.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {ChartsPageComponent} from './modules/charts-page/charts-page.component';
+import { ChartsComponent } from './modules/charts/charts.component'
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
@@ -42,11 +44,13 @@ PlotlyModule.plotlyjs = PlotlyJS;
     LoginComponent,
     DashboardComponent,
     PlotlyPieComponent,
-    SensorAlertComponent
+    SensorAlertComponent,
+    ChartsPageComponent,
+    ChartsComponent
   ],
   imports: [HttpClientModule,
     BrowserModule,OverlayPanelModule,
-    AppRoutingModule,ScrollingModule,ReactiveFormsModule,
+    AppRoutingModule,ScrollingModule,ReactiveFormsModule,ProgressBarModule,
     BrowserAnimationsModule,TabMenuModule,InputTextModule,GMapModule,VirtualScrollerModule,
     ChartModule,PlotlyModule,DialogModule,ProgressSpinnerModule,FormsModule,TableModule
   ],
