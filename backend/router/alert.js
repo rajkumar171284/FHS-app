@@ -23,9 +23,12 @@ let date = d.toLocaleString();
 pool.query(
     "INSERT INTO Alert_table(sensorID, operator, value, name, phoneNO, Modified_Date, Status) VALUES('"+req.body.sensorID+"','"+req.body.operator+"' , "+req.body.value+", '"+req.body.name+"', '"+req.body.phoneNO+"','"+date+"',TRUE)",
     (err, res) => {
-        console.log('Data Added')
-        res1.json('Data Added')
+  
         if(err) throw (err)
+        else{
+            console.log('Data Added')
+            res1.json('Data Added')
+        }
     })
 })
 
@@ -34,7 +37,6 @@ router.get('/show', async (req,res1) => {
     pool.query(
         "Select * from Alert_table",
         (err, res) => {
-            console.log('Data Added')
             res1.json(res.rows)
         })
     })
