@@ -21,11 +21,11 @@ console.log("Alert-Add")
 const d = new Date();
 let date = d.toLocaleString();
 pool.query(
-    "INSERT INTO Alert_table(sensorID, operator, value, name, phoneNO, Modified_Date, Status) VALUES('"+req.body.sensorID+"','"+req.body.operator+"' , "+req.body.value+", '"+req.body.name+"', '"+req.body.phoneNO+"','"+date+"',TRUE)",
+    "INSERT INTO Alert_table(sensorID, operator, values1, name, phoneNO, Modified_Date, Status) VALUES('"+req.body.sensorID+"','"+req.body.operator+"' , "+parseFloat(req.body.value)+", '"+req.body.person_name+"', '"+req.body.phoneNO+"','"+date+"',TRUE)",
     (err, res) => {
   
-        if(err) throw (err)
-        else{
+        if(res) 
+        {
             console.log('Data Added')
             res1.json('Data Added')
         }
@@ -46,7 +46,7 @@ router.post('/edit', async (req,res1) => {
     const d = new Date();
     let date = d.toLocaleString();
     pool.query(
-        "Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',value='"+req.body.value+"',name='"+req.body.name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'",
+        "Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',values1='"+parseFloat(req.body.value)+"',name='"+req.body.person_name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'",
         (err, res) => {
             if(err) res1.json(err)
             else
@@ -56,12 +56,13 @@ router.post('/edit', async (req,res1) => {
         })
     })
 
-    router.post('/delete', async (req,res1) => {
+    router.delete('/delete', async (req,res1) => {
         console.log("Alert-delete")
         pool.query(
             "DELETE FROM Alert_table WHERE alertid='"+req.body.id+"'       ",
             (err, res) => {
-                console.log('Data deleted')
+                if(err) res1.json("Delete error")
+                else res1.json("Deleted")
             })
         })
 module.exports=router

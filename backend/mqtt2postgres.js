@@ -40,13 +40,13 @@ let d=new Promise((myResolve,myreject)=>
     else{
       //Alertid int NOT NULL AUTO_INCREMENT,
       pool.query(
-        "CREATE TABLE Alert_table(alertid SERIAL ,sensorID text, operator text,value text,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL, Lastmodified timestamp)",
+        "CREATE TABLE Alert_table(alertid SERIAL ,sensorID text, operator text,values1 float8,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL, Lastmodified timestamp)",
           (err, res) => {
             console.log('Alert Table created')
           }
       ); 
             pool.query(
-              "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,value text,Date timestamp not null )",
+              "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,values1 float8,Date timestamp not null )",
                 (err, res) => {
                   console.log('Sensor Table created')
                   myResolve(1)
@@ -90,9 +90,14 @@ client.subscribe(register) // Function to subscribed the topics to read from mqt
 
 client.on('message', function (topic, message, packet) {
     var messagejson = JSON.parse(message.toString());
+    var k=parseFloat(messagejson.value)
+    console.log(k)
     pool.query(
-        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, value, Date) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+messagejson.value+"','"+messagejson.D+"')",
+        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, values1, Date) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+k+"','"+messagejson.D+"')",
         (err, res) => {
+            if(err)
+            console.log(err)
+            else
             console.log('inserted')
         })
 }); 
