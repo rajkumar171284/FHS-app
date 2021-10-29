@@ -7,6 +7,7 @@ var port = process.env.PORT||4107
 
 app.use('/runtime', require('./router/runtime.js'));
 app.use('/alert', require('./router/alert.js'));
+app.use('/charts', require('./router/chartapi.js'));
 
 app.listen(port, () => {   
     console.log('Server started @' +port)
