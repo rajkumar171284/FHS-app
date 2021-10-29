@@ -30,7 +30,11 @@ import { PlotlyPieComponent } from './modules/plotly-pie/plotly-pie.component';
 import { SensorAlertComponent } from './modules/sensor-alert/sensor-alert.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ChartsPageComponent} from './modules/charts-page/charts-page.component';
-import { ChartsComponent } from './modules/charts/charts.component'
+import { ChartsComponent } from './modules/charts/charts.component';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
+
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
@@ -48,13 +52,13 @@ PlotlyModule.plotlyjs = PlotlyJS;
     ChartsPageComponent,
     ChartsComponent
   ],
-  imports: [HttpClientModule,
+  imports: [HttpClientModule,ToastModule,
     BrowserModule,OverlayPanelModule,
     AppRoutingModule,ScrollingModule,ReactiveFormsModule,ProgressBarModule,
     BrowserAnimationsModule,TabMenuModule,InputTextModule,GMapModule,VirtualScrollerModule,
     ChartModule,PlotlyModule,DialogModule,ProgressSpinnerModule,FormsModule,TableModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

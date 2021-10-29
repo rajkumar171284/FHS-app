@@ -48,4 +48,9 @@ export class ApiService {
       return response;
     }))
   }
+  editSensorAlert(params:any):Observable<any>{
+    return this.http.post(environment.url+'/alert/edit',params,option).pipe(map(response=>{
+      return response;
+    }))
+  }
 }

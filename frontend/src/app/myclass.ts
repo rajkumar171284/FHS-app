@@ -5,7 +5,8 @@ export class Myclass {
     plotlyData;
     chartType: string;
 
-    operatorList=[{
+    operatorList=[
+    {
         key:'-- > --',value:'greaterthan'
     },
     {
@@ -21,6 +22,15 @@ export class classSensor{
     person_name="";
     phoneNO="";
     status;
+}
+export interface interfaceEditAlert{
+    sensorID;
+    operator;
+    value;
+    name;
+    phoneNO;
+    status;
+    id;
 }
 export interface interfaceSensor{
     sensorID;
