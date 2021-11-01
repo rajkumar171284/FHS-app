@@ -11,41 +11,31 @@ Web application
 * Install **Postgres** as service and store credentials in ***config.json***
 * Mosquitto **MQTT**
 
-### Run(In backend)
-> runMe.bat <br>
+## To run server
+#### Run all services:
+> runMe_windows.bat [For Windows PC] <br>
 
-Or
+Or <br>
+> runMe_linux.sh [For Linux PC] <br>
 
+#### Run individual services:
 > python datagen.py <br>
 > node mqtt2postgres.js <br>
 > python sendSMS.py <br>
 > npm start <br>
 > node alertusingnode.js <br>
 
-### API calls
 
-Realtime call |  10.1.1.16:4107/runtime | Post call No parameter <br>
-alert add | 10.1.1.16:4107/alert/add | Post call| {
-    "sensorID":"502",
-    "operator":"lessthan",
-    "value":2.2,
-    "person_name":"krmk",
-    "phoneNO":"9884000157"
-} <br>
-alert edit |127.0.0.1:4107/alert/edit | Post call | {
-    "sensorID":"501",
-    "operator":"lessthan",
-    "value":100,
-    "person_name":"krmk",
-    "phoneNO":"9884000157",
-    "status":false,
-    "id":5
-} <br>
-alert show | 127.0.0.1:4107/alert/show | Get call No parameter <br>
-alert delete | 127.0.0.1:4107/alert/delete | delete call |{    "id":"4" } <br>
+## API calls
 
-Name | URL | Input params | Output params
------|-----|--------------|--------------
-sendSMS | http://localhost:8000/sendSMS/ | receiver_number,sms_body | gateway_connectivity_status, sms_sent_successfully, receiver_number, sms_body
-Backend server | http://localhost:4107/ | |
 
+
+Name | URL | Type | Input params | Output params
+-----|-----|------|--------------|-----------------
+sendSMS | http://localhost:8000/sendSMS/ | GET | receiver_number, sms_body | gateway_connectivity_status, sms_sent_successfully, receiver_number, sms_body
+Backend server | http://localhost:4107/ | GET | |
+Realtime call |  http://10.1.1.16:4107/runtime | POST | |
+Alert Add | http://10.1.1.16:4107/alert/add | POST | sensorID, operator, value, person_name, phoneNO |
+Alert Edit | http://10.1.1.16:4107/alert/edit | POST | sensorID, operator, value, person_name, phoneNO, status, id |
+Alert Show | http://10.1.1.16:4107/alert/show | GET ||
+Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id |
