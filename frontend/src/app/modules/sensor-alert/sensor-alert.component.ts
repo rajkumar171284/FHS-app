@@ -3,8 +3,8 @@ import { ApiService } from '../../api.service';
 import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, interfaceEditAlert } from '../../myclass'
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormsModule, FormBuilder } from '@angular/forms';
+import { FormsModule, FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
