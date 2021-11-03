@@ -4,10 +4,10 @@ const sqlite3 = require('sqlite3').verbose();
 var pgtools = require("pgtools");
 const { Pool, Client } = require("pg");
 var config1 = require('./config.json');
-const user = config1.user;
-const host = config1.host;
-const password = config1.password;
-const port = config1.port;
+const user = config1.db_cred.user;
+const host = config1.db_cred.host;
+const password = config1.db_cred.password;
+const port = config1.db_cred.port;
 
 const config = {
     user: user,
