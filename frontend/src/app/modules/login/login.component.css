@@ -14,7 +14,7 @@ background-color: #f3f3f3;
     box-sizing: border-box;
     height: 500px;
     /* border:1px solid #888; */
-    background-color: #dc3d4b;
+    background: linear-gradient(#669cc3,#75b798);
     clip-path: ellipse(75% 100% at 65% 0%);
     }
   .bg {
