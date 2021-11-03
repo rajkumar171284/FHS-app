@@ -7,19 +7,9 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  
 
-  .toolbar {
-    position: fixed;
-    top: 0;z-index: 99;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #2acaea;
-    color: white;width: 100%;
-    font-weight: 600;justify-content: center;
-  }
+
   .sidebar {
     position: absolute;
     top: 0;z-index: 97;

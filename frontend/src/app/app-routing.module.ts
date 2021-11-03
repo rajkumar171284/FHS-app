@@ -6,28 +6,31 @@ import { FilesComponent } from './modules/files/files.component';
 import { PlotComponent } from './modules/plot/plot.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 
-
+import { LoginComponent } from './modules/login/login.component';
+import { AuthGuard } from './modules/auth.guard';
 const routes: Routes = [
   {
-    path:'',redirectTo:'dashboard',pathMatch:'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard]
+  },
+  {
+    path: 'home', component: StartupComponent,canActivate:[AuthGuard]
+  },
+  {
+    path: 'start', component: MapComponent,canActivate:[AuthGuard]
+  },
+  {
+    path: 'csv', component: FilesComponent,canActivate:[AuthGuard]
+  },
+  {
+    path: 'plot', component: PlotComponent,canActivate:[AuthGuard]
   },
 
-  {
-path:'dashboard',component:DashboardComponent
-  },
-  {
-    path:'home',component:StartupComponent
-  },
-  {
-    path:'start',component:MapComponent
-  },
-  {
-    path:'csv',component:FilesComponent
-  },
-  {
-    path:'plot',component:PlotComponent
-  },
-  
 
 ];
 

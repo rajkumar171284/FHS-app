@@ -32,6 +32,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .bgc1{
     background-color: #fff!important;background: #fff!important;
   }
+  .toolbar {
+    position: fixed;
+    top: 0;z-index: 99;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #2acaea;
+    color: white;width: 100%;
+    font-weight: 600;justify-content: center;
+  }
   .panel{
     background: transparent;
     border-color: transparent;
