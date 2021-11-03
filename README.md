@@ -33,7 +33,7 @@ Name | URL | Type | Input params | Output params
 Send SMS | http://10.1.1.16:8000/sendSMS/ | GET | receiver_number, sms_body | gateway_connectivity_status, sms_sent_successfully, receiver_number, sms_body
 Realtime call |  http://10.1.1.16:4107/runtime | POST | |
 Time plot Pressure | http://10.1.1.16:4107/chart/pressure | POST | start, stop, groupby |
-Time plot Level | http://10.1.1.16:4107/chart/level | POST | start, stop, groupby |
+Time plot Level | http://10.1.1.16:4107/chart/level | POST | time_period |
 Alert Add | http://10.1.1.16:4107/alert/add | POST | sensorID, operator, value, person_name, phoneNO |
 Alert Edit | http://10.1.1.16:4107/alert/edit | POST | sensorID, operator, value, person_name, phoneNO, status, id |
 Alert Show | http://10.1.1.16:4107/alert/show | GET ||
