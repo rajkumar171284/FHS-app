@@ -1,8 +1,24 @@
 ﻿{
-    "user": "postgres",
-    "host": "localhost",
-    "password": "amaraja",
-    "port": 5432
+    "db_cred":{
+        "user": "postgres",
+        "host": "localhost",
+        "password": "amaraja",
+        "port": 5432},
+    "time_select":{
+        "Last 5 minutes":0,
+        "Last 15 minutes":1,
+        "Last 30 minutes":1,
+        "Last 1 Hour":5,
+        "Last 3 Hours":10,
+        "Last 6 Hours":20,
+        "Last 12 Hours":30,
+        "Last 24 Hours":60,
+        "Last 2 days":120,
+        "Last 7 days":360,
+        "Last 30 days":720,
+        "Last 90 days":2160,
+        "Last 6 months":4320,
+        "Last 1 year":8640}
 }
 
 
