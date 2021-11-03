@@ -46,7 +46,7 @@ let d=new Promise((myResolve,myreject)=>
           }
       ); 
             pool.query(
-              "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,values1 float8,Date timestamp not null )",
+              "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,values1 float8,Date1 timestamp not null )",
                 (err, res) => {
                   console.log('Sensor Table created')
                   myResolve(1)
@@ -93,7 +93,7 @@ client.on('message', function (topic, message, packet) {
     var k=parseFloat(messagejson.value)
     console.log(k)
     pool.query(
-        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, values1, Date) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+k+"','"+messagejson.D+"')",
+        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, values1, Date1) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+k+"','"+messagejson.D+"')",
         (err, res) => {
             if(err)
             console.log(err)
