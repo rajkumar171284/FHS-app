@@ -22,7 +22,7 @@ router.post('/level', async (req,res1) => {
 //     + date_part('minute', date)::int / 1* interval '1 min' as timeinterval , avg(values1) from sensor_value group by 1
 // order by timeinterval asc
 
-
+//SELECT * FROM (SELECT * from generate_series(timestamp '2021-03-11T15:00'  , timestamp '2021-04-11T20:00' , interval  '5 minute') as day1) d Left JOIN (Select DATE_TRUNC('minute', date1) as day1, avg(values1) from sensor_value where sensorid='501' and date1 between '2021-03-11' and '2021-04-11' group by 1 order by day1 asc) t USING (day1)ORDER  BY day1;
 //SELECT * from generate_series(timestamp '2007-12-01'                        , timestamp '2008-12-01'                        , interval  '5 minute')
 console.log("chart")
 var querystr;

@@ -91,9 +91,10 @@ client.subscribe(register) // Function to subscribed the topics to read from mqt
 client.on('message', function (topic, message, packet) {
     var messagejson = JSON.parse(message.toString());
     var k=parseFloat(messagejson.value)
-    console.log(k)
-    pool.query(
-        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, values1, Date1) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+k+"','"+messagejson.D+"')",
+    var querystr=        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, values1, Date1) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+k+"','"+messagejson.D+"')"
+    console.log(querystr)
+
+    pool.query(querystr,
         (err, res) => {
             if(err)
             console.log(err)

@@ -27,6 +27,7 @@ def sendMQTT(json_data):
     D = datetime.now()
     D = D.strftime('%d/%m/%Y %H:%M:%S')
     json_data['D'] = D
+    print
     channel = json_data['sensorID']
     mqtt_msg = json.dumps(json_data)
     response = client.publish(channel,mqtt_msg,MQTT_QOS)
