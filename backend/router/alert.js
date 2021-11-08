@@ -26,7 +26,6 @@ pool.query(
   
         if(res) 
         {
-            console.log('Data Added')
             res1.json('Data Added')
         }
     })
@@ -50,7 +49,7 @@ router.post('/edit', async (req,res1) => {
         (err, res) => {
             if(err) res1.json(err)
             else
-           { console.log(res)
+           {
             res1.json('Data Editted')}
             
         })
