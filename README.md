@@ -55,8 +55,6 @@ Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id | "Deleted" or "
 { "sensorID":"505", "operator":"lessthan","value":"15696","person_name":"krmk","phoneNO":"99623691114"}
 
 
-
-
 #### Sample Input for alert edit
 {  "id":1,    "sensorID":"11",    "operator":"greater",    "value":"51",    "person_name":"kk",    "phoneNO":"4",    "status":"FALSE"}
 
