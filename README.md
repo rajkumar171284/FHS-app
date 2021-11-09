@@ -36,8 +36,8 @@ Time plot Pressure | http://10.1.1.16:4107/chart/pressure | POST | time_period (
 Time plot Level | http://10.1.1.16:4107/chart/level | POST | time_period (Refer below)  |
 Alert Add | http://10.1.1.16:4107/alert/add | POST | sensorID, operator, value, person_name, phoneNO |
 Alert Edit | http://10.1.1.16:4107/alert/edit | POST | sensorID, operator, value, person_name, phoneNO, status, id |
-Alert Show | http://10.1.1.16:4107/alert/show | GET ||
-Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id |
+Alert Show | http://10.1.1.16:4107/alert/show | GET ||[{"alertid": 2, "sensorid": "505", "operator": "lessthan", "values1": 15696, "name": "krmk", "phoneno": "99623691114", "modified_date": "2021-11-08T08:31:51.000Z", "status": true, "lastmodified": null  }]|
+Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id | "Deleted" or "Delete error" |
 
 #### Input for timeperiod - chart -level and pressure
 > "Last 5 minutes" <br>
