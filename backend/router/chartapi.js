@@ -1,6 +1,5 @@
 express=require('express')
 router=express.Router()
-const { response } = require('express');
 const { Pool } = require("pg");
 var config1 = require('../config.json');
 const user = config1.db_cred.user;

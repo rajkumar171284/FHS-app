@@ -49,10 +49,25 @@ let d=new Promise((myResolve,myreject)=>
               "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,values1 float8,Date1 timestamp not null )",
                 (err, res) => {
                   console.log('Sensor Table created')
-                  myResolve(1)
                 }
             ); 
-            
+            pool.query(
+              "CREATE TABLE login_table(loginid SERIAL ,username text, password text)",
+                (err, res) => {
+                  if(err) console.log('error in creating login table')
+                  console.log('login Table created')
+                  var querystr=        "INSERT INTO login_table(username,password) values ('admin','admin')"            
+                  pool.query(querystr,
+                      (err1, res) => {
+                          if(err1)
+                          console.log(err1)
+                          else
+                          console.log('Login credentials inserted in db')
+                          myResolve(1)
+
+                      })
+                }
+            );     
     }
   });
 })
