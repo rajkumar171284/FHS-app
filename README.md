@@ -60,4 +60,4 @@ Login | http://10.1.1.16:4107/login/ | Post | username, password | "Invalid cred
 {  "id":1,    "sensorID":"11",    "operator":"greater",    "value":"51",    "person_name":"kk",    "phoneNO":"4",    "status":"FALSE"}
 
 #### Sample Input for login
-{  "username":"admin",    "password":"adin"}
+{  "username":"admin",    "password":"admin"} // correct credentials
