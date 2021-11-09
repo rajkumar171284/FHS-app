@@ -23,7 +23,7 @@ let date = d.toLocaleString();
 pool.query(
     "INSERT INTO Alert_table(sensorID, operator, values1, name, phoneNO, Modified_Date, Status) VALUES('"+req.body.sensorID+"','"+req.body.operator+"' , "+parseFloat(req.body.value)+", '"+req.body.person_name+"', '"+req.body.phoneNO+"','"+date+"',TRUE)",
     (err, res) => {
-  
+        if(err)  res1.json('Data Addition error')
         if(res) 
         {
             res1.json('Data Added')
