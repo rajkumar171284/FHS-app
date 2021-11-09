@@ -26,12 +26,12 @@ Or <br>
 > node alertusingnode.js <br>
 
 
-## API calls
+## API calls  (Remember to clear the postgres-db before using, there are soe structural changes in tables)
 
 Name | URL | Type | Input params | Output params
 -----|-----|------|--------------|-----------------
 Send SMS | http://10.1.1.16:8000/sendSMS/ | GET | receiver_number, sms_body | gateway_connectivity_status, sms_sent_successfully, receiver_number, sms_body
-Realtime call |  http://10.1.1.16:4107/runtime | POST | |
+Realtime call |  http://10.1.1.16:4107/runtime | POST | |JSON
 Time plot Pressure | http://10.1.1.16:4107/chart/pressure | POST | time_period (Refer below) | JSON
 Time plot Level | http://10.1.1.16:4107/chart/level | POST | time_period (Refer below)  | Json
 Alert Add | http://10.1.1.16:4107/alert/add | POST | sensorID, operator, value, person_name, phoneNO | 'Data Addition error' or 'Data Added'
