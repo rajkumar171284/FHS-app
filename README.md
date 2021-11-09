@@ -40,7 +40,6 @@ Alert Show | http://10.1.1.16:4107/alert/show | GET ||
 Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id |
 
 #### Input for timeperiod - chart -level and pressure
-> python datagen.py <br>
 > "Last 5 minutes" <br>
 > "Last 15 minutes"<br>
 > "Last 30 minutes"<br>
