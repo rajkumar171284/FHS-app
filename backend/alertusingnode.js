@@ -1,13 +1,13 @@
 var pgtools = require("pgtools");
 const { Pool, Client } = require("pg");
 var config1 = require('./config.json');
-const axios=require('axios');
 const { query } = require("express");
-
-const user = config1.user;
-const host = config1.host;
-const password = config1.password;
-const port = config1.port;
+const user = config1.db_cred.user;
+const host = config1.db_cred.host;
+const password = config1.db_cred.password;
+const port = config1.db_cred.port;
+const axios=require('axios')
+console.log(user)
 const pool = new Pool({
     user: user,
     host: host,
@@ -32,19 +32,18 @@ async function asyncfunction()
     for(let j=0;j<Alertarray.length;j++)
         {
                 let newpromise=new Promise((myResolve,myreject)=>{
-                pool.query("Select * from sensor_value where sensorid='"+Alertarray[j].sensorid+"'and date > now() - interval '3 minute'",
+                pool.query("Select * from sensor_value where sensorid='"+Alertarray[j].sensorid+"'and date1 > now() - interval '1 minute'",
                 async(err, res) => {
                 if(err) console.log(err)
                    if(res.rows.length!=0)
                    {
-                    console.log(res.rows.length)
                     for(let i=0;i<res.rows.length;i++)
                     {                       
                           console.log('j '+j)
                           console.log('i '+i)
                         if(Alertarray[j].operator=='lessthan')
-                                {
-                                    if(parseFloat(res.rows[i].value)<parseFloat(Alertarray[j].value))
+                                {   
+                                    if(parseFloat(res.rows[i].values1)<parseFloat(Alertarray[j].values1))
                                     {  
                                         let message='Alertinsensor'+ res.rows[i].sensorid +'withvalue'+ res.rows[i].value+'lessthan'+Alertarray[j].value+'indatetime'//+element1.date
                                         let phone='9962391114'
@@ -116,12 +115,11 @@ async function asyncfunction()
                 })
                })
                let k= await newpromise
-           }
-        
-    
-  
-}
+               asyncfunction()
 
+           }
+
+}
 
 asyncfunction()
  
