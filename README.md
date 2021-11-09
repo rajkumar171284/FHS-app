@@ -26,7 +26,7 @@ Or <br>
 > node alertusingnode.js <br>
 
 
-## API calls  (Remember to clear the postgres-db before using, there are soe structural changes in tables)
+## API calls  (Remember to clear the postgres-db before using, there are some structural changes in tables)
 
 Name | URL | Type | Input params | Output params
 -----|-----|------|--------------|-----------------
