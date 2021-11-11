@@ -1,0 +1,21 @@
+.hero {
+    display: block;
+    box-sizing: border-box;
+    // height: 500px;
+    /* border:1px solid #888; */
+    background: linear-gradient(#669cc3,#75b798);
+    clip-path: ellipse(75% 100% at 65% 0%);
+    }
+    ion-tab-bar{
+        position: absolute;
+        bottom: 0;left:0;right:0;width: 100%;
+    }
+    #container {
+        text-align: center;
+      
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }

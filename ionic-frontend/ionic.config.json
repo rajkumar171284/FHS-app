@@ -1,0 +1,7 @@
+{
+  "name": "amara-raja",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

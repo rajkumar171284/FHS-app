@@ -1,0 +1,30 @@
+
+
+.sensor-details{
+    justify-content : center;padding: .2rem;
+}
+.icon-content{
+    padding: .5em;position:relative;
+}
+ion-label{
+    color:#f44336
+}
+.icon-content>ion-icon{
+    position: absolute;z-index: 3;top:2px;right:3px;font-size: 15px;
+}
+.info-content{position:relative;
+    border-left:2px solid #888
+}
+.icon-content img,.info-content img{
+    height:30px;width: 30px;
+}
+.spn-pencil{
+    position: absolute;z-index: 3;top:2px;right:10px;font-size: 15px;color:#444;
+}
+.minht{
+    min-height: 200px;
+}
+.t-mng{
+    margin-right: 8px;
+}
+
