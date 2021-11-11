@@ -10,7 +10,25 @@ img {
 .logo{
     height: 40vh;
 }
+#path269{
+    
+}
+#path269a{
+    transform:translate(32px, 273px)
+}
+#mySvg{
+    /* position: relative; */
+    height: 40vh;
+    /* height: 250px; */
+}
+.bgSvg{
+    background: url('/assets/drawing.svg') no-repeat;
+    height: 40vh;
+    position: relative; 
+    background-size: contain;
+    transform: rotateZ(90deg) translate(45em, -15px) scale(2.3);
 
+}
 @media only screen and (min-width : 481px) {
     .flex-row {
         display: flex;

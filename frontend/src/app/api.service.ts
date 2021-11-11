@@ -25,7 +25,12 @@ let myurl='http://localhost:3000'
 export class ApiService {
 
   constructor(private http:HttpClient) { }
-
+  userLogin(params:any):Observable<any>{
+    return this.http.post(environment.url+'/login/',params,option).pipe(map(response=>{
+      return response;
+    }))
+  }
+  
   getCSV(params:any):Observable<any>{
     return this.http.get(myurl+'/api/csv',option).pipe(map(response=>{
       return response;

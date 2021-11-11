@@ -3,6 +3,8 @@ import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@a
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { ApiService } from '../../api.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,8 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router) { }
-
+  constructor(private ApiService: ApiService,private fb: FormBuilder, private router: Router) { }
 
   userDetails: any;
   loginForm = this.fb.group({
@@ -23,16 +24,23 @@ export class LoginComponent implements OnInit {
 
 
   loginFn() {
-    console.log(this.loginForm)
+    // console.log(this.loginForm)
 
     if (this.loginForm.valid) {
       console.log(this.loginForm)
       this.userDetails = {
-        userName: this.loginForm.get('userName').value,
-        passCode: this.loginForm.get('passCode').value
+        username: this.loginForm.get('userName').value,
+        password: this.loginForm.get('passCode').value
       }
-      localStorage.setItem('mySession', JSON.stringify(this.userDetails));
-      this.router.navigate(["/dashboard"])
+
+      const newLocal = "/dashboard";
+      // this.ApiService.userLogin(this.userDetails).subscribe(response=>{
+      //   console.log(response)
+      //   localStorage.setItem('mySession', JSON.stringify(this.userDetails));
+        
+      //   this.router.navigate([newLocal])
+      // })
+      this.router.navigate([newLocal])
     }
   }
 }

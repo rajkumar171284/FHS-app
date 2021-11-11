@@ -12,6 +12,7 @@ import { Myclass, sensorId } from '../../myclass'
 
 
 export class StartupComponent implements OnInit, OnDestroy {
+  hide:boolean=true;
   myClass: any;
   Subscription: Subscription;
   interVal: Subscription;
@@ -87,22 +88,6 @@ export class StartupComponent implements OnInit, OnDestroy {
 
             item.yPos = ''
             item.xPos = ''
-
-            // let zone = item.zone;
-            //  (zone) => {
-            //   // let yPos
-            //   item.yPos = zone.toUpperCase() == 'IBD' ? 260
-            //     : zone.toUpperCase() == 'SMD' ? 180
-            //       : zone.toUpperCase() == 'ABD' ? 420
-            //         : ''
-            // }
-            // item.xPos = zone => {
-            //   // let yPos
-            //   return zone.toUpperCase() == 'IBD' ? 663
-            //     : zone.toUpperCase() == 'SMD' ? 220
-            //       : zone.toUpperCase() == 'ABD' ? 365
-            //         : ''
-            // }
             if(item.zone.toUpperCase()=='IBD'){
               item.yPos=260
               item.xPos=663
@@ -172,6 +157,9 @@ export class StartupComponent implements OnInit, OnDestroy {
     }
     
 
+  }
+  getId(){
+    return false
   }
   ngOnDestroy() {
     this.Subscription.unsubscribe();

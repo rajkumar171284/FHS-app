@@ -3,7 +3,8 @@
         "user": "postgres",
         "host": "localhost",
         "password": "amaraja",
-        "port": 5432},
+        "port": 5432
+    },
     "time_select":{
         "Last 5 minutes":0,
         "Last 15 minutes":1,
@@ -15,7 +16,8 @@
         "Last 7 days":360,
         "Last 30 days":720,
         "Last 6 months":4320,
-        "Last 1 year":8640}
+        "Last 1 year":8640
+    }
 }
 
 

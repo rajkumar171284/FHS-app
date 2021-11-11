@@ -17,13 +17,13 @@
                                     <div class="form-group mb-3">
                                         <input name="userName" type="text" formControlName="userName" class="form-control" />
                                         <p class="text-danger" *ngIf="loginForm.get('userName').touched && loginForm.get('userName').hasError('required')">
-                                            user is required</p>
+                                            User is required</p>
                                     </div>
-                                    <label>Passcode :</label>
+                                    <label>Password :</label>
                                     <div class="form-group">
                                         <input type="text" formControlName="passCode" class="form-control" />
                                         <p class="text-danger" *ngIf="loginForm.get('passCode').touched && loginForm.get('passCode').hasError('required')">
-                                            Passcode is required</p>
+                                            Password is required</p>
                                     </div>
                                 </div>
     
