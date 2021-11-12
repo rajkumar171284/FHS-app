@@ -20,7 +20,7 @@ router.post('/add', async (req,res1) => {
 console.log("Alert-Add")
 const d = new Date();
 let date = d.toLocaleString();
-pool.query(
+pool.query(  
     "INSERT INTO Alert_table(sensorID, operator, values1, name, phoneNO, Modified_Date, Status) VALUES('"+req.body.sensorID+"','"+req.body.operator+"' , "+parseFloat(req.body.value)+", '"+req.body.person_name+"', '"+req.body.phoneNO+"','"+date+"',TRUE)",
     (err, res) => {
         if(err)  res1.json('Data Addition error')
@@ -44,6 +44,7 @@ router.post('/edit', async (req,res1) => {
     console.log("Alert-edit")
     const d = new Date();
     let date = d.toLocaleString();
+    console.log("Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',values1='"+parseFloat(req.body.value)+"',name='"+req.body.person_name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'")
     pool.query(
         "Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',values1='"+parseFloat(req.body.value)+"',name='"+req.body.person_name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'",
         (err, res) => {
