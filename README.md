@@ -61,3 +61,7 @@ Login | http://10.1.1.16:4107/login/ | Post | username, password (refer below) |
 
 #### Sample Input for login
 {  "username":"admin",    "password":"admin"} // correct credentials
+
+#### git token token krishnankrm, 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 
+#### Ubuntu ip-3.23.238.254
+#### Api working in ubuntu. login, alert, runtime
