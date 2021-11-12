@@ -41,6 +41,7 @@ Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id | "Deleted" or "
 Login | http://10.1.1.16:4107/login/ | Post | username, password (refer below) | "Invalid credentials" or "Login Successful" |
 
 #### Input for timeperiod - chart -level and pressure
+> "Last 5 minutes"<br>
 > "Last 15 minutes"<br>
 > "Last 30 minutes"<br>
 > "Last 1 Hour"<br>
