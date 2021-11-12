@@ -21,7 +21,6 @@ router.post('/', async (req,res) => {
     var sensordetail=[]
 
     var promisedummy= new Promise((resolve,reject)=>{distictsensorId.forEach(element => {
-        
         pool.query(
             "SELECT * FROM Sensor_Value  WHERE sensorID ='"+element+"' ORDER BY Date DESC  LIMIT 1",
             ).then((res)=>{

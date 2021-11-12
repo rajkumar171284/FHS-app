@@ -25,7 +25,7 @@ def sendMQTT(json_data):
     except:
         pass
     D = datetime.now()
-    D = D.strftime('%m/%d/%Y %H:%M:%S')
+    D = D.strftime('%d/%m/%Y %H:%M:%S')
     json_data['D'] = D
     print
     channel = json_data['sensorID']

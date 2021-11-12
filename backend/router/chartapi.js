@@ -257,7 +257,6 @@ router.post('/level', async (req,res1) => {
       })
   })
   
-
 module.exports=router
 
 // if(req.body.start=='' && req.body.stop=='' &&req.body.groupby=='')
