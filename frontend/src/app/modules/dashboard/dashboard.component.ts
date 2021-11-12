@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
     // this.interVal = interval(2000).subscribe(res => {
     //   this.getDataforSVG();
     // })
-    // this.getDataforSVG();
+    this.getDataforSVG();
   }
   
 

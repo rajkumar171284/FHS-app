@@ -1,22 +1,55 @@
 <ion-header [translucent]="true">
 
-   <ion-toolbar color="mytheme">
+  <ion-toolbar color="mytheme">
     <ion-title size="small">
       Dashboard
     </ion-title>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-header>
+    <ion-card-header class="mycard-hd">
       <ion-card-subtitle color="dark">Mimic Diagram</ion-card-subtitle>
       <ion-card-title color="mytheme">Fire Hydrant System</ion-card-title>
     </ion-card-header>
-  
+
     <ion-card-content>
-      <ion-img class="img-responsive title-image" src="/assets/mimic.svg" >
-        </ion-img>
+      <ion-img class="img-responsive title-image" src="/assets/mimic.svg">
+
+      </ion-img>
+      <div *ngFor="let item of myClass.response" class="img-div" [style.left]="item.yPos" [style.top]="item.xPos">
+        <ion-card>
+          <!-- <ion-chip>
+              <ion-avatar>
+                <ion-icon name="wifi-outline"></ion-icon>
+              </ion-avatar>
+              <ion-label>Chip Avatar</ion-label>
+            </ion-chip> -->
+          <ion-card-header class="ion-no-padding" color="warning">
+            <ion-card-subtitle>
+              {{item.zone}}
+
+
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="text-left">
+            <ion-card-subtitle>
+              <ion-badge [color]="item.status=='active'?'success':'danger'">
+                <ion-icon name="wifi-outline"></ion-icon>                
+              </ion-badge>{{item.status}}
+
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              <ion-badge>
+                {{item.type}}
+              </ion-badge>
+
+            </ion-card-subtitle>
+          </ion-card-content>
+        </ion-card>
+
+      </div>
 
     </ion-card-content>
   </ion-card>

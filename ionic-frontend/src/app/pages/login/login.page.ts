@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
     userName: ['', Validators.required],
     passCode: ['', Validators.required]
   })
-  constructor(public loadingController: LoadingController,private fb: FormBuilder, private router: Router) { }
+  constructor(public toastController: ToastController, private ApiService: ApiService, public loadingController: LoadingController, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     // this.presentLoading()
@@ -36,16 +37,57 @@ export class LoginPage implements OnInit {
     // console.log(this.loginForm)
 
     if (this.loginForm.valid) {
-      this.presentLoading();
+      this.simpleLoader()
       console.log(this.loginForm)
       this.userDetails = {
-        userName: this.loginForm.get('userName').value,
-        passCode: this.loginForm.get('passCode').value
+        username: this.loginForm.get('userName').value,
+        password: this.loginForm.get('passCode').value
       }
-      localStorage.setItem('mySession', JSON.stringify(this.userDetails));
-      const newLocal = "home/tabs/mimic";
-      this.router.navigate([newLocal])
+      this.ApiService.userLogin(this.userDetails).subscribe(response => {
+
+        // console.log(response)
+        if (response) {
+          let val = response.toLowerCase()
+          if (val.includes('invalid')) {
+            // false
+            this.dismissLoader()
+            this.presentToast(response)
+          }else{
+            localStorage.setItem('mySession', JSON.stringify(this.userDetails));
+            const newLocal = "home/tabs/mimic";
+            this.router.navigate([newLocal])
+          }
+
+        }
+
+      }, (error) => {
+        console.log(error)
+        this.presentToast(error)
+      })
+
     }
   }
-
+  // Simple loader
+  simpleLoader() {
+    this.loadingController.create({
+      message: 'Loading...'
+    }).then((response) => {
+      response.present();
+    });
+  }
+  // Dismiss loader
+  dismissLoader() {
+    this.loadingController.dismiss().then((response) => {
+      console.log('Loader closed!', response);
+    }).catch((err) => {
+      console.log('Error occured : ', err);
+    });
+  }
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
 }
