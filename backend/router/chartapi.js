@@ -157,7 +157,8 @@ router.post('/level', async (req,res1) => {
   if(req.body.time_period=="Last 5 minutes")
   { 
     start.setMinutes ( start.getMinutes() +325 );
-    querystr="Select values1, date1 from sensor_value where sensorid='501' and date1 between '"+start.toISOString()+"' and '"+stop.toISOString()+"'"
+    querystr="SELECT * FROM (SELECT * from generate_series(timestamp '"+start.toISOString().slice(0,16)+"'  , timestamp '"+stop.toISOString().slice(0,16)+"' , interval  '1 second') as day1) d Left JOIN (Select DATE_TRUNC('second', date1) as day1, avg(values1) as values1 from sensor_value where sensorid='501' and date1 between  '"+start.toISOString().slice(0,16)+"' and  '"+stop.toISOString().slice(0,16)+"' group by 1 order by day1 asc) t USING (day1) ORDER  BY day1"
+   // querystr="Select values1, date1 from sensor_value where sensorid='501' and date1 between '"+start.toISOString()+"' and '"+stop.toISOString()+"'"
   }
   else if(req.body.time_period=="Last 15 minutes")
   { 

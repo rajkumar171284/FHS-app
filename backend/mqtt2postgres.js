@@ -39,12 +39,12 @@ let d=new Promise((myResolve,myreject)=>
     }
     else{
       //Alertid int NOT NULL AUTO_INCREMENT,
-      pool.query(
-        "CREATE TABLE Alert_table(alertid SERIAL ,sensorID text, operator text,values1 float8,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL, Lastmodified timestamp)",
-          (err, res) => {
-            console.log('Alert Table created')
-          }
-      ); 
+          pool.query(
+            "CREATE TABLE Alert_table(alertid SERIAL ,sensorID text, operator text,values1 float8,name text, phoneNO text, Modified_Date timestamp not null,status BOOLEAN NOT NULL, Lastmodified timestamp)",
+              (err, res) => {
+                console.log('Alert Table created')
+              }
+          ); 
             pool.query(
               "CREATE TABLE Sensor_Value(sensorID text,lat float8 ,lng float8 ,zone text,type text,unit text,values1 float8,Date1 timestamp not null )",
                 (err, res) => {
@@ -67,7 +67,16 @@ let d=new Promise((myResolve,myreject)=>
 
                       })
                 }
-            );     
+            );   
+
+            pool.query(
+              "CREATE TABLE Notification_Table(notificationid SERIAL ,alertid text,sensorID text, operator text,values1 float8, alertvalue float8, name text, phoneNO text, AlertDate timestamp not null, status BOOLEAN NOT NULL )",
+                (err, res) => {
+                  if(!err)
+                  console.log('Notification_Table created')
+                  myResolve(1)
+                }
+            );           
     }
   });
 })

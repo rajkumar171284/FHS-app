@@ -22,7 +22,7 @@ router.post('/', async (req,res) => {
 
     var promisedummy= new Promise((resolve,reject)=>{distictsensorId.forEach(element => {
         pool.query(
-            "SELECT * FROM Sensor_Value  WHERE sensorID ='"+element+"' ORDER BY Date DESC  LIMIT 1",
+            "SELECT * FROM Sensor_Value  WHERE sensorID ='"+element+"' ORDER BY date1 DESC  LIMIT 1",
             ).then((res)=>{
                 sensordetail.push(res.rows[0])
                 if(sensordetail.length==distictsensorId.length)
@@ -36,12 +36,13 @@ var dummy11= await promisedummy
 var promisedummy1=new Promise((resolve,reject)=>{
     var dummy10=sensordetail.map((element,index)=>{
         var datenow= new Date()
-        var seconds = (datenow.getTime()-element.date.getTime()) / 1000;
+        var seconds = (datenow.getTime()-element.date1.getTime()) / 1000;
         if(seconds<60)
         element.status='active'
         else
         element.status='inactive'
     }).then(resolve(1))
+    .catch(resolve(1))
 })
 var dummy12= await promisedummy1
 
