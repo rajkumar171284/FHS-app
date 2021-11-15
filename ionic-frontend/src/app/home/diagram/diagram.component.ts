@@ -79,21 +79,30 @@ export class DiagramComponent implements OnInit,OnDestroy {
             let width= window.innerWidth;
             console.log(width)
             if(item.zone.toUpperCase()=='IBD'){
-              item.yPos='475px'
-              item.xPos='545px'
+              // item.yPos='475px'
+              // item.xPos='545px'
             }
             else if(item.zone.toUpperCase()=='SMD'){
               if(width){
-
-              }
+                item.yPos=80
+                item.xPos=20
+              }else{
               item.yPos=180
               item.xPos=220
+              }
             } else if(item.zone.toUpperCase()=='ABD'){
-              item.yPos='300px'
-              item.xPos='670px'
+              // item.yPos='300px'
+              // item.xPos='670px'
+              if(width<=400){
+                item.yPos='164px'
+                item.xPos='190px'
+              }else{
+              item.yPos=180
+              item.xPos=220
+              }
             } else if(item.zone.toUpperCase()=='PLP'){
-              item.yPos=35
-              item.xPos=113
+              // item.yPos=35
+              // item.xPos=113
             }
             return item;
           });

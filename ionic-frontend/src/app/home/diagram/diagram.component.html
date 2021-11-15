@@ -14,52 +14,81 @@
       <ion-card-title color="mytheme">Fire Hydrant System</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
-      <ion-img class="img-responsive title-image" src="/assets/mimic.svg">
+    <ion-card-content class="ion-no-padding">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="bgSvg2">
 
-      </ion-img>
-      <div *ngFor="let item of myClass.response" class="img-div" [style.left]="item.yPos" [style.top]="item.xPos">
-        <ion-card>
-          <!-- <ion-chip>
-              <ion-avatar>
-                <ion-icon name="wifi-outline"></ion-icon>
-              </ion-avatar>
-              <ion-label>Chip Avatar</ion-label>
-            </ion-chip> -->
-          <ion-card-header class="ion-no-padding" color="warning">
-            <ion-card-subtitle>
-              {{item.zone}}
-
-
-            </ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content class="text-left">
-            <ion-list>
-              <ion-item>
-             
+     
+            <div *ngFor="let item of myClass.response" class="img-div" [style.left]="item.yPos" [style.top]="item.xPos">
+           
+              <ion-card>
+               
+                <ion-card-header class="ion-no-padding" color="warning">
+                  <ion-card-subtitle>
+                    {{item.zone}}
+                  </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="text-center ion-no-padding">
                   <ion-badge [color]="item.status=='active'?'success':'danger'">
-                    <ion-icon name="wifi-outline"></ion-icon>                
+                  
+                    <ion-img class="img-responsive title-image2" src="/assets/mimic-status.svg">
+      
+                    </ion-img>
                   </ion-badge>
-                  <ion-card-subtitle>{{item.status}}
-    
-                </ion-card-subtitle>
-              </ion-item>
-              <ion-item>
-                <ion-card-subtitle>
-                  <ion-badge>
-                    {{item.type}}
-                  </ion-badge>
-    
-                </ion-card-subtitle>
-              </ion-item>
-            </ion-list>
-            
-            
-          </ion-card-content>
-        </ion-card>
+                  
+                </ion-card-content>
+              </ion-card>
+           
+           
+              <!-- <ion-card>
+             
+                <ion-card-header class="ion-no-padding" color="warning">
+                  <ion-card-subtitle>
+                    {{item.zone}}
+      
+      
+                  </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="text-center ion-no-padding">
+                  <ion-list class="text-center ion-no-padding">
+                    <ion-item>
+                   
+                        <ion-badge [color]="item.status=='active'?'success':'danger'">
+                          <ion-icon name="wifi-outline">
+      
+                          </ion-icon>                
+                          <ion-img class="img-responsive title-image2" src="/assets/mimic-status.svg">
+      
+                          </ion-img>
+                        </ion-badge>
+                        <ion-card-subtitle>{{item.status}}
+          
+                      </ion-card-subtitle>
+                    </ion-item>
+                    <ion-item>
+                      <ion-card-subtitle>
+                        <ion-badge>
+                          {{item.type}}
+                        </ion-badge>
+          
+                      </ion-card-subtitle>
+                    </ion-item>
+                  </ion-list>
+                  
+                  
+                </ion-card-content>
+              </ion-card> -->
+      
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-      </div>
+      <!-- <ion-img class="img-responsive title-image" src="/assets/mimic.svg">
 
+      </ion-img> -->
+      
     </ion-card-content>
   </ion-card>
   <!-- <div id="mySvg">
