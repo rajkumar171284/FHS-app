@@ -39,7 +39,8 @@ Alert Edit | http://10.1.1.16:4107/alert/edit | POST | sensorID, operator, value
 Alert Show | http://10.1.1.16:4107/alert/show | GET ||[{"alertid": 2, "sensorid": "505", "operator": "lessthan", "values1": 15696, "name": "krmk", "phoneno": "99623691114", "modified_date": "2021-11-08T08:31:51.000Z", "status": true, "lastmodified": null  }]|
 Alert Delete | http://10.1.1.16:4107/alert/delete | DELETE | id | "Deleted" or "Delete error" |
 Login | http://10.1.1.16:4107/login/ | Post | username, password (refer below) | "Invalid credentials" or "Login Successful" |
-
+Generate report | http://10.1.1.16:8001/genReport/ | GET | sensorID, startTime, stopTime | min, max, mean, sd, filename
+Send report | http://10.1.1.16:8001/sendReport/ | GET | filename, emailID | sentstatus
 #### Input for timeperiod - chart -level and pressure
 > "Last 5 minutes"<br>
 > "Last 15 minutes"<br>

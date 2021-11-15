@@ -102,9 +102,58 @@ async function asyncfunction()
 
                                             })
                                     }
-                                    else
-                                   { 
-                                       myResolve(1)
+                                     else if(Alertarray[j].operator=='greaterthan')
+                                {   
+                                    if(parseFloat(res.rows[i].values1)>parseFloat(Alertarray[j].values1))
+                                    {  var k=res.rows[i].date1.toISOString()
+                                        var querystr="Insert into Notification_Table (alertid ,sensorID , operator ,values1, alertvalue , phoneNO, AlertDate, status) Values ("+Alertarray[j]['alertid']+","+Alertarray[j]['sensorid']+",'"+Alertarray[j]['operator']+"',"+res.rows[i].values1+","+Alertarray[j]['values1']+",'"+Alertarray[j]['phoneno']+"','"+k+"',TRUE)"
+                                        pool.query(
+                                          querystr,
+                                            (err, res1) => {
+                                                if(!err)
+                                                {   const d1 = new Date();
+                                                    let date1234 = d1.toLocaleString();
+                                                    var querystr2="UPDATE alert_table  SET lastmodified = '"+date1234+"' WHERE alertid= '"+Alertarray[j].alertid+"';"
+                                                 pool.query(
+                                                       querystr2,
+                                                         (err1, res2) => {
+                                                             if(!err1)
+                                                             {  
+                                                                 console.log('query updated')
+                                                                 myResolve100(1)
+
+                                                             }
+                                                         })
+                                                }
+
+                                            })
+                                    }
+                                }
+                                else if(Alertarray[j].operator=='equal')
+                                {   
+                                    if(parseFloat(res.rows[i].values1)==parseFloat(Alertarray[j].values1))
+                                    {  var k=res.rows[i].date1.toISOString()
+                                        var querystr="Insert into Notification_Table (alertid ,sensorID , operator ,values1, alertvalue , phoneNO, AlertDate, status) Values ("+Alertarray[j]['alertid']+","+Alertarray[j]['sensorid']+",'"+Alertarray[j]['operator']+"',"+res.rows[i].values1+","+Alertarray[j]['values1']+",'"+Alertarray[j]['phoneno']+"','"+k+"',TRUE)"
+                                        pool.query(
+                                          querystr,
+                                            (err, res1) => {
+                                                if(!err)
+                                                {   const d1 = new Date();
+                                                    let date1234 = d1.toLocaleString();
+                                                    var querystr2="UPDATE alert_table  SET lastmodified = '"+date1234+"' WHERE alertid= '"+Alertarray[j].alertid+"';"
+                                                 pool.query(
+                                                       querystr2,
+                                                         (err1, res2) => {
+                                                             if(!err1)
+                                                             {  
+                                                                 console.log('query updated')
+                                                                 myResolve100(1)
+
+                                                             }
+                                                         })
+                                                }
+
+                                            })
                                     }
                                 }
                         else
@@ -113,26 +162,19 @@ async function asyncfunction()
                         }
                    }
                 }
-                   else
-                   {
-                       myResolve(1)
-                   }
-                })
+                  
+                }
                })
                let k= await newpromise
                if(j==Alertarray.length-1)
-               {
-                myResolve100(1)
-                
-            }
-           }
-        })
+               {                myResolve100(1)             }
+           })
+        }
         let100=await(mypromise101)
         setTimeout(() => {
             asyncfunction()
-
         }, 300);
-
+})
 }
 asyncfunction()
  
