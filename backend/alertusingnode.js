@@ -39,8 +39,8 @@ async function asyncfunction()
                    {
                     for(let i=0;i<res.rows.length;i++)
                     {                       
-                          console.log('j '+j)
-                          console.log('i '+i)
+                        //   console.log('j '+j)
+                        //   console.log('i '+i)
                         if(Alertarray[j].operator=='lessthan')
                                 {   
                                     if(parseFloat(res.rows[i].values1)<parseFloat(Alertarray[j].values1))
