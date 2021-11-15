@@ -26,7 +26,7 @@ export class DiagramComponent implements OnInit,OnDestroy {
   myClass=new Myclass();
 
   ngOnInit() {
-    this.simpleLoader()
+   
       // this.interVal = interval(2000).subscribe(res => {
     //   this.getDataforSVG();
     // })
@@ -35,6 +35,7 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
   
   getDataforSVG() {
+    // this.simpleLoader()
     let params = {}
     this.Subscription = this.ApiService.getSVGData(params).subscribe((response) => {
       if (response && response.length > 0) {
@@ -75,11 +76,16 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
             item.yPos = 0
             item.xPos = 0
+            let width= window.innerWidth;
+            console.log(width)
             if(item.zone.toUpperCase()=='IBD'){
               item.yPos='475px'
               item.xPos='545px'
             }
             else if(item.zone.toUpperCase()=='SMD'){
+              if(width){
+
+              }
               item.yPos=180
               item.xPos=220
             } else if(item.zone.toUpperCase()=='ABD'){
@@ -103,9 +109,9 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
         })
 
-        this.dismissLoader()
+      
       }
-
+      this.dismissLoader()
 
       console.log(this.myClass)
     })

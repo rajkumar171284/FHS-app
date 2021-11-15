@@ -34,18 +34,27 @@
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content class="text-left">
-            <ion-card-subtitle>
-              <ion-badge [color]="item.status=='active'?'success':'danger'">
-                <ion-icon name="wifi-outline"></ion-icon>                
-              </ion-badge>{{item.status}}
-
-            </ion-card-subtitle>
-            <ion-card-subtitle>
-              <ion-badge>
-                {{item.type}}
-              </ion-badge>
-
-            </ion-card-subtitle>
+            <ion-list>
+              <ion-item>
+             
+                  <ion-badge [color]="item.status=='active'?'success':'danger'">
+                    <ion-icon name="wifi-outline"></ion-icon>                
+                  </ion-badge>
+                  <ion-card-subtitle>{{item.status}}
+    
+                </ion-card-subtitle>
+              </ion-item>
+              <ion-item>
+                <ion-card-subtitle>
+                  <ion-badge>
+                    {{item.type}}
+                  </ion-badge>
+    
+                </ion-card-subtitle>
+              </ion-item>
+            </ion-list>
+            
+            
           </ion-card-content>
         </ion-card>
 
