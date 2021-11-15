@@ -4,13 +4,28 @@
     /* height: 250px; */
     
 }
-
+img{
+    position: relative;
+    
+}
 ion-img{
+    position: relative;
     transform: rotateZ(90deg) translate(-5em,0px) scale(.7);
     // width: 100%;height: 300px;
     width: 100% !important;
 height: auto !important;
 
+}
+.img-div{
+    position: absolute;width: 100px;z-index: 300;
+    height: 80px;
+    border-radius: 3px;
+
+}
+
+.img-div{
+    border:1px solid red;
+    background:transparent!important
 }
 ion-card-content{
     text-align: center;
