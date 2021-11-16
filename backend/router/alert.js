@@ -44,7 +44,6 @@ router.post('/edit', async (req,res1) => {
     console.log("Alert-edit")
     const d = new Date();
     let date = d.toLocaleString();
-    console.log("Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',values1='"+parseFloat(req.body.value)+"',name='"+req.body.person_name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'")
     pool.query(
         "Update Alert_table SET sensorID='"+req.body.sensorID+"',operator='"+req.body.operator+"',values1='"+parseFloat(req.body.value)+"',name='"+req.body.person_name+"',phoneNO='"+req.body.phoneNO+"',status='"+req.body.status+"',Modified_Date='"+date+"' WHERE alertid='"+req.body.id+"'",
         (err, res) => {

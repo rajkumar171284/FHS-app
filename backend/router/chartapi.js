@@ -50,7 +50,6 @@ for (j=0;j<registerarray.length;)
     { 
       start.setMinutes ( start.getMinutes() +270 );
       var coff = 1000 * 60 * 5; //5min
-    
       var stop1 = new Date(Math.ceil(stop/ coff) * coff);
       var start1 = new Date(Math.floor(start/ coff) * coff);
       var stop2 = new Date(Math.floor(stop/ coff) * coff);
@@ -151,6 +150,8 @@ router.post('/level', async (req,res1) => {
   console.log("chart")
   var querystr='';
   var stop=new Date()
+
+  
   var start=     new Date ( stop );
   stop.setMinutes ( stop.getMinutes() +330 );
   
