@@ -26,7 +26,7 @@ export class DiagramComponent implements OnInit,OnDestroy {
   myClass=new Myclass();
 
   ngOnInit() {
-    this.simpleLoader()
+   
       // this.interVal = interval(2000).subscribe(res => {
     //   this.getDataforSVG();
     // })
@@ -35,6 +35,7 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
   
   getDataforSVG() {
+    // this.simpleLoader()
     let params = {}
     this.Subscription = this.ApiService.getSVGData(params).subscribe((response) => {
       if (response && response.length > 0) {
@@ -75,19 +76,33 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
             item.yPos = 0
             item.xPos = 0
+            let width= window.innerWidth;
+            console.log(width)
             if(item.zone.toUpperCase()=='IBD'){
-              item.yPos='475px'
-              item.xPos='545px'
+              // item.yPos='475px'
+              // item.xPos='545px'
             }
             else if(item.zone.toUpperCase()=='SMD'){
+              if(width){
+                item.yPos=80
+                item.xPos=20
+              }else{
               item.yPos=180
               item.xPos=220
+              }
             } else if(item.zone.toUpperCase()=='ABD'){
-              item.yPos='300px'
-              item.xPos='670px'
+              // item.yPos='300px'
+              // item.xPos='670px'
+              if(width<=400){
+                item.yPos='164px'
+                item.xPos='190px'
+              }else{
+              item.yPos=180
+              item.xPos=220
+              }
             } else if(item.zone.toUpperCase()=='PLP'){
-              item.yPos=35
-              item.xPos=113
+              // item.yPos=35
+              // item.xPos=113
             }
             return item;
           });
@@ -103,9 +118,9 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
         })
 
-        this.dismissLoader()
+      
       }
-
+      this.dismissLoader()
 
       console.log(this.myClass)
     })
