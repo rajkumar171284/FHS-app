@@ -1,5 +1,6 @@
 ion-label{
-    color: #800000;text-transform: uppercase;
+    --ion-text-color: #800000;
+    text-transform: uppercase;
 }
 icon-content{
     padding: .5em;position:relative;
@@ -8,9 +9,15 @@ ion-tab-bar{
     position: absolute;
     bottom: 0;left:0;right:0;width: 100%;
 }
-.form-group{
-    margin-bottom:1em
-}
+// .form-group{
+//     margin-bottom:1em
+// }
 ion-img{
     height: 4em;opacity: .5;
+}
+ion-select{
+width: 100%;
+}
+ion-item{
+    padding: 0 0 0 5px;
 }

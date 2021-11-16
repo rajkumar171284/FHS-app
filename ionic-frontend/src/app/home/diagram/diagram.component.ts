@@ -27,65 +27,41 @@ export class DiagramComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
    
-      // this.interVal = interval(2000).subscribe(res => {
+    // this.getDataforSVG();
+  }
+  ionViewWillEnter(){
+console.log('enter')
+this.simpleLoader()
+    // this.interVal = interval(2000).subscribe(res => {
     //   this.getDataforSVG();
     // })
-    this.getDataforSVG();
+    // this.getDataforSVG();
   }
-
   
   getDataforSVG() {
-    // this.simpleLoader()
+   
+    this.myClass.data=[]
+
     let params = {}
     this.Subscription = this.ApiService.getSVGData(params).subscribe((response) => {
       if (response && response.length > 0) {
         this.myClass.screenLoader=false
-        this.myClass.data=[]
-        response.forEach(newItem => {
-          let index = this.myClass.data.findIndex((rec: sensorId) => {
-            return rec.sensorid == newItem.sensorid;
-          })
-          if (index == -1) {
-            // not found then add fresh
-            // history
-            let item: any = {};
-            item.sensorid = newItem.sensorid;
-            item.history = [newItem];
-            item.lat = newItem.lat
-            item.lng = newItem.lng
-            item.zone = newItem.zone
-            item.type = newItem.type
-            item.unit = newItem.unit
-            item.value = newItem.value
-            item.date = newItem.date
-            item.status = newItem.status
-
-            this.myClass.data.push(item);
-
-          } else {
-            // update lat/lng 
-
-            this.myClass.data.filter((newObj: sensorId) => {
-              return newObj.sensorid == response[index].sensorid;
-            }).map((result: sensorId) => {
-              result.history.push(response[index])
-            })
-
-          }
-          this.myClass.response = this.myClass.data.map(item => {
+        this.myClass.data=response;
+        // console.log(response)
+                  this.myClass.response = this.myClass.data.map(item => {
 
             item.yPos = 0
             item.xPos = 0
             let width= window.innerWidth;
             console.log(width)
             if(item.zone.toUpperCase()=='IBD'){
-              // item.yPos='475px'
-              // item.xPos='545px'
+              item.yPos=88
+              item.xPos=114
             }
             else if(item.zone.toUpperCase()=='SMD'){
               if(width){
-                item.yPos=80
-                item.xPos=20
+                item.yPos=-23
+                item.xPos=70
               }else{
               item.yPos=180
               item.xPos=220
@@ -94,54 +70,55 @@ export class DiagramComponent implements OnInit,OnDestroy {
               // item.yPos='300px'
               // item.xPos='670px'
               if(width<=400){
-                item.yPos='164px'
-                item.xPos='190px'
+                item.yPos=190
+                item.xPos=160
               }else{
-              item.yPos=180
-              item.xPos=220
+              item.yPos=0
+              item.xPos=0
               }
             } else if(item.zone.toUpperCase()=='PLP'){
-              // item.yPos=35
-              // item.xPos=113
+              item.yPos=280
+              item.xPos=32
             }
+            item.yPos = item.yPos+'px'
+            item.xPos = item.xPos+'px'
             return item;
-          });
-
-        //   var a = document.getElementById("alphasvg");
-        //   console.log(a)
-
-        //   var svgDoc = a.getElementsByClassName('text8498');
-        //  for(let i=0;i<svgDoc.length; i++)
-        //  svgDoc[i].setAttribute('')
-        //   // text8498
-
-
-        })
-
-      
+          });      
       }
       this.dismissLoader()
 
-      console.log(this.myClass)
+      // console.log(this.myClass)
     })
   }
   ngOnDestroy(){
     this.Subscription.unsubscribe()
+    if(this.interVal){
+      this.interVal.unsubscribe()
+    }
+  }
+  ionViewWillLeave(){
+    console.log('left')
+    this.Subscription.unsubscribe()
+    if(this.interVal){
     this.interVal.unsubscribe()
+  }
   }
 
   // Simple loader
   simpleLoader() {
-    this.loadingController.create({
+    this.loading=this.loadingController.create({
       message: 'Loading...'
     }).then((response) => {
       response.present();
+      this.getDataforSVG();
     });
   }
   // Dismiss loader
   dismissLoader() {
     this.loadingController.dismiss().then((response) => {
       console.log('Loader closed!', response);
+              // this.loading.onDidDismiss()
+
     }).catch((err) => {
       console.log('Error occured : ', err);
     });

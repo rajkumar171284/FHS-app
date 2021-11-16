@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from './home/dashboard/dashboard.component'
-import {MenuComponent} from './home/menu/menu.component';
+
 import {DiagramComponent} from './home/diagram/diagram.component';
 const routes: Routes = [
   {
@@ -15,29 +15,7 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  // {
-  //   path:'dashboard',component:DashboardComponent
-  // }
-  {
-    path: 'menu',
-    component: MenuComponent,
-    //  canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'dashboard',
-        component: DiagramComponent,
-      },
-      {
-        path: 'managePanel',
-        component: DashboardComponent,
-      },
-      
-      {
-        path: 'export',
-        component: DashboardComponent,
-      }
-    ]
-  },
+  
   
   {
     path: 'login',
@@ -47,6 +25,7 @@ const routes: Routes = [
     path: 'manipulate-alerts',
     loadChildren: () => import('./pages/manipulate-alerts/manipulate-alerts.module').then( m => m.ManipulateAlertsPageModule)
   },
+  
   
   
 ];

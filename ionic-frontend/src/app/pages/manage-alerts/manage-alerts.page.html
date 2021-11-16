@@ -1,140 +1,89 @@
-
 <ion-header [translucent]="true">
 
-  <ion-toolbar color="mytheme">
-   <ion-title size="small">
-    Alerts
-   </ion-title>
+    <ion-toolbar color="mytheme">
+        <ion-title size="small">
+            Alerts
+        </ion-title>
 
-   <ion-fab  horizontal="end" slot="end">
-    <ion-fab-button size="small" (click)="addNew()" color="none">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+        <ion-fab horizontal="end" slot="end">
+            <ion-fab-button size="small" (click)="addNew()" color="none">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
 
-  </ion-toolbar>
- </ion-header>
+    </ion-toolbar>
+</ion-header>
 
 <ion-content>
 
-  <ion-card>
-    <ion-card-header class="mycard-hd">
-      <ion-card-subtitle color="dark">Sensor Details below:</ion-card-subtitle>
-      <ion-card-title color="dark">Sensor Alerts</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content class="ion-no-padding">
-      {{!myClass.data||myClass.data.length==0?'No Data':''}}
+    <ion-card class="list-content">
+        <ion-card-header class="mycard-hd">
+            <ion-card-subtitle color="mytext">Sensor Details below:</ion-card-subtitle>
+            <!-- <ion-card-title color="dark">Sensor Alerts</ion-card-title> -->
+        </ion-card-header>
 
-      <ion-virtual-scroll [items]="myClass.data" approxItemHeight="320px">
-        <ion-card *virtualItem="let sensor; let itemBounds = bounds;">
-            <ion-grid class="sensor-details">
-                <ion-row class="row">
-                    <ion-col size="2" class="ion-justify-content col-md-2 icon-content text-center">
+        <ion-card-content class="ion-text-center ion-no-padding">
+            {{!myClass.data||myClass.data.length==0?'No Data':''}}
 
-
-                        <img src="../../../assets/sensor.png" />
-                        <ion-icon [color]="sensor.status?'success':'danger'" [name]="sensor.status?'checkbox-outline':'close-circle-outline'" 
-                            ></ion-icon>
-
-                    </ion-col>
-                    <ion-col size="10" class="col-md-10 info-content text-left">
-                        <span (click)="edit(sensor)" class="spn-pencil crs">
-                            <ion-icon name="create-outline"></ion-icon></span>
-
-                        <ion-row class="row">
-                            <ion-col class="col-md-12">
-                                <ion-label class="">{{sensor.name?sensor.name:''}}</ion-label>
-                                <ion-card-subtitle color="mytext">
-                                    <i class="fa fa-tag text-primary mr-2"></i>{{sensor.value?sensor.value:sensor.values1}} - {{sensor.phoneno?sensor.phoneno:''}}
-                                </ion-card-subtitle>
-                                
-                                <!-- <span color="mytext"><i class="fa fa-phone text-info mr-2"></i> </span> -->
-
-                            </ion-col>
-                        </ion-row>
-                       
-                    </ion-col>
-                </ion-row>                                
-            </ion-grid>
-        </ion-card>
             
-        </ion-virtual-scroll>
+                <ion-virtual-scroll [items]="myClass.data" approxItemHeight="50px">
+                    <ion-card *virtualItem="let sensor; let itemBounds = bounds;">
+                        <ion-grid class="sensor-details">
+                            <ion-row class="row">
+                                <ion-col size="3" class="col-md-2 icon-content text-center">
+    
+                                    <ion-list>
+                                        <ion-item class="ion-justify-content-around" lines="none">
+                                            <ion-thumbnail>
+                                                <ion-img src="../../../assets/sensor.svg"></ion-img>
+    
+                                            </ion-thumbnail>
+    
+                                            <!-- <ion-img src="../../../assets/sensor.svg"></ion-img> -->
+                                        </ion-item>
+                                    </ion-list>
+    
+    
+                                    <ion-icon [color]="sensor.status?'success':'danger'"
+                                        [name]="sensor.status?'checkmark-outline':'close-circle-outline'">
+                                    </ion-icon>
+    
+                                </ion-col>
+                                <ion-col size="9" class="col-md-10 info-content text-left">
+                                    <span (click)="edit(sensor)" class="spn-pencil crs">
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </span>
+    
+                                    <ion-list class="ion-no-padding">
+                                        <ion-item class="ion-no-padding">
+                                            <ion-card-header class="ion-no-padding">{{sensor.name?sensor.name:''}}
+                                            </ion-card-header>
+                                        </ion-item>
+                                        <ion-item class="ion-no-padding" lines="none">
+                                            <ion-badge slot="end" color="warning">
+                                                <ion-icon name="thermometer-outline"></ion-icon>
+                                                {{sensor.value?sensor.value:sensor.values1}}
+                                            </ion-badge>
+                                            <ion-badge slot="end">
+                                                {{sensor.newOperator?sensor.newOperator:''}}
+                                            </ion-badge>
+                                            <ion-card-subtitle color="mytext">
+                                                {{sensor.phoneno?sensor.phoneno:''}}
+                                            </ion-card-subtitle>
+                                        </ion-item>
+                                    </ion-list>
+    
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card>
+    
+                </ion-virtual-scroll>
+            
 
-    </ion-card-content>
-  </ion-card>
+        </ion-card-content>
+    </ion-card>
 
-
-<!-- <p-dialog  [style]="{padding:'30px',background:'#fff'}" [modal]="true"
-    [(visible)]="display">
-    <form [formGroup]="newForm">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <ion-label>Sensor Id:</ion-label>
-                            <div class="form-input">
-                                <input class="form-control" type="text" formControlName="sensorID">
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <ion-label>Operator:</ion-label>
-                            <div class="form-input">
-                                <select class="form-control" formControlName="operator">
-                                    <option [value]="a.value" *ngFor="let a of myClass.operatorList">{{a.key}}
-
-                                    </option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <ion-label>Value:</ion-label>
-                            <div class="form-input">
-                                <input class="form-control" type="text" formControlName="value">
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <ion-label>Name:</ion-label>
-                            <div class="form-input">
-                                <input class="form-control" type="text" formControlName="person_name">
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <ion-label>Ph:</ion-label>
-                            <div class="form-input">
-                                <input class="form-control" type="text" formControlName="phoneNO">
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="mb-2 mt-3 col-md-4 offset-md-4 text-center">
-                        <button (click)="addTab?saveForm('add'):saveForm('edit')" class="btn btn-success btn-sm btn-block">{{addTab?'Create':'Update'}}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-</p-dialog> -->
 
 
 

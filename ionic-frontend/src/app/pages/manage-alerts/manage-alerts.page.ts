@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, interfaceEditAlert } from '../../myclass'
+import { LoadingController } from '@ionic/angular';
 
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
+// import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -20,12 +21,16 @@ import { ManipulateAlertsPage } from '../manipulate-alerts/manipulate-alerts.pag
 export class ManageAlertsPage implements OnInit {
   @Input() alertList: boolean;
   arr = []
-  constructor(private ApiService: ApiService, private fb: FormBuilder, private messageService: MessageService,
+  Subscription: Subscription;
+
+  constructor(private loadingController:LoadingController,private ApiService: ApiService, private fb: FormBuilder, private messageService: MessageService,
     public modalController: ModalController
-  ) { }
+  ) { 
+    console.log(window.innerHeight)
+  }
 
 
-
+loading;
   myClass = new Myclass();
   sortKey: string;
   list = []
@@ -44,30 +49,42 @@ export class ManageAlertsPage implements OnInit {
     operator: ['', Validators.required],
     value: ['', Validators.required],
     person_name: ['', Validators.required], phoneNO: ['', Validators.required],
+    status:['']
   });
-
+  itemHeight=window.innerHeight
 
   ngOnInit(): void {
     this.arr = []
-    for (let a = 0; a < 33; a++) {
+    // for (let a = 0; a < 33; a++) {
 
-      this.myClass.data.push({ "alertid": a+1, "sensorid": a+1, "operator": "lessthan", "values1": 15696, "name": "krmk", "phoneno": "99623691114", "modified_date": "2021-11-08T08:31:51.000Z", "status": true, "lastmodified": null }
-      )
-    }
-    this.sortOptions = [
-      { label: 'Newest First', value: '!year' },
-      { label: 'Oldest First', value: 'year' }
-    ];
+    //   this.myClass.data.push({ "alertid": a+1, "sensorid": a+1, "operator": "lessthan", "values1": 15696, "name": "krmk", "phoneno": "99623691114", "modified_date": "2021-11-08T08:31:51.000Z", "status": true, "lastmodified": null }
+    //   )
+    // }
+    // this.sortOptions = [
+    //   { label: 'Newest First', value: '!year' },
+    //   { label: 'Oldest First', value: 'year' }
+    // ];
     // get All alerts
-    // this.getSensorAlerts()
+    this.getSensorAlerts()
 
   }
   getSensorAlerts() {
+    // this.simpleLoader()
+    this.presentLoading()
     //  console.log(this.alertList)
-    this.ApiService.getAlertList({}).subscribe(respone => {
-      this.myClass.data = respone;
+    this.Subscription=this.ApiService.getAlertList({}).subscribe(response => {
+      if(response && response.length>0){
+      this.myClass.data = response.map(res=>{
+        let index=this.myClass.operatorList.findIndex(a=> {return a.value==res.operator})
+        // console.log(index)
+        res.newOperator=  this.myClass.operatorList[index]?this.myClass.operatorList[index].key:'';
+        return res;
+      });
       console.log(this.myClass.data)
       this.alertList = false;
+      }
+      this.dismissLoader()
+      // const { role, data } = this.loading.onDidDismiss();
     })
     console.log(this.myClass.data)
   }
@@ -102,10 +119,11 @@ export class ManageAlertsPage implements OnInit {
       value: sensor.values1 ? sensor.values1 : sensor.value,
       person_name: sensor.name,
       phoneNO: sensor.phoneno,
-      id: sensor.alertid
+      id: sensor.alertid,
+      status:sensor.status
     })
     this.display = true;
-    console.log(this.newForm)
+    // console.log(this.newForm)
     this.presentModal()
 
   }
@@ -147,5 +165,39 @@ export class ManageAlertsPage implements OnInit {
     return await modal.present();
   }
 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await this.loading.present();
+
+    // const { role, data } = await this.loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
+    // Simple loader
+    simpleLoader() {
+      this.loading=this.loadingController.create({
+        message: 'Loading...'
+      }).then((response) => {
+        response.present();
+      });
+    }
+    // Dismiss loader
+    dismissLoader() {
+      this.loadingController.dismiss().then((response) => {
+        console.log('Loader closed!', response);
+        this.loading.onDidDismiss()
+      }).catch((err) => {
+        console.log('Error occured : ', err);
+      });
+    }
+    ionViewWillLeave(){
+      console.log('left')
+      this.Subscription.unsubscribe()
+      // this.interVal.unsubscribe()
+    }
 
 }

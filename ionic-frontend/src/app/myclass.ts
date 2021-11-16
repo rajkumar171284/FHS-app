@@ -6,14 +6,16 @@ export class Myclass {
     chartType: string;
 
     operatorList=[
+       
         {
-            key:'-- Select --',value:''
-        },
-        {
-        key:'-- > --',value:'greaterthan'
+        key:'>',value:'greaterthan'
     },
     {
-        key:'-- < --',value:'lessthan'
+        key:'<',value:'lessthan'
+    }
+    ,
+    {
+        key:'=',value:'equal'
     }
 ]
     

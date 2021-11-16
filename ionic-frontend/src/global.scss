@@ -66,4 +66,8 @@
     --ion-color-shade: var(--ion-color-mytext-shade);
     --ion-color-tint: var(--ion-color-mytext-tint);
   }
-  
+  .list-content{
+    height: 100vh;
+
+    // height: calc(100px-window.);
+  }

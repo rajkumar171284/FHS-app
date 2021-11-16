@@ -3,7 +3,7 @@ import { ApiService } from '../../api.service';
 import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, interfaceEditAlert } from '../../myclass'
 
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
+// import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { FormsModule, FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -33,7 +33,8 @@ export class ManipulateAlertsPage implements OnInit {
   data1;
   newLabel: any = []
   newValues: any = []
-  addTab: boolean = true;
+  isActive: boolean = true;
+  isInactive: boolean = false;
   newForm = this.fb.group({
     id: [''],
     sensorID: ['', Validators.required],
@@ -45,14 +46,8 @@ export class ManipulateAlertsPage implements OnInit {
 
   ngOnInit() {
     this.newForm=this.parentsensor;
-  console.log(this.parentsensor)
-  // this.newForm.patchValue({
-  //   sensorID: this.parentsensor.get(),
-  //   operator: '',
-  //   value: '',
-  //   person_name: '',
-  //   phoneNO: ''
-  // })
+  console.log(this.myClass,this.modeType)
+  
   }
   saveForm(type: any) {
     console.log(type, this.newForm)
@@ -86,7 +81,7 @@ export class ManipulateAlertsPage implements OnInit {
       })
 
     } else {
-      // edit
+      // edit- modeType false
       if (!this.newForm.valid) {
         this.addSingle('error', 'All fields are mandatory..');
         return;
@@ -98,16 +93,16 @@ export class ManipulateAlertsPage implements OnInit {
       params.value = this.newForm.get('value').value;
       params.person_name = this.newForm.get('person_name').value;
       params.phoneNO = this.newForm.get('phoneNO').value;
-      params.status=true;//static as per API
+      params.status=this.newForm.get('status').value;//static as per API
       console.log(params)
       this.ApiService.editSensorAlert(params).subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.addSingle('success', res)
         this.myClass.screenLoader = false;
 
         this.dismiss()
       }, (error) => {
-        console.log(error)
+        // console.log(error)
         this.addSingle('warning', 'Something went wrong..')
         this.myClass.screenLoader = false;
 
@@ -118,6 +113,9 @@ export class ManipulateAlertsPage implements OnInit {
   addSingle(severity, msg) {
     this.messageService.add({ severity: severity, summary: 'Info', detail: msg });
     this.presentToast(msg)
+  }
+  onChangeHandler(event){
+    console.log(this.newForm)
   }
   async presentToast(msg) {
     const toast = await this.toastController.create({

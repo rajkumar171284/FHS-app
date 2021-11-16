@@ -7,7 +7,7 @@
     padding: .5em;position:relative;
 }
 ion-label{
-    color:#f44336
+    color:hsl(4, 90%, 58%)
 }
 .icon-content>ion-icon{
     position: absolute;z-index: 3;top:2px;right:3px;font-size: 15px;
@@ -15,14 +15,15 @@ ion-label{
 .info-content{position:relative;
     border-left:2px solid #888
 }
-.icon-content img,.info-content img{
-    height:30px;width: 30px;
+.icon-content ion-img,.info-content ion-img{
+    // height:30px;margin-top:10px
+    // width: 30px;
 }
 .spn-pencil{
     position: absolute;z-index: 3;top:2px;right:10px;font-size: 15px;color:#444;
 }
 .minht{
-    min-height: 200px;
+    // min-height: 200px;
 }
 .t-mng{
     margin-right: 8px;

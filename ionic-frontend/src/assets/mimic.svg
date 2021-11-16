@@ -111,12 +111,16 @@
          id="tspan8496"
          style="font-size:6.35px;stroke-width:0.264583"
          x="-290.1666"
-         y="52.71151">plastic</tspan><tspan
+         y="52.71151">
+         <!-- plastic -->
+         </tspan><tspan
          sodipodi:role="line"
          style="font-size:6.35px;stroke-width:0.264583"
          x="-290.1666"
          y="60.64901"
-         id="tspan8852"> plant</tspan></text>
+         id="tspan8852">
+          <!-- plant -->
+         </tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -128,7 +132,9 @@
          id="tspan16653"
          style="font-size:7.05556px;stroke-width:0.264583"
          x="-208.74088"
-         y="153.27338">ABD</tspan></text>
+         y="153.27338">
+         <!-- ABD -->
+         </tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;display:inline;stroke-width:0.264583"
@@ -140,7 +146,9 @@
          id="tspan30439"
          style="stroke-width:0.264583"
          x="-142.19133"
-         y="117.52663">IBD</tspan></text>
+         y="117.52663">
+         <!-- IBD -->
+         </tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;display:inline;stroke-width:0.264583"
@@ -154,7 +162,9 @@
          id="tspan31829"
          style="stroke-width:0.264583"
          x="-55.276627"
-         y="84.228897">SMD</tspan></text>
+         y="84.228897">
+         <!-- SMD -->
+         </tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;display:inline;fill:#ff5555;fill-opacity:1;stroke-width:0.264583"

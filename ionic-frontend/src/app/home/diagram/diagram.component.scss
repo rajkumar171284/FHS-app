@@ -20,13 +20,14 @@ height: auto !important;
     height: auto !important;
 }
 .img-div{
-    position: absolute;width: 90px;z-index: 300;
+    position: absolute;width: 160px;z-index: 300;
     height: 80px;
     border-radius: 3px;
 transform: rotate(-90deg) translate(0px, 0px);
 }
 
-.img-div{
+.img-div svg{
+    color:red 
     // border:1px solid red;
     // background:transparent!important
 }
@@ -53,3 +54,7 @@ ion-card-content{
     transform: rotateZ(90deg) translate(0em,0px) ;
 
 }
+.big {
+    // width: 50px;
+    // height: 50px;
+  }

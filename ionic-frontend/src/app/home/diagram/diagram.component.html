@@ -11,7 +11,7 @@
   <ion-card>
     <ion-card-header class="mycard-hd">
       <ion-card-subtitle color="dark">Mimic Diagram</ion-card-subtitle>
-      <ion-card-title color="mytheme">Fire Hydrant System</ion-card-title>
+      <ion-card-title color="mytext">Fire Hydrant System</ion-card-title>
     </ion-card-header>
 
     <ion-card-content class="ion-no-padding">
@@ -20,25 +20,86 @@
           <ion-col class="bgSvg2">
 
      
-            <div *ngFor="let item of myClass.response" class="img-div" [style.left]="item.yPos" [style.top]="item.xPos">
+            <div *ngFor="let item of myClass.response" class="img-div" [style.left]="item.xPos" [style.top]="item.yPos">
            
-              <ion-card>
+              <!-- <ion-card color="none"> -->
                
-                <ion-card-header class="ion-no-padding" color="warning">
+                <!-- <ion-card-header class="ion-no-padding" color="none">
                   <ion-card-subtitle>
                     {{item.zone}}
                   </ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content class="text-center ion-no-padding">
-                  <ion-badge [color]="item.status=='active'?'success':'danger'">
+                </ion-card-header> -->
+                <ion-card-content class="ion-no-padding">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="4">
+                        <ion-card-subtitle color="mytext"> {{item.zone}}</ion-card-subtitle>
+
+                        <!-- <ion-label color="mytheme">
+                         
+                        </ion-label> -->
+                      </ion-col>
+                      <ion-col class="ion-text-left" size="8">
+
+                        <!-- <ion-icon slot="start" class="big" src="/assets/mimic-status.svg"></ion-icon> -->
+
+
+                        <svg  [attr.fill]="item.status=='active'?'#39a459':'#e40000'" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="32.000000pt" height="32.000000pt" viewBox="0 0 512.000000 512.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                       
+                       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                       fill="item.status=='active'?'#39a459':'#e40000'" stroke="none">
+                       <path d="M2459 5100 c-77 -40 -119 -114 -119 -210 l0 -45 -74 -23 c-208 -66
+                       -412 -244 -514 -447 -38 -76 -69 -169 -83 -251 l-11 -63 -56 -12 c-70 -14
+                       -102 -30 -153 -76 -123 -111 -132 -317 -20 -445 46 -52 109 -85 191 -100 l60
+                       -12 0 -145 0 -146 -227 -44 c-126 -24 -242 -50 -260 -58 -40 -19 -53 -55 -53
+                       -149 l0 -72 -100 -4 c-88 -3 -102 -6 -122 -26 -22 -22 -23 -29 -23 -192 0
+                       -163 1 -170 23 -192 20 -20 34 -23 121 -26 l99 -4 4 -89 c6 -133 -1 -129 296
+                       -186 l242 -47 0 -788 0 -788 -154 0 c-244 0 -246 -2 -246 -235 0 -162 9 -205
+                       45 -219 22 -8 2448 -8 2470 0 36 14 45 57 45 219 0 233 -2 235 -246 235 l-154
+                       0 0 788 0 788 242 47 c297 57 290 53 296 186 l4 89 99 4 c87 3 101 6 121 26
+                       22 22 23 29 23 192 0 163 -1 170 -23 192 -20 20 -34 23 -122 26 l-100 4 0 72
+                       c0 94 -13 130 -53 149 -18 8 -134 34 -259 58 l-228 44 0 146 0 145 60 12 c113
+                       21 190 76 242 174 19 36 23 58 23 138 0 84 -3 101 -27 146 -28 52 -87 112
+                       -135 137 -15 8 -54 20 -85 27 -47 9 -59 16 -62 33 -21 112 -32 152 -56 214
+                       -83 217 -276 415 -489 503 -38 15 -82 31 -98 34 -29 7 -30 10 -36 71 -13 140
+                       -92 216 -224 215 -37 -1 -71 -8 -94 -20z m233 -424 c257 -49 469 -236 552
+                       -488 14 -42 26 -88 26 -102 l0 -26 -714 0 -713 0 9 53 c41 228 235 450 464
+                       534 121 43 248 53 376 29z m831 -819 c87 -57 87 -177 0 -234 -26 -17 -78 -18
+                       -963 -18 -885 0 -937 1 -963 18 -99 65 -81 213 29 247 16 5 443 8 949 7 869
+                       -2 922 -3 948 -20z m-263 -1452 l0 -1015 -700 0 -700 0 0 1015 0 1015 700 0
+                       700 0 0 -1015z m-1580 174 c0 -338 -1 -360 -17 -355 -10 3 -67 14 -128 26 -60
+                       11 -134 25 -162 31 l-53 10 0 289 0 289 53 10 c92 20 292 59 300 60 4 1 7
+                       -161 7 -360z m1969 320 c79 -16 146 -29 148 -29 1 0 3 -130 3 -289 l0 -290
+                       -52 -10 c-29 -6 -102 -20 -163 -31 -60 -12 -118 -23 -127 -26 -17 -5 -18 17
+                       -18 355 l0 361 33 -7 c17 -3 97 -18 176 -34z m-389 -1729 l0 -30 -700 0 -700
+                       0 0 30 0 30 700 0 700 0 0 -30z m0 -460 l0 -250 -700 0 -700 0 0 250 0 250
+                       700 0 700 0 0 -250z m400 -485 l0 -45 -1100 0 -1100 0 0 45 0 45 1100 0 1100
+                       0 0 -45z"/>
+                       <path d="M2412 3120 c-287 -75 -466 -376 -397 -667 59 -252 287 -433 545 -433
+                       360 0 627 339 545 689 -35 146 -140 288 -266 359 -121 69 -287 89 -427 52z
+                       m242 -175 c112 -29 200 -106 253 -222 23 -49 28 -72 28 -143 0 -75 -4 -93 -32
+                       -152 -40 -86 -106 -151 -191 -191 -59 -27 -78 -31 -152 -31 -74 0 -93 4 -152
+                       31 -86 40 -151 105 -191 191 -27 59 -31 78 -31 152 0 71 4 95 27 143 36 79 77
+                       128 141 171 93 62 193 79 300 51z"/>
+                       <path d="M2496 2790 c-136 -41 -197 -208 -119 -328 86 -133 280 -133 366 0
+                       109 169 -54 385 -247 328z"/>
+                       </g>
+                       </svg>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                 
+                  <!-- <ion-badge [color]="item.status=='active'?'success':'danger'"> -->
                   
-                    <ion-img class="img-responsive title-image2" src="/assets/mimic-status.svg">
-      
-                    </ion-img>
-                  </ion-badge>
+                    <!-- <ion-img class="img-responsive title-image2"  src="/assets/mimic-status.svg">      
+                    </ion-img> -->
+                
+                  <!-- </ion-badge> -->
                   
                 </ion-card-content>
-              </ion-card>
+              <!-- </ion-card> -->
            
            
               <!-- <ion-card>
