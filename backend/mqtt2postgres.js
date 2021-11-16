@@ -30,12 +30,9 @@ const config = {
 let d=new Promise((myResolve,myreject)=>
  {pgtools.createdb(config, "Amaraja", function(err, res) {
    // {pgtools.createdb(config, "123", function(err, res) {
-
     if (err) {
         console.log('DB exists')
         myResolve(1)
-
-
     }
     else{
       //Alertid int NOT NULL AUTO_INCREMENT,
@@ -116,7 +113,7 @@ client.on('message', function (topic, message, packet) {
     var messagejson = JSON.parse(message.toString());
     var k=parseFloat(messagejson.value)
     var querystr=        "INSERT INTO Sensor_Value(sensorID, lat, lng, zone, type, unit, values1, Date1) VALUES('"+messagejson.sensorID+"',"+messagejson.lat+" , "+messagejson.lng+", '"+messagejson.zone+"', '"+messagejson.type+"','"+messagejson.unit+"','"+k+"','"+messagejson.D+"')"
-    console.log(querystr)
+   // console.log(querystr)
 
     pool.query(querystr,
         (err, res) => {

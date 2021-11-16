@@ -9,6 +9,7 @@ app.use('/runtime', require('./router/runtime.js'));
 app.use('/alert', require('./router/alert.js'));
 app.use('/charts', require('./router/chartapi.js'));
 app.use('/login', require('./router/login.js'));
+app.use('/notification', require('./router/notificationtable.js'));
 
 app.listen(port, () => {   
     console.log('Server started @' +port)
