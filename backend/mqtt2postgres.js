@@ -30,12 +30,9 @@ const config = {
 let d=new Promise((myResolve,myreject)=>
  {pgtools.createdb(config, "Amaraja", function(err, res) {
    // {pgtools.createdb(config, "123", function(err, res) {
-
     if (err) {
         console.log('DB exists')
         myResolve(1)
-
-
     }
     else{
       //Alertid int NOT NULL AUTO_INCREMENT,
