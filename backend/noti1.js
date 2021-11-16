@@ -40,13 +40,23 @@ async function asyncfunction()
                 if(Alertarray[j].operator=='lessthan'){
                    qury+="and values1<'"+Alertarray[j].values1+"'"
                 }
+                else if(Alertarray[j].operator=='equal'){
+                    qury+="and values1='"+Alertarray[j].values1+"'"
+                 }
+                 else if(Alertarray[j].operator=='greaterthan'){
+                    qury+="and values1>'"+Alertarray[j].values1+"'"
+                 }
                 console.log(qury)
+
                 pool.query(qury,
                     async(err, res) => {
-                    if(err) console.log(err)
-                    setTimeout(() => {
+                    if(!err) 
+                   { 
+                       setTimeout(() => {
                         console.log(res.rows)    
                     }, 200);
+                    
+                }
                     
                 })
                 
