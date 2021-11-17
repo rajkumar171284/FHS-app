@@ -9,6 +9,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 // import { LoginComponent } from './login/login.component';
 import { DiagramComponent } from '../home/diagram/diagram.component';
 import { DialogModule } from 'primeng/dialog';
+// import {PlotlyPage} from '../pages/plotly/plotly.page'
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { DialogModule } from 'primeng/dialog';
     IonicModule,ReactiveFormsModule,
     HomePageRoutingModule,DialogModule
   ],
-  declarations: [HomePage,DashboardComponent]
+  declarations: [HomePage,DashboardComponent,]
 })
 export class HomePageModule {}

@@ -109,7 +109,9 @@ console.log('enter')
   }
   ionViewWillLeave(){
     console.log('left')
+    if(this.Subscription){
     this.Subscription.unsubscribe()
+    }
     if(this.interVal){
     this.interVal.unsubscribe()
   }
@@ -118,7 +120,7 @@ console.log('enter')
   // Simple loader
   simpleLoader() {
     this.loadingController.create({
-      message: 'Loading...'
+      message: 'Loading img...'
     }).then((response) => {
       this.loading=response;
       this.loading.present();

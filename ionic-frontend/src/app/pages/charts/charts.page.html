@@ -5,5 +5,19 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item class="col-md-6">
+      <ion-select (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
+        <ion-select-option [value]="a.value" *ngFor="let a of chartFilters">{{a.key}}
+
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+      <app-plotlyjs></app-plotlyjs>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

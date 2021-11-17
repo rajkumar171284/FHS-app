@@ -8,16 +8,25 @@ export class Myclass {
     operatorList=[
        
         {
-        key:'>',value:'greaterthan'
+        key:'> (Greater than)',value:'greaterthan'
     },
     {
-        key:'<',value:'lessthan'
+        key:'< (Less than)',value:'lessthan'
     }
     ,
     {
-        key:'=',value:'equal'
+        key:'= (Equal to)',value:'equal'
     }
 ]
+chartFilters=["Last 5 minutes",
+"Last 15 minutes",
+"Last 30 minutes",
+"Last 1 Hour",
+"Last 3 Hours",
+"Last 6 Hours",
+"Last 24 Hours",
+"Last 7 days",
+"Last 30 days"]
     
 }
 export class classSensor{

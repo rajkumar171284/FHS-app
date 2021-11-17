@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, interfaceEditAlert } from '../../myclass'
 
 @Component({
   selector: 'app-charts',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./charts.page.scss'],
 })
 export class ChartsPage implements OnInit {
+  myClass = new Myclass();
+  chartFilters=[];
+  chartInterval;
+  constructor() {
+    this.chartFilters=this.myClass.chartFilters.map(item=>{
+      return {
+        key:item,value:item
 
-  constructor() { }
+      } 
+    })
+
+    // initiate 
+    this.chartInterval=this.chartFilters[0].value
+
+   }
 
   ngOnInit() {
+    
+  }
+  setInt(e){
+    console.log(e,this.chartInterval)
   }
 
 }

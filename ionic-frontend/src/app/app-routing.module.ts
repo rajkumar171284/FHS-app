@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {DashboardComponent} from './home/dashboard/dashboard.component'
 
-import {DiagramComponent} from './home/diagram/diagram.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -25,7 +23,10 @@ const routes: Routes = [
     path: 'manipulate-alerts',
     loadChildren: () => import('./pages/manipulate-alerts/manipulate-alerts.module').then( m => m.ManipulateAlertsPageModule)
   },
-  
+  {
+    path: 'charts',
+    loadChildren: () => import('./pages/charts/charts.module').then( m => m.ChartsPageModule)
+  },
   
   
 ];

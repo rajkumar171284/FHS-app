@@ -5,16 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ChartsPageRoutingModule } from './charts-routing.module';
+import * as PlotlyJS from 'plotly.js-dist-min';
 
 import { ChartsPage } from './charts.page';
+import {PlotlyjsComponent} from '../../plotlyjs/plotlyjs.component';
+import { PlotlyModule } from 'angular-plotly.js';
+PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChartsPageRoutingModule
+    ChartsPageRoutingModule,PlotlyModule
   ],
-  declarations: [ChartsPage]
+  declarations: [ChartsPage,PlotlyjsComponent]
 })
 export class ChartsPageModule {}

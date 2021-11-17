@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
     userName: ['', Validators.required],
     passCode: ['', Validators.required]
   })
+  loading;
   constructor(public toastController: ToastController, private ApiService: ApiService, public loadingController: LoadingController, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -37,42 +38,50 @@ export class LoginPage implements OnInit {
     // console.log(this.loginForm)
 
     if (this.loginForm.valid) {
-      this.simpleLoader()
-      console.log(this.loginForm)
-      this.userDetails = {
-        username: this.loginForm.get('userName').value,
-        password: this.loginForm.get('passCode').value
-      }
-      this.ApiService.userLogin(this.userDetails).subscribe(response => {
-
-        // console.log(response)
-        if (response) {
-          let val = response.toLowerCase()
-          if (val.includes('invalid')) {
-            // false
-            this.dismissLoader()
-            this.presentToast(response)
-          }else{
-            localStorage.setItem('mySession', JSON.stringify(this.userDetails));
-            const newLocal = "home/tabs/mimic";
-            this.router.navigate([newLocal])
-          }
-
+      
+      // console.log(this.loginForm)
+      this.loadingController.create({
+        message: ''
+      }).then((response) => {
+        this.loading=response;
+        this.loading.present();
+        this.userDetails = {
+          username: this.loginForm.get('userName').value,
+          password: this.loginForm.get('passCode').value
         }
-
-      }, (error) => {
-        console.log(error)
-        this.presentToast(error)
-      })
+        this.ApiService.userLogin(this.userDetails).subscribe(response => {
+          this.dismissLoader()
+          // console.log(response)
+          if (response) {
+            let val = response.toLowerCase()
+            if (val.includes('invalid')) {
+              // false              
+              this.presentToast(response)
+            }else{
+              localStorage.setItem('mySession', JSON.stringify(this.userDetails));
+              const newLocal = "home/tabs/mimic";
+              this.router.navigate([newLocal])
+            }
+  
+          }
+  
+        }, (error) => {
+          console.log(error)
+          this.presentToast(error)
+          this.dismissLoader()
+        })
+      });
 
     }
   }
   // Simple loader
   simpleLoader() {
     this.loadingController.create({
-      message: 'Loading...'
+      message: 'Loading 2...'
     }).then((response) => {
-      response.present();
+      this.loading=response;
+      this.loading.present();
+     
     });
   }
   // Dismiss loader
