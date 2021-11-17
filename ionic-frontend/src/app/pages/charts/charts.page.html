@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item class="col-md-6">
+    <ion-item lines="none" class="col-md-6">
       <ion-select (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
         <ion-select-option [value]="a.value" *ngFor="let a of chartFilters">{{a.key}}
 
@@ -15,8 +15,32 @@
 
     </ion-item>
 
-    <ion-item>
-      <app-plotlyjs></app-plotlyjs>
+    <ion-item lines="none">
+      <ion-card>
+        <ion-card-header class="mycard-hd">
+          
+          <ion-card-subtitle color="mytext">Pressure</ion-card-subtitle>
+
+        </ion-card-header>
+        <ion-card-content>
+          <app-plotlyjs  [plotlyData]="plotlyData" [graphType]="'bar'" [chartType]="'pressure'"></app-plotlyjs>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-card>
+        <ion-card-header class="mycard-hd">
+          
+          <ion-card-subtitle color="mytext">Level</ion-card-subtitle>
+
+        </ion-card-header>
+        <ion-card-content>
+          <app-plotlyjs [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'level'"></app-plotlyjs>
+
+        </ion-card-content>
+      </ion-card>
     </ion-item>
   </ion-list>
 

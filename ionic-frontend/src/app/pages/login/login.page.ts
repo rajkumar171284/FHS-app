@@ -22,17 +22,17 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     // this.presentLoading()
   }
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Please wait...',
-      duration: 2000
-    });
-    await loading.present();
+  // async presentLoading() {
+  //   const loading = await this.loadingController.create({
+  //     cssClass: 'my-custom-class',
+  //     message: 'Please wait...',
+  //     duration: 2000
+  //   });
+  //   await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
-  }
+  //   const { role, data } = await loading.onDidDismiss();
+  //   console.log('Loading dismissed!');
+  // }
 
   loginFn() {
     // console.log(this.loginForm)

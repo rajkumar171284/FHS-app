@@ -10,12 +10,13 @@ declare const Plotly: any;
 })
 export class PlotlyjsComponent implements OnInit ,OnChanges{
   @Input() plotlyData:any={}; 
-  @Input() chartType: string;
+  @Input() chartType;
+  @Input()graphType;
   public data: any;
   public layout: any;
   // public data2: any;
   // public layout2: any;
-  public graph = new ClassPlotlyPattern1();
+  public graph ;//= new ClassPlotlyPattern1();
 pie_chart;
 /* The plot target container. */
   constructor() { }
@@ -23,11 +24,13 @@ pie_chart;
   ngOnInit() {
   }
   ngOnChanges(changes: SimpleChanges) {
+
     console.log(this.chartType, 'plotlyData chng',changes)
-    if (changes && changes.currentValue && this.chartType=='scatter') {
-      this.showPlot(changes);
-    }
-  
+    console.log(this.plotlyData)
+    // if (changes && changes.currentValue && this.chartType=='scatter') {
+    //   this.showPlot(changes);
+    // }
+    this.showPlot(changes);
     
   
     // if (changes && changes.data && changes.data.previousValue) {
@@ -83,14 +86,15 @@ private showPlot(changes){
     //     //  this.graph.data[0].x=this.plotlyData.response.map(a=>a.zone)
     // var data = [trace1];
     // Plotly.newPlot('plc', data);
+    console.log(changes.plotlyData.currentValue.pressureData.xAxes)
     this.graph = {
       data: [
-          { x: [1, 2, 3], y: [2, 6, 3], type: 'scatter'
-          , mode: 'lines+points', marker: {color: 'red'} 
-        },
-          // { x: [1, 2, 3], y: [2, 5, 3], type: 'bar' },
+        //   { x: [1, 2, 3], y: [2, 6, 3], type: 'line'
+        //   , mode: 'lines+points', marker: {color: 'red'} 
+        // },
+          { x:  [1, 2, 3,2, 6, 3], y: [2, 5, 3], type:  this.graphType },
       ],
-      layout: {width: 320, height: 240, title: 'A Fancy Plot'}
+      layout: {width: 420, height: 340, title: this.chartType}
   };
 }
 

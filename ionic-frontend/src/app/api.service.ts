@@ -56,4 +56,10 @@ export class ApiService {
       return response;
     }))
   }
+  // charts
+  getChartData(params:any):Observable<any>{
+    return this.http.post(environment.url+'/charts/'+params.chartType,{"time_period" :params.time_period},option).pipe(map(response=>{
+      return response;
+    }))
+  }
 }
