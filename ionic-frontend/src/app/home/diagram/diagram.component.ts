@@ -7,18 +7,22 @@ import { Myclass, sensorId } from '../../myclass'
 import { interval, Subscription } from 'rxjs';
 
 import { ApiService } from '../../api.service';
-import {LoginPage} from '../../pages/login/login.page'
+import {LoginPage} from '../../pages/login/login.page';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss'],
+  providers:[PhotoViewer]
 })
 export class DiagramComponent implements OnInit,OnDestroy {
   loading:any;
   Subscription: Subscription;
   interVal: Subscription;
-
-  constructor(private loadingController:LoadingController,private ApiService: ApiService, private fb: FormBuilder,
+ hide:boolean=false;
+ sliderOpt;
+  constructor(private photoViewer: PhotoViewer,private loadingController:LoadingController,private ApiService: ApiService, private fb: FormBuilder,
     public modalController: ModalController) { 
     console.log('h min ')
 
@@ -26,12 +30,19 @@ export class DiagramComponent implements OnInit,OnDestroy {
   myClass=new Myclass();
 
   ngOnInit() {
-   
+    this.sliderOpt = {
+      zoom: {
+        maxRatio: 1,
+      },
+    };
+    
     // this.getDataforSVG();
   }
   ionViewWillEnter(){
 console.log('enter')
-this.simpleLoader()
+// this.photoViewer.show('https://mysite.com/path/to/image.jpg', 'My image title', {share: false});
+
+// this.simpleLoader()
     // this.interVal = interval(2000).subscribe(res => {
     //   this.getDataforSVG();
     // })
@@ -106,20 +117,25 @@ this.simpleLoader()
 
   // Simple loader
   simpleLoader() {
-    this.loading=this.loadingController.create({
+    this.loadingController.create({
       message: 'Loading...'
     }).then((response) => {
-      response.present();
+      this.loading=response;
+      this.loading.present();
       this.getDataforSVG();
     });
   }
   // Dismiss loader
   dismissLoader() {
+           let dismiss;   
     this.loadingController.dismiss().then((response) => {
-      console.log('Loader closed!', response);
-              // this.loading.onDidDismiss()
+      console.log('Loader closed! now', response);
+      dismiss=response;
+      // this.loading.dismiss()
 
     }).catch((err) => {
+      // this.loading.dismiss()
+
       console.log('Error occured : ', err);
     });
   }

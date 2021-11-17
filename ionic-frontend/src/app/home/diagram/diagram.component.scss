@@ -4,6 +4,10 @@
     /* height: 250px; */
     
 }
+svg{
+    transform: rotateZ(90deg) translate(0px,0px) scale(.2);
+
+}
 img{
     position: relative;
     
@@ -41,7 +45,7 @@ ion-card-content{
     position: relative; 
     background-size: contain;
     
-    transform: rotateZ(90deg) translate(-5em,0px) scale(.8);
+    transform: rotateZ(90deg) translate(0px,0px) scale(.8);
     background-position:center;
 }
 .bgSvg{

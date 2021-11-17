@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { DiagramComponent } from './home/diagram/diagram.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { DialogModule } from 'primeng/dialog';
      AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule,
      BrowserAnimationsModule,DialogModule
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient,PhotoViewer],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
