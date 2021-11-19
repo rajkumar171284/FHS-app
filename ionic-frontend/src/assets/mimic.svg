@@ -112,7 +112,7 @@
          style="font-size:6.35px;stroke-width:0.264583"
          x="-290.1666"
          y="52.71151">
-         <!-- plastic -->
+         plastic
          </tspan><tspan
          sodipodi:role="line"
          style="font-size:6.35px;stroke-width:0.264583"
@@ -133,7 +133,7 @@
          style="font-size:7.05556px;stroke-width:0.264583"
          x="-208.74088"
          y="153.27338">
-         <!-- ABD -->
+         ABD
          </tspan></text>
     <text
        xml:space="preserve"
@@ -147,7 +147,7 @@
          style="stroke-width:0.264583"
          x="-142.19133"
          y="117.52663">
-         <!-- IBD -->
+         IBD
          </tspan></text>
     <text
        xml:space="preserve"
@@ -163,7 +163,7 @@
          style="stroke-width:0.264583"
          x="-55.276627"
          y="84.228897">
-         <!-- SMD -->
+         SMD
          </tspan></text>
     <text
        xml:space="preserve"

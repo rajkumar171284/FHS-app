@@ -12,8 +12,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   cursor: pointer  ;
 }
 .list-header{
-    background: #ddd   ;
-    color: #444;
+    background: #e59400   ;
+    color: #fff;
     padding-right: 10px;text-align: right!important;
   }
   .a-tleft-bdr{

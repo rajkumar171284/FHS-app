@@ -4,14 +4,14 @@
     /* height: 250px; */
     
 }
-svg{
-    transform: rotateZ(90deg) translate(0px,0px) scale(.2);
 
+img,.zone-content{
+    position: relative!important;    
 }
-img{
-    position: relative;
-    
+.zone-content>span{
+    position: absolute;z-index: 99;width:100%;
 }
+
 .title-image{
     position: relative;
     transform: rotateZ(90deg) translate(-5em,0px) scale(.7);
@@ -29,15 +29,26 @@ height: auto !important;
     border-radius: 3px;
 transform: rotate(-90deg) translate(0px, 0px);
 }
-
-.img-div svg{
-    color:red 
-    // border:1px solid red;
-    // background:transparent!important
+// rotate img
+.img-div2{
+    position: absolute;width: 160px;z-index: 300;
+    height: 80px;
+    border-radius: 3px;
+// transform: rotate(-90deg) translate(0px, 0px);
 }
+
+
 ion-card-content{
     text-align: center;
     justify-content: center;
+}
+.bgSvg3{
+    background: url('/assets/mimic-rotated.svg') no-repeat;
+    height: 60vh;
+    position: relative; 
+    background-size: contain;
+    width:100%;
+    background-position:center;
 }
 .bgSvg2{
     background: url('/assets/mimic.svg') no-repeat;
@@ -58,7 +69,53 @@ ion-card-content{
     transform: rotateZ(90deg) translate(0em,0px) ;
 
 }
-.big {
-    // width: 50px;
-    // height: 50px;
-  }
+
+// table starts
+.s-list {
+    ion-card >ion-grid ion-item{
+        background: linear-gradient(#d3cfd9,#fff)!important;
+        
+    }
+}
+
+.sensor-details{
+    // justify-content : center;padding: .2rem;
+}
+.icon-content{
+    padding: .5em;position:relative;
+}
+
+.icon-content>ion-icon{
+    position: absolute;z-index: 3;top:2px;right:3px;font-size: 15px;
+}
+
+.icon-content ion-img,.info-content ion-img{
+    // height:30px;
+    
+}
+.info-content{
+    position:relative;
+    ion-list{
+border-left:2px solid orangered!important ;
+    }
+    img{
+         height: 25px;width: 40px;
+    }
+    .img-col{
+        position:relative;
+    }
+    .info-footer{
+        position: absolute;z-index: 99;text-align: right;bottom: 0px;right:5px;
+    }
+}
+
+.spn-pencil{
+    position: absolute;z-index: 3;top:2px;right:10px;font-size: 15px;color:#444;
+}
+.minht{
+    // min-height: 200px;
+}
+.t-mng{
+    margin-right: 8px;
+}
+

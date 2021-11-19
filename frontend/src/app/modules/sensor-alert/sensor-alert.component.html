@@ -97,7 +97,7 @@
 
                 <div  class="">
 
-                    <p-virtualScroller [value]="myClass.data" scrollHeight="220px" [itemSize]="70">
+                    <p-virtualScroller [value]="myClass.data" scrollHeight="220px" [itemSize]="60">
                         <!-- <p-header>
 
                         </p-header> -->
@@ -105,8 +105,6 @@
                             <div class="m-2 card sensor-details">
                                 <div class="row">
                                     <div class="col-md-2 icon-content text-center">
-
-
                                         <img src="../../../assets/sensor.png" />
                                         <i class="fa fa-2x"
                                             [ngClass]="{'text-success':sensor.status,'text-danger':!sensor.status,'fa-check':sensor.status,'fa-times':!sensor.status}"></i>
