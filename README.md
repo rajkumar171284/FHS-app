@@ -26,7 +26,7 @@ Or <br>
 > node alertusingnode.js <br>
 
 ## Grafana Dashboard: 
-URL: http://3.23.238.254:3000 <br>
+URL: http://3.23.238.254:3000/d/dPvbklInk/fire-hydrant-monitoring-system?orgId=1&refresh=30s&kiosk=tv <br>
 Username: admin; Password: [same as office ubuntu PC] <br>
 ## API calls  (Remember to clear the postgres-db before using, there are some structural changes in tables)
 
