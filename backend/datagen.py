@@ -27,7 +27,6 @@ def sendMQTT(json_data):
     D = datetime.now()
     D = D.strftime('%d/%m/%Y %H:%M:%S')
     json_data['D'] = D
-    print
     channel = json_data['sensorID']
     mqtt_msg = json.dumps(json_data)
     response = client.publish(channel,mqtt_msg,MQTT_QOS)
@@ -49,7 +48,7 @@ while True:
     for sensor in topics_list:
         sensors = sensors_df[sensors_df['sensorID'] == sensor].to_dict(orient='list')
         json_data = {}
-        print(sensors)
+        #print(sensors)
         for (k,v) in zip(sensors.keys(),sensors.values()):
             json_data[k]=v[0]
         if json_data['type'] == 'P':
@@ -58,6 +57,6 @@ while True:
             json_data['value'] = random.randrange(200,1000,1)/10.0
         else:
             json_data['value'] = 0
-        print(json_data)
+        #print(json_data)
         sendMQTT(json_data)
         time.sleep(intersample_delay)
