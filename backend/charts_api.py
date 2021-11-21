@@ -1,13 +1,16 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 import random
 import uvicorn
 from influxdb import InfluxDBClient
 import json
 import pandas as pd
 import sqlite3
+import secrets
 
 app = FastAPI()
+security = HTTPBasic()
 PORT = 4107
 config = json.load(open('config.json','rb'))['time_select']
 DBFILE = "AR_config.db"
@@ -25,7 +28,15 @@ app.add_middleware(
     allow_headers=["*"],)
 
 @app.post("/runtime")
-async def runtime():
+async def runtime(credentials: HTTPBasicCredentials = Depends(security)):
+    correct_username = secrets.compare_digest(credentials.username, "isliot")
+    correct_password = secrets.compare_digest(credentials.password, "isliot")
+    if not (correct_username and correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
     query = """SELECT last(value) FROM "501","502","503","504","505","506","507","508"; """
     result = client.query(query).raw['series']
     print(result)
