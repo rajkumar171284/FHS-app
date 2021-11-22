@@ -73,7 +73,11 @@ ion-card-content{
 // table starts
 .s-list {
     ion-card >ion-grid ion-item{
+        -webkit-background: linear-gradient(#d3cfd9,#fff)!important;
+        -moz-background: linear-gradient(#d3cfd9,#fff)!important;
+        -o-background: linear-gradient(#d3cfd9,#fff)!important;
         background: linear-gradient(#d3cfd9,#fff)!important;
+        padding-left:5px;
         
     }
 }

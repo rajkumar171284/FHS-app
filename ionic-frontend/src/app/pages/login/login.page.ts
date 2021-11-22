@@ -5,6 +5,10 @@ import { Subscription } from 'rxjs';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ApiService } from '../../api.service';
 
+// test duplicates
+import {of} from 'rxjs'
+import { distinct, toArray } from 'rxjs/operators';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -20,19 +24,33 @@ export class LoginPage implements OnInit {
   constructor(public toastController: ToastController, private ApiService: ApiService, public loadingController: LoadingController, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-    // this.presentLoading()
+    
+    let arr=[
+      {
+          "Id": 1,
+          "Value": "A"
+      },
+      {
+          "Id": 2,
+          "Value": "B"
+      },
+      {
+          "Id": 3,
+          "Value": "C"
+      },
+      {
+          "Id": 4,
+          "Value": "A"
+      }
+  ]
+  of(...arr).pipe(distinct(v => v.Value),toArray()).subscribe(res=>{
+    console.log(res)
+  })
+  of(arr).subscribe(res=>{
+    console.log(res)
+  })
   }
-  // async presentLoading() {
-  //   const loading = await this.loadingController.create({
-  //     cssClass: 'my-custom-class',
-  //     message: 'Please wait...',
-  //     duration: 2000
-  //   });
-  //   await loading.present();
-
-  //   const { role, data } = await loading.onDidDismiss();
-  //   console.log('Loading dismissed!');
-  // }
+  
 
   loginFn() {
     // console.log(this.loginForm)
@@ -50,8 +68,8 @@ export class LoginPage implements OnInit {
           password: this.loginForm.get('passCode').value
         }
         this.ApiService.userLogin(this.userDetails).subscribe(response => {
-          this.dismissLoader()
-          // console.log(response)
+          
+          this.dismissLoader()          
           if (response) {
             let val = response.toLowerCase()
             if (val.includes('invalid')) {
@@ -67,7 +85,7 @@ export class LoginPage implements OnInit {
   
         }, (error) => {
           console.log(error)
-          this.presentToast(error)
+          this.presentToast('Something went wrong..')
           this.dismissLoader()
         })
       });

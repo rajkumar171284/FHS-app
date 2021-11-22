@@ -96,6 +96,7 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
     //     //  this.graph.data[0].x=this.plotlyData.response.map(a=>a.zone)
     // var data = [trace1];
     // Plotly.newPlot('plc', data);
+    console.log(changes.plotlyData.currentValue.pressureData.xAxes)
     this.graph = {
       data: [
         //   { x: [1, 2, 3], y: [2, 6, 3], type: 'line'
