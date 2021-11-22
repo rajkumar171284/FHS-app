@@ -127,7 +127,7 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
 
       )
     }
-    this.graph.layout = { width: 'auto', height: 340, title: this.chartType }
+    this.graph.layout = { autosize: true,  height: 340, title: this.chartType }
     console.log(this.graph)
     // return;
     // var trace1 = {
