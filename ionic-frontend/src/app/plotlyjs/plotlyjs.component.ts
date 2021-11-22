@@ -114,18 +114,12 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
     this.graph.data = []
     for (let a of pressureData) {
       this.graph.data.push({
-        x: a.array.map(ele => {
-          return ele.date
-        }),
-        y: a.array.map(ele => {
-          if (ele.values1) {
-            return ele.values1;
-          }
-        }),
+        x: a.array.ts.map(ele =>ele),
+        y: a.array.val.map(ele =>ele),
         mode: 'lines+points',
         name: a.sensor,
         line: {
-          color: 'rgb(55, 128, 191)',
+          color: a.color,
           width: 1
         }
 
@@ -133,7 +127,7 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
 
       )
     }
-    this.graph.layout = { width: 300, height: 340, title: this.chartType }
+    this.graph.layout = { width: 'auto', height: 340, title: this.chartType }
     console.log(this.graph)
     // return;
     // var trace1 = {

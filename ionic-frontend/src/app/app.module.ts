@@ -18,6 +18,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 PlotlyModule.plotlyjs = PlotlyJS;
+import { Network } from '@ionic-native/network/ngx';
 
 @NgModule({
   declarations: [AppComponent,DiagramComponent],
@@ -26,7 +27,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
      AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule,
      BrowserAnimationsModule,DialogModule,PlotlyModule
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient,PhotoViewer],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient,PhotoViewer,Network],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

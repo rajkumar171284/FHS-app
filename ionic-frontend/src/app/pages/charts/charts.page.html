@@ -16,7 +16,11 @@
     </ion-item>
 
     <ion-item lines="none">
+      <ion-card *ngIf="plotlyData.pressureData">
+
         <ion-card-header class="mycard-hd">
+          <ion-card-subtitle color="dark">Pressure</ion-card-subtitle>
+          
         </ion-card-header>
         <ion-card-content>
           <app-plotlyjs  [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'pressure'"></app-plotlyjs>
@@ -29,7 +33,7 @@
       <ion-card *ngIf="plotlyData.levelData">
         <ion-card-header class="mycard-hd">
           
-          <ion-card-subtitle color="mytext">Level</ion-card-subtitle>
+          <ion-card-subtitle color="dark">Level</ion-card-subtitle>
 
         </ion-card-header>
         <ion-card-content>
