@@ -8,6 +8,7 @@ import json
 import pandas as pd
 import sqlite3
 import secrets
+import datetime
 
 app = FastAPI()
 security = HTTPBasic()
@@ -46,33 +47,54 @@ async def runtime(credentials: HTTPBasicCredentials = Depends(security)):
         result_json["id"].append(i["name"])
         result_json["ts"].append(i["values"][0][0])
         result_json["val"].append(i["values"][0][1])
+    result_json['ts'] = [datetime.datetime.strptime(i,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for i in result_json['ts']]
     return result_json
 
 @app.post("/charts/pressure")
-async def pressure(request:Request):
+async def pressure(request:Request, credentials: HTTPBasicCredentials = Depends(security)):
+    correct_username = secrets.compare_digest(credentials.username, "isliot")
+    correct_password = secrets.compare_digest(credentials.password, "isliot")
+    if not (correct_username and correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
     request = await request.json()
     temp = time_config[request['time_period']]
-    result_json = {"sensorid":[],"date1":[],"values1":[]}
+    result_json = {}
     query = 'SELECT value FROM "502","503","504","505","506","507","508" WHERE time >= now() -'+temp[1]+' ;' # GROUP BY time('+str(temp[0])+'s);'
     result = client.query(query).raw['series']
-    print(result)
-    print(len(result))
-    print(len(result[0])) # why only 3 data points instead of 12 in 15mins interval
-    """
     for i in result:
-        result_json["sensorid"].append(i["name"])
-        result_json["date1"].append(i["values"][0][0])
-        result_json["values1"].append(i["values"][0][1])
-    """
+        result_json[i['name']] = {'ts':[],'val':[]}
+        for j in i['values']:
+            result_json[i['name']]['ts'].append(j[0])
+            result_json[i['name']]['val'].append(j[1])
+        result_json[i['name']]['ts'] = [datetime.datetime.strptime(k,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for k in result_json[i['name']]['ts']]
     return result_json
 
 @app.post("/charts/level")
-async def level():
-    return_list = [random.choice(char_list) for i in range(random.randint(3,7))]
-    return_str = ""
-    for i in return_list:
-        return_str = return_str + i
-    return {"message": return_str}
+async def pressure(request:Request,credentials: HTTPBasicCredentials = Depends(security)):
+    correct_username = secrets.compare_digest(credentials.username, "isliot")
+    correct_password = secrets.compare_digest(credentials.password, "isliot")
+    if not (correct_username and correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    request = await request.json()
+    temp = time_config[request['time_period']]
+    result_json = {}
+    query = 'SELECT value FROM "501" WHERE time >= now() -'+temp[1]+' ;' # GROUP BY time('+str(temp[0])+'s);'
+    result = client.query(query).raw['series']
+    for i in result:
+        result_json[i['name']] = {'ts':[],'val':[]}
+        for j in i['values']:
+            result_json[i['name']]['ts'].append(j[0])
+            result_json[i['name']]['val'].append(j[1])
+        result_json[i['name']]['ts'] = [datetime.datetime.strptime(k,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for k in result_json[i['name']]['ts']]
+    return result_json
 
 if __name__=="__main__":
     uvicorn.run(app,host="0.0.0.0",port=PORT)
