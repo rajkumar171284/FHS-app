@@ -49,7 +49,15 @@ async def runtime(credentials: HTTPBasicCredentials = Depends(security)):
     return result_json
 
 @app.post("/charts/pressure")
-async def pressure(request:Request):
+async def pressure(request:Request, credentials: HTTPBasicCredentials = Depends(security)):
+    correct_username = secrets.compare_digest(credentials.username, "isliot")
+    correct_password = secrets.compare_digest(credentials.password, "isliot")
+    if not (correct_username and correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
     request = await request.json()
     temp = time_config[request['time_period']]
     result_json = {}
@@ -63,7 +71,15 @@ async def pressure(request:Request):
     return result_json
 
 @app.post("/charts/level")
-async def pressure(request:Request):
+async def pressure(request:Request,credentials: HTTPBasicCredentials = Depends(security)):
+    correct_username = secrets.compare_digest(credentials.username, "isliot")
+    correct_password = secrets.compare_digest(credentials.password, "isliot")
+    if not (correct_username and correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
     request = await request.json()
     temp = time_config[request['time_period']]
     result_json = {}
