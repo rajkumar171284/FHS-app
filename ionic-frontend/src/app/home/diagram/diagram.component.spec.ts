@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { DiagramComponent } from './diagram.component';
+import { ApiService } from '../../api.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('DiagramComponent', () => {
   let component: DiagramComponent;
@@ -10,7 +12,8 @@ describe('DiagramComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DiagramComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),HttpClientTestingModule],
+      providers:[ApiService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DiagramComponent);

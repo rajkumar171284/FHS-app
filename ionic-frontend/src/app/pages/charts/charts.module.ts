@@ -17,7 +17,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     CommonModule,
     FormsModule,
     IonicModule,
-    ChartsPageRoutingModule,PlotlyModule
+    ChartsPageRoutingModule
   ],
   declarations: [ChartsPage,PlotlyjsComponent]
 })
