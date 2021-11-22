@@ -51,70 +51,42 @@ export class StartupComponent implements OnInit, OnDestroy {
     this.Subscription = this.ApiService.getSVGData(params).subscribe((response) => {
       if (response && response.length > 0) {
         this.myClass.screenLoader=false
+        this.myClass.data = response;
+        // console.log(response)
+        this.myClass.response = this.myClass.data.map(item => {
 
-        response.forEach(newItem => {
-          let index = this.myClass.data.findIndex((rec: sensorId) => {
-            return rec.sensorid == newItem.sensorid;
-          })
-          if (index == -1) {
-            // not found then add fresh
-            // history
-            let item: any = {};
-            item.sensorid = newItem.sensorid;
-            item.history = [newItem];
-
-            item.lat = newItem.lat
-            item.lng = newItem.lng
-            item.zone = newItem.zone
-            item.type = newItem.type
-            item.unit = newItem.unit
-            item.value = newItem.value
-            item.date = newItem.date
-            item.status = newItem.status
-
-            this.myClass.data.push(item);
-
-          } else {
-            // update lat/lng 
-
-            this.myClass.data.filter((newObj: sensorId) => {
-              return newObj.sensorid == response[index].sensorid;
-            }).map((result: sensorId) => {
-              result.history.push(response[index])
-            })
+          item.yPos = 0
+          item.xPos = 0
+          item.zonexPos=0;
+          item.zoneyPos=0;
+          let width = window.innerWidth;
+          console.log(width)
+          if (item.zone.toUpperCase() == 'IBD') {
+            item.yPos = 46
+            item.xPos = 52
+            item.zonexPos=46
 
           }
-          this.myClass.response = this.myClass.data.map(item => {
-
-            item.yPos = ''
-            item.xPos = ''
-            if(item.zone.toUpperCase()=='IBD'){
-              item.yPos=260
-              item.xPos=663
-            }
-            else if(item.zone.toUpperCase()=='SMD'){
-              item.yPos=180
-              item.xPos=220
-            } else if(item.zone.toUpperCase()=='ABD'){
-              item.yPos=420
-              item.xPos=365
-            } else if(item.zone.toUpperCase()=='PLP'){
-              item.yPos=35
-              item.xPos=113
-            }
-            return item;
-          });
-
-        //   var a = document.getElementById("alphasvg");
-        //   console.log(a)
-
-        //   var svgDoc = a.getElementsByClassName('text8498');
-        //  for(let i=0;i<svgDoc.length; i++)
-        //  svgDoc[i].setAttribute('')
-        //   // text8498
-
-
-        })
+          else if (item.zone.toUpperCase() == 'SMD') {
+              item.yPos = 32
+              item.xPos = 83
+              item.zoneyPos=-33 
+          } else if (item.zone.toUpperCase() == 'ABD') {
+              item.yPos = 66
+              item.xPos = 28
+              item.zonexPos=22
+              item.zoneyPos=19
+          } else if (item.zone.toUpperCase() == 'PLP') {
+            item.yPos = 19
+            item.xPos = 2
+            item.zoneyPos=-44
+          }
+          item.yPos = item.yPos + '%'
+          item.xPos = item.xPos + '%';
+          item.zonexPos=item.zonexPos+ 'px';
+          item.zoneyPos=item.zoneyPos+ 'px';
+          return item;
+        });
 
       }
 

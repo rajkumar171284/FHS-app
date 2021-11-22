@@ -1,12 +1,10 @@
-[class*="col-"]{
-    /* background-color: #fff!important;
-    border: 1px solid #fff!important; */
-}
+
 label{
     color: #156575;text-transform: uppercase;font-weight: 500;
 }
 .sensor-details{
     justify-content : center;padding: .2rem;
+    background:linear-gradient(#d0e0e3,#fff)!important;
 }
 .icon-content{
     padding: .5em;position:relative;

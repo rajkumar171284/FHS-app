@@ -33,7 +33,7 @@ export class ManageAlertsPage implements OnInit {
 loading;
   myClass = new Myclass();
   sortKey: string;
-  list = []
+  // list = []
   sortOptions: SelectItem[];
   display: boolean = false;
   newSensor: interfaceSensor = new classSensor();
@@ -54,7 +54,6 @@ loading;
   itemHeight=window.innerHeight
 
   ngOnInit(): void {
-    this.arr = []
     // for (let a = 0; a < 33; a++) {
 
     //   this.myClass.data.push({ "alertid": a+1, "sensorid": a+1, "operator": "lessthan", "values1": 15696, "name": "krmk", "phoneno": "99623691114", "modified_date": "2021-11-08T08:31:51.000Z", "status": true, "lastmodified": null }
@@ -65,8 +64,11 @@ loading;
     //   { label: 'Oldest First', value: 'year' }
     // ];
     // get All alerts
-    this.getSensorAlerts()
+    
 
+  }
+  ionViewWillEnter(){
+    this.getSensorAlerts()
   }
   getSensorAlerts() {
     // this.simpleLoader()
@@ -88,25 +90,25 @@ loading;
     })
     console.log(this.myClass.data)
   }
-  onSortChange() {
-    if (this.sortKey.indexOf('!') === 0)
-      this.sort(-1);
-    else
-      this.sort(1);
-  }
+  // onSortChange() {
+  //   if (this.sortKey.indexOf('!') === 0)
+  //     this.sort(-1);
+  //   else
+  //     this.sort(1);
+  // }
 
-  sort(order: number): void {
-    let list = [...this.list];
-    list.sort((data1, data2) => {
-      let value1 = data1.year;
-      let value2 = data2.year;
-      let result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+  // sort(order: number): void {
+  //   let list = [...this.list];
+  //   list.sort((data1, data2) => {
+  //     let value1 = data1.year;
+  //     let value2 = data2.year;
+  //     let result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
 
-      return (order * result);
-    });
+  //     return (order * result);
+  //   });
 
-    this.list = list;
-  }
+  //   this.list = list;
+  // }
   edit(sensor) {
     console.log(sensor.alertid)
     this.addTab = false;

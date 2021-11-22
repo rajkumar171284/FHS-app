@@ -43,20 +43,16 @@ export class ChartsPage implements OnInit {
         this.ApiService.getChartData(params).subscribe(response => {
           console.log(response)
           this.plotlyData.pressureData;
-          this.plotlyData.pressureData={}
-          this.plotlyData.pressureData.xAxes=response.map(x=>{
-            return x.sensor
-            
+          this.plotlyData.pressureData=response.map(x=>{
+            return x;
           })
           let params: any = {}
           params.chartType = 'level';
           this.ApiService.getChartData(params).subscribe(response2 => {
             console.log(response2)
             this.plotlyData.levelData;
-          this.plotlyData.levelData={}
-          this.plotlyData.levelData.xAxes=response.map(x=>{
-            return x.sensor
-            
+          this.plotlyData.levelData=response.map(x=>{
+            return x;            
           })
             this.dismissLoader()
           })

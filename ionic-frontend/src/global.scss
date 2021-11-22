@@ -66,9 +66,29 @@
     --ion-color-shade: var(--ion-color-mytext-shade);
     --ion-color-tint: var(--ion-color-mytext-tint);
   }
+  :root {
+    --ion-color-mylist: #f0eff2;
+    --ion-color-mylist-rgb: 240,239,242;
+    --ion-color-mylist-contrast: #000000;
+    --ion-color-mylist-contrast-rgb: 0,0,0;
+    --ion-color-mylist-shade: #d3d2d5;
+    --ion-color-mylist-tint: #f2f1f3;
+  }
+  
+  .ion-color-mylist {
+    --ion-color-base: var(--ion-color-mylist);
+    --ion-color-base-rgb: var(--ion-color-mylist-rgb);
+    --ion-color-contrast: var(--ion-color-mylist-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-mylist-contrast-rgb);
+    --ion-color-shade: var(--ion-color-mylist-shade);
+    --ion-color-tint: var(--ion-color-mylist-tint);
+  }
+  
   .list-content{
     height: 100vh;
 
     // height: calc(100px-window.);
   }
-  
+  ion-select{
+    width: 100%!important;
+  }

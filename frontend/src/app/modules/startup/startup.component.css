@@ -19,15 +19,13 @@ img {
 #mySvg{
     /* position: relative; */
     height: 40vh;
-    /* height: 250px; */
+    
 }
 .bgSvg{
-    background: url('/assets/drawing.svg') no-repeat;
+    background: url('/assets/mimic-rotated.svg') no-repeat;
     height: 40vh;
     position: relative; 
-    background-size: contain;
-    transform: rotateZ(90deg) translate(45em, -15px) scale(2.3);
-
+    background-size: 100% 100%;    
 }
 @media only screen and (min-width : 481px) {
     .flex-row {
@@ -49,37 +47,37 @@ img {
 .container-fluid,.container{position: relative;}
 
 .logo,svg{
-  transform: scale(.7);        
+  /* transform: scale(.7);         */
    } 
 @media screen and (max-width:769px){
     .logo,svg,object{
-        transform: rotateZ(90deg) translate(-88%, 0%) scale(.7);
-        transform-origin: 50% 50%;
+        /* transform: rotateZ(90deg) translate(-88%, 0%) scale(.7); */
+        /* transform-origin: 50% 50%; */
         
        }    
 }
 @media screen and (max-width:992px) and (max-width:1200px) {
     .logo,svg,object{
-        transform: rotateZ(90deg) translate(-97%, 0%) scale(.7);
-        transform-origin: 50% 50%;
+        /* transform: rotateZ(90deg) translate(-97%, 0%) scale(.7); */
+        /* transform-origin: 50% 50%; */
     }    
 }
 
 @media screen and (min-width:1100px) {
     .logo,svg,object{
-        transform: rotateZ(90deg) translate(-400px, 0%) scale(.7);
-        transform-origin: 50% 50%;        
+        /* transform: rotateZ(90deg) translate(-400px, 0%) scale(.7);
+        transform-origin: 50% 50%;         */
     }    
 }
 @media screen and (min-width:1200px) {
     .logo,svg,object{
-        transform: rotateZ(90deg) translate(1em, 0%) scale(.6);
-        transform-origin: 50% 50%;        
+        /* transform: rotateZ(90deg) translate(1em, 0%) scale(.6);
+        transform-origin: 50% 50%;         */
     }    
 }
 @media screen and (min-width:1300px) {
     .logo,svg,object{
-        transform: rotateZ(90deg) translate(.6em, -243px) scale(2.3);
+        /* transform: rotateZ(90deg) translate(.6em, -243px) scale(2.3); */
         
     }    
 }
@@ -126,3 +124,92 @@ svg #svg5{
 .s-plp{
     font-family:'Fontawesome';content:'/sds'
 }
+
+/* mimic starts */
+#mySvg{
+    /* position: relative; */
+    height: 100%;
+    /* height: 250px; */
+    
+}
+
+img,.zone-content{
+    position: relative!important;    
+}
+.zone-content>span{
+    position: absolute;z-index: 99;width:100%;
+}
+
+.img-div{
+    position: absolute;width: 160px;z-index: 300;
+    height: 80px;
+    border-radius: 3px;
+transform: rotate(-90deg) translate(0px, 0px);
+}
+
+.img-div2{
+    position: absolute;width: 160px;z-index: 300;
+    height: 80px;
+    border-radius: 3px;
+/* // transform: rotate(-90deg) translate(0px, 0px); */
+}
+
+.bgSvg3{
+    background: url('/assets/mimic-rotated.svg') no-repeat;
+    height: 60vh;
+    position: relative; 
+    background-size: contain;
+    width:100%;
+    background-position:center;
+}
+.bgSvg2{
+    background: url('/assets/mimic.svg') no-repeat;
+    height: 60vh;
+    position: relative; 
+    background-size: contain;
+    
+    transform: rotateZ(90deg) translate(0px,0px) scale(.8);
+    background-position:center;
+}
+
+
+/* // table starts */
+
+
+.sensor-details{
+    justify-content : center;padding: .2rem;
+}
+.icon-content{
+    padding: .5em;position:relative;
+}
+
+/* .icon-content>ion-icon{
+    position: absolute;z-index: 3;top:2px;right:3px;font-size: 15px;
+} */
+
+.info-content{
+    position:relative;
+    
+}
+.ion-list{
+    border-left:2px solid orangered!important ;
+        }
+        .ion-list img{
+             height: 25px;width: 40px;
+        }
+        .img-col{
+            position:relative;
+        }
+        .info-footer{
+            position: absolute;z-index: 99;text-align: right;bottom: 0px;right:5px;
+        }
+.spn-pencil{
+    position: absolute;z-index: 3;top:2px;right:10px;font-size: 15px;color:#444;
+}
+.minht{
+    /* // min-height: 200px; */
+}
+.t-mng{
+    margin-right: 8px;
+}
+
