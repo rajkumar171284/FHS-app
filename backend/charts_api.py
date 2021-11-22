@@ -8,6 +8,7 @@ import json
 import pandas as pd
 import sqlite3
 import secrets
+import datetime
 
 app = FastAPI()
 security = HTTPBasic()
@@ -46,6 +47,7 @@ async def runtime(credentials: HTTPBasicCredentials = Depends(security)):
         result_json["id"].append(i["name"])
         result_json["ts"].append(i["values"][0][0])
         result_json["val"].append(i["values"][0][1])
+    result_json['ts'] = [datetime.datetime.strptime(i,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for i in result_json['ts']]
     return result_json
 
 @app.post("/charts/pressure")
@@ -68,6 +70,7 @@ async def pressure(request:Request, credentials: HTTPBasicCredentials = Depends(
         for j in i['values']:
             result_json[i['name']]['ts'].append(j[0])
             result_json[i['name']]['val'].append(j[1])
+        result_json[i['name']]['ts'] = [datetime.datetime.strptime(k,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for k in result_json[i['name']]['ts']]
     return result_json
 
 @app.post("/charts/level")
@@ -90,6 +93,7 @@ async def pressure(request:Request,credentials: HTTPBasicCredentials = Depends(s
         for j in i['values']:
             result_json[i['name']]['ts'].append(j[0])
             result_json[i['name']]['val'].append(j[1])
+        result_json[i['name']]['ts'] = [datetime.datetime.strptime(k,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for k in result_json[i['name']]['ts']]
     return result_json
 
 if __name__=="__main__":
