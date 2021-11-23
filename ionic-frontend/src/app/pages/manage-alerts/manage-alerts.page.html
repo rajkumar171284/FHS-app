@@ -4,12 +4,16 @@
         <ion-title size="small">
             Alerts
         </ion-title>
-
-        <ion-fab horizontal="end" slot="end">
-            <ion-fab-button size="small" (click)="addNew()" color="none">
+        <ion-fab horizontal="center" slot="start" >
+            <ion-fab-button   size="small" (click)="addNew()" color="none">
                 <ion-icon name="add"></ion-icon>
             </ion-fab-button>
+            
         </ion-fab>
+        <ion-fab horizontal="end" slot="end" >
+            <app-logout></app-logout>
+        </ion-fab>
+        
 
     </ion-toolbar>
 </ion-header>
@@ -24,9 +28,61 @@
 
         <ion-card-content class="ion-text-center ion-no-padding">
             {{!myClass.data||myClass.data.length==0?'No Data':''}}
+            <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
+        
+                <ion-card *cdkVirtualFor="let sensor of myClass.data;">
+                    <ion-grid class="sensor-details">
+                        <ion-row class="row">
+                            <ion-col size="3" class="col-md-2 icon-content text-center">
 
+                                <ion-list>
+                                    <ion-item class="ion-justify-content-around" lines="none">
+                                        <ion-thumbnail>
+                                            <ion-img src="../../../assets/sensor.svg"></ion-img>
+
+                                        </ion-thumbnail>
+
+                                        <!-- <ion-img src="../../../assets/sensor.svg"></ion-img> -->
+                                    </ion-item>
+                                </ion-list>
+
+
+                                <ion-icon [color]="sensor.status?'success':'danger'"
+                                    [name]="sensor.status?'checkmark-outline':'close-circle-outline'">
+                                </ion-icon>
+
+                            </ion-col>
+                            <ion-col size="9" class="col-md-10 info-content text-left">
+                                <span (click)="edit(sensor)" class="spn-pencil crs">
+                                    <ion-icon name="create-outline"></ion-icon>
+                                </span>
+
+                                <ion-list class="ion-no-padding">
+                                    <ion-item class="ion-no-padding">
+                                        <ion-card-header class="ion-no-padding">{{sensor.name?sensor.name:''}}
+                                        </ion-card-header>
+                                    </ion-item>
+                                    <ion-item class="ion-no-padding" lines="none">
+                                        <ion-badge slot="end" color="warning">
+                                            <ion-icon name="thermometer-outline"></ion-icon>
+                                            {{sensor.value?sensor.value:sensor.values1}}
+                                        </ion-badge>
+                                        <ion-badge slot="end">
+                                            {{sensor.newOperator?sensor.newOperator:''}}
+                                        </ion-badge>
+                                        <ion-card-subtitle color="mytext">
+                                            {{sensor.phoneno?sensor.phoneno:''}}
+                                        </ion-card-subtitle>
+                                    </ion-item>
+                                </ion-list>
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card>
+            </cdk-virtual-scroll-viewport>
             
-                <ion-virtual-scroll [items]="myClass.data" approxItemHeight="50px">
+                <!-- <ion-virtual-scroll [items]="myClass.data" approxItemHeight="50px">
                     <ion-card *virtualItem="let sensor; let itemBounds = bounds;">
                         <ion-grid class="sensor-details">
                             <ion-row class="row">
@@ -39,7 +95,6 @@
     
                                             </ion-thumbnail>
     
-                                            <!-- <ion-img src="../../../assets/sensor.svg"></ion-img> -->
                                         </ion-item>
                                     </ion-list>
     
@@ -78,7 +133,7 @@
                         </ion-grid>
                     </ion-card>
     
-                </ion-virtual-scroll>
+                </ion-virtual-scroll> -->
             
 
         </ion-card-content>

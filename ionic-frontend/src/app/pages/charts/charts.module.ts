@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChartsPageRoutingModule } from './charts-routing.module';
 import * as PlotlyJS from 'plotly.js-dist-min';
+import {comComponentsModule} from '../../comComponetsModule';
 
 import { ChartsPage } from './charts.page';
 import {PlotlyjsComponent} from '../../plotlyjs/plotlyjs.component';
@@ -14,9 +15,10 @@ PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   imports: [
+    comComponentsModule,
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule,PlotlyModule,
     ChartsPageRoutingModule
   ],
   declarations: [ChartsPage,PlotlyjsComponent]

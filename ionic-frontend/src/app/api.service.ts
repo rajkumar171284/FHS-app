@@ -10,13 +10,13 @@ const hdr= new HttpHeaders()
 .set('Content-Type', 'application/json')
   .set('Access-Control-Allow-Origin', '*')
   .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-  .set('Authorization',"Basic " +btoa('isliot:isliot'))
+  .set('Authorization',"Basic " +btoa(authorizationData.username+':'+authorizationData.password))
 
 const option={
   headers:hdr
 }
 // var url="https://rajisltest.s3.ap-south-1.amazonaws.com/sample_data_10L.csv"
-let myurl='http://localhost:3000'
+// let myurl='http://localhost:3000'
 
 @Injectable({
   providedIn: 'root'
@@ -31,14 +31,14 @@ export class ApiService {
     }))
   }
   
-  getCSV(params:any):Observable<any>{
-    return this.http.get(myurl+'/api/csv',option).pipe(map(response=>{
-      return response;
-    }))
-  }
+  // getCSV(params:any):Observable<any>{
+  //   return this.http.get(myurl+'/api/csv',option).pipe(map(response=>{
+  //     return response;
+  //   }))
+  // }
 
   getSVGData(params:any):Observable<any>{
-    return this.http.post(environment.url+'/runtime',option).pipe(map(response=>{
+    return this.http.post(environment.influx_url+'/runtime',option).pipe(map(response=>{
       return response;
     }))
   }

@@ -4,7 +4,7 @@ import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, i
 
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
 // import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { FormsModule, FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
+import {  FormBuilder, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -13,7 +13,7 @@ import { ModalController,ToastController  } from '@ionic/angular';
 @Component({
   selector: 'app-manipulate-alerts',
   templateUrl: './manipulate-alerts.page.html',
-  styleUrls: ['./manipulate-alerts.page.scss'],  providers:[MessageService]
+  styleUrls: ['./manipulate-alerts.page.scss'],  providers:[MessageService,FormBuilder]
 
 })
 export class ManipulateAlertsPage implements OnInit {

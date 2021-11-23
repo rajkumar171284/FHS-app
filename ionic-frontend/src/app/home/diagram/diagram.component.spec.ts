@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { DiagramComponent } from './diagram.component';
 import { ApiService } from '../../api.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DiagramComponent', () => {
   let component: DiagramComponent;

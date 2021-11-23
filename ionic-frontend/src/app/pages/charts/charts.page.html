@@ -1,7 +1,12 @@
 <ion-header>
   <ion-toolbar color="mytheme">
     <ion-title>charts</ion-title>
+    
+    <ion-fab horizontal="end" slot="end" >
+      <app-logout></app-logout>
+  </ion-fab>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
@@ -15,28 +20,28 @@
 
     </ion-item>
 
-    <ion-item lines="none">
-      <ion-card *ngIf="plotlyData.pressureData">
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-card color="none" class="ion-no-padding" *ngIf="plotlyData.pressureData">
 
         <ion-card-header class="mycard-hd">
           <ion-card-subtitle color="dark">Pressure</ion-card-subtitle>
           
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content class="ion-no-padding">
           <app-plotlyjs  [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'pressure'"></app-plotlyjs>
 
         </ion-card-content>
       </ion-card>
     </ion-item>
 
-    <ion-item lines="none">
-      <ion-card *ngIf="plotlyData.levelData">
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-card class="ion-no-padding" *ngIf="plotlyData.levelData">
         <ion-card-header class="mycard-hd">
           
           <ion-card-subtitle color="dark">Level</ion-card-subtitle>
 
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content class="ion-no-padding">
           <app-plotlyjs [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'level'"></app-plotlyjs>
 
         </ion-card-content>

@@ -1,10 +1,10 @@
-<div>
-    <plotly-plot [data]="graph.data" [layout]="graph.layout" [useResizeHandler]="true" [style]="{position: 'relative', width: '100%', height: '100%'}">
-        </plotly-plot>
+<!-- <div *ngIf="graph.data">
+    <plotly-plot [data]="graph.data" [updateOnDataChange]="true" [layout]="graph.layout" [useResizeHandler]="false"
+        [style]="{position: 'relative', width: '100%', height: '100%',left:'-30px'}">
+    </plotly-plot>
 
-    <!-- <div #pressureId id="pressureId">
+    
+</div> -->
+<div #pressureId id="pressureId">
 
-    </div> -->
 </div>
-
-

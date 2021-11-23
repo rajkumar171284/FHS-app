@@ -15,19 +15,21 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
+import {comComponentsModule} from './comComponetsModule';
+
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 PlotlyModule.plotlyjs = PlotlyJS;
 import { Network } from '@ionic-native/network/ngx';
-
 @NgModule({
   declarations: [AppComponent,DiagramComponent],
   entryComponents: [],
   imports: [BrowserModule,CommonModule, IonicModule.forRoot(),
      AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule,
-     BrowserAnimationsModule,DialogModule,PlotlyModule
+     BrowserAnimationsModule,DialogModule,comComponentsModule
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient,PhotoViewer,Network],
   bootstrap: [AppComponent],
+  exports:[]
 })
 export class AppModule {}

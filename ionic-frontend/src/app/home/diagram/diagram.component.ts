@@ -14,7 +14,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss'],
-  providers: [PhotoViewer]
+  providers: [PhotoViewer,FormBuilder]
 })
 export class DiagramComponent implements OnInit, OnDestroy {
   loading: any;
@@ -46,10 +46,10 @@ export class DiagramComponent implements OnInit, OnDestroy {
     }).then((response) => {
       this.loading = response;
       this.loading.present();
-    // this.interVal = interval(2000).subscribe(res => {
-    //   this.getDataforSVG();
-    // })
-    this.getDataforSVG();
+    this.interVal = interval(2000).subscribe(res => {
+      this.getDataforSVG();
+    })
+    // this.getDataforSVG();
     });
 
     // 
@@ -102,6 +102,8 @@ export class DiagramComponent implements OnInit, OnDestroy {
       this.dismissLoader()
 
       // console.log(this.myClass)
+    },(error)=>{
+      this.dismissLoader()
     })
   }
   ngOnDestroy() {

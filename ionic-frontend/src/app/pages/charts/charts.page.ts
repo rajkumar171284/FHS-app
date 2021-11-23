@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, interfaceEditAlert } from '../../myclass'
 import { LoadingController } from '@ionic/angular';
 import { ApiService } from '../../api.service';
+class newArr{
+  pressureData='';levelData=''
 
+}
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.page.html',
@@ -13,7 +16,7 @@ export class ChartsPage implements OnInit {
   chartFilters = [];
   chartInterval;
   loading;
-  plotlyData:any={}
+  plotlyData:any=new newArr()
   constructor(private loadingController: LoadingController, private ApiService: ApiService) {
     this.chartFilters = this.myClass.chartFilters.map(item => {
       return {
@@ -34,7 +37,7 @@ export class ChartsPage implements OnInit {
 
   }
   loadChart() {
-
+    this.plotlyData=new newArr();
     this.loadingController.create({
       message: ''
     }).then((response) => {
@@ -70,7 +73,7 @@ export class ChartsPage implements OnInit {
             }
           })
 
-          this.plotlyData.pressureData;
+          
           this.plotlyData.pressureData=newResponse.map(x=>{
             return x;
           })
