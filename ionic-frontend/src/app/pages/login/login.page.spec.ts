@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginPage } from './login.page';
 // added
@@ -12,7 +13,7 @@ describe('LoginPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginPage ],
-      imports: [IonicModule.forRoot(),HttpClientTestingModule],
+      imports: [IonicModule.forRoot(),HttpClientTestingModule,RouterTestingModule],
       providers:[ApiService]
     }).compileComponents();
 

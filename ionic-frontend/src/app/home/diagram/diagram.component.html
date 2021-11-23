@@ -91,8 +91,9 @@
     <ion-row>
 
       <ion-col class="s-list">
-        <ion-virtual-scroll [items]="myClass.response" approxItemHeight="50px">
-          <ion-card  class="ion-no-padding" *virtualItem="let sensor; let itemBounds = bounds;">
+        <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
+        <!-- <ion-virtual-scroll [items]="myClass.response" approxItemHeight="50px"> -->
+          <ion-card  class="ion-no-padding" *cdkVirtualFor="let sensor of myClass.response; ">
             <ion-grid class="ion-no-padding sensor-details">
               <ion-row class="row">
                 <!-- <ion-col size="3" class="col-md-2 icon-content text-center">
@@ -160,7 +161,8 @@
             </ion-grid>
           </ion-card>
 
-        </ion-virtual-scroll>
+        <!-- </ion-virtual-scroll> -->
+      </cdk-virtual-scroll-viewport>
       </ion-col>
 
     </ion-row>

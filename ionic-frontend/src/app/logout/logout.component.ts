@@ -12,6 +12,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {}
   logOut(){
+    localStorage.clear();
     this.router.navigate(['login'])
   }
 }
