@@ -7,12 +7,13 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { DialogModule } from 'primeng/dialog';
+import {comComponentsModule} from '../comComponetsModule';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,ReactiveFormsModule,
-    HomePageRoutingModule,DialogModule
+    HomePageRoutingModule,DialogModule,comComponentsModule
   ],
   declarations: [HomePage,DashboardComponent,]
 })

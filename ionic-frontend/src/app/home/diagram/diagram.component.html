@@ -4,11 +4,11 @@
     <ion-title size="small">
       Dashboard
     </ion-title>
-    <ion-fab horizontal="end" slot="end" >
+    <ion-fab horizontal="end" slot="end">
       <app-logout></app-logout>
-  </ion-fab>
+    </ion-fab>
   </ion-toolbar>
-  
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -17,8 +17,12 @@
       <ion-card-subtitle color="dark">Mimic Diagram</ion-card-subtitle>
       <!-- <ion-card-title color="mytext">Fire Hydrant System</ion-card-title> -->
     </ion-card-header>
+    <ion-card-content>
+      <div class="map" leaflet [leafletOptions]="options">
+      </div>
+    </ion-card-content>
 
-    <ion-card-content class="ion-no-padding">      
+    <!-- <ion-card-content class="ion-no-padding">      
             <ion-slides [options]="sliderOpt" zoom>
               <ion-slide>
                 <div class="swiper-zoom-container">
@@ -85,15 +89,15 @@
                 </div>
               </ion-slide>
             </ion-slides>
-    </ion-card-content>
+    </ion-card-content> -->
   </ion-card>
   <ion-grid>
     <ion-row>
 
       <ion-col class="s-list">
         <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
-        <!-- <ion-virtual-scroll [items]="myClass.response" approxItemHeight="50px"> -->
-          <ion-card  class="ion-no-padding" *cdkVirtualFor="let sensor of myClass.response; ">
+          <!-- <ion-virtual-scroll [items]="myClass.response" approxItemHeight="50px"> -->
+          <ion-card class="ion-no-padding" *cdkVirtualFor="let sensor of myClass.response; ">
             <ion-grid class="ion-no-padding sensor-details">
               <ion-row class="row">
                 <!-- <ion-col size="3" class="col-md-2 icon-content text-center">
@@ -118,20 +122,20 @@
                     <ion-icon name="create-outline"></ion-icon>
                   </span> -->
 
-                  <ion-list  class="ion-no-padding">
+                  <ion-list class="ion-no-padding">
                     <ion-item color="mylistd" lines="none" class="ion-justify-content ion-no-padding">
                       <ion-col size="2" class="ion-padding-left">
                         <ion-icon name="stats-chart-outline"></ion-icon>
                       </ion-col>
                       <ion-col size="2" class="ion-no-padding">
-                        <ion-card-header  class="ion-no-padding">
+                        <ion-card-header class="ion-no-padding">
                           <ion-card-subtitle color="mytext">
                             {{sensor.zone?sensor.zone:''}}</ion-card-subtitle>
                         </ion-card-header>
-                        
+
                       </ion-col>
                       <ion-col size="3" class="ion-no-padding">
-                        <ion-badge  color="warning">
+                        <ion-badge color="warning">
                           <ion-icon name="analytics-outline"></ion-icon>
                           {{sensor.value?sensor.value:sensor.values1}}
                         </ion-badge>
@@ -140,7 +144,7 @@
                       <ion-col size="2" class="ion-no-padding">
 
 
-                        <ion-badge class="ion-text-uppercase" >
+                        <ion-badge class="ion-text-uppercase">
                           {{sensor.type?sensor.type:''}}
                         </ion-badge>
 
@@ -151,7 +155,7 @@
                           Unit:{{sensor.unit?sensor.unit:''}}
                         </ion-card-subtitle>
                       </ion-col>
-                      
+
                       <!--  -->
                     </ion-item>
                   </ion-list>
@@ -161,8 +165,8 @@
             </ion-grid>
           </ion-card>
 
-        <!-- </ion-virtual-scroll> -->
-      </cdk-virtual-scroll-viewport>
+          <!-- </ion-virtual-scroll> -->
+        </cdk-virtual-scroll-viewport>
       </ion-col>
 
     </ion-row>

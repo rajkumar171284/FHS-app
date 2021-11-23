@@ -3,14 +3,16 @@ import { HttpHeaders,HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import{map} from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
-// let authorizationData = 'Basic ' + btoa('isliot' + ':' + 'isliot');
-let authorizationData = {username:'isliot',password:'isliot'}
-const params = new HttpParams()
+let authorizationData = 'Basic ' + btoa('isliot' + ':' + 'isliot');
+// let authorizationData = {username:'isliot',password:'isliot'}
+
 const hdr= new HttpHeaders()
 .set('Content-Type', 'application/json')
   .set('Access-Control-Allow-Origin', '*')
   .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-  .set('Authorization',"Basic " +btoa(authorizationData.username+':'+authorizationData.password))
+  .set('Authorization',"Basic " +btoa('isliot:isliot'))
+  // .set('Authorization',"Basic " +btoa(authorizationData.username+':'+authorizationData.password))
+  
 
 const option={
   headers:hdr
@@ -38,7 +40,7 @@ export class ApiService {
   // }
 
   getSVGData(params:any):Observable<any>{
-    return this.http.post(environment.influx_url+'/runtime',option).pipe(map(response=>{
+    return this.http.post(environment.influx_url+'/runtime',params,option).pipe(map(response=>{
       return response;
     }))
   }
