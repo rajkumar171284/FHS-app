@@ -14,7 +14,7 @@ client = mqtt.Client("P1") #create new instance
 #client.username_pw_set(username="isl123",password="Isl@2021")
 MQTT_QOS = 1
 time_delay = 1.0 
-intersample_delay = 3.0 # seconds between each gateway MQTT messages
+intersample_delay = 5.0 # seconds between each gateway MQTT messages
 from_hardware = {}#"A-R-001":[1,26,52,54],"W-R-001":[1],"R-R-001":[1],"P-R-001":[1]} # skip data generation
 
 sensors_df = pd.read_sql_query("SELECT * FROM activeSensors",conn)

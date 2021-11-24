@@ -40,14 +40,16 @@ async def runtime(credentials: HTTPBasicCredentials = Depends(security)):
             detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Basic"},
         )
-    query = """SELECT last(value) FROM "501","502","503","504","505","506","507","508"; """
+    query = """SELECT last(value),last(lat),last(lng) FROM "501","502","503","504","505","506","507","508"; """
     result = client.query(query).raw['series']
-    result_json = {"id":[],"ts":[],"val":[]}
+    result_json = {"id":[],"ts":[],"val":[],"lat":[],"lng":[]}
     for i in result:
         result_json["id"].append(i["name"])
         result_json["ts"].append(i["values"][0][0])
         result_json["val"].append(i["values"][0][1])
-    result_json['ts'] = [datetime.datetime.strptime(i,"%Y-%m-%dT%H:%M:%S.%fZ")+datetime.timedelta(hours=5,minutes=30) for i in result_json['ts']]
+        result_json["lat"].append(i["values"][0][2])
+        result_json["lng"].append(i["values"][0][3])
+    result_json['ts'] = [datetime.datetime.strptime(i,"%Y-%m-%dT%H:%M:%SZ")+datetime.timedelta(hours=5,minutes=30) for i in result_json['ts']]
     return result_json
 
 @app.post("/charts/pressure")
