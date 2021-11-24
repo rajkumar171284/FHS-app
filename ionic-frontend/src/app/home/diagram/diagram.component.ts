@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
@@ -8,59 +8,114 @@ import { interval, Subscription } from 'rxjs';
 
 import { ApiService } from '../../api.service';
 import { LoginPage } from '../../pages/login/login.page';
-import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+// import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { Network } from '@ionic-native/network/ngx';
 
 import { icon, latLng, Map, marker, point, polyline, tileLayer } from 'leaflet';
-
+import * as L from 'leaflet';
+declare var Leaflet;
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss'],
-  providers: [PhotoViewer,FormBuilder]
+  providers: [FormBuilder, Network]
 })
-export class DiagramComponent implements OnInit, OnDestroy {
+export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
   loading: any;
   Subscription: Subscription;
   interVal: Subscription;
   hide: boolean = false;
   sliderOpt;
   options;
-  constructor(private photoViewer: PhotoViewer, private loadingController: LoadingController, private ApiService: ApiService, private fb: FormBuilder,
+  private map;
+
+  constructor(private network: Network, private loadingController: LoadingController, private ApiService: ApiService, private fb: FormBuilder,
     public modalController: ModalController) {
-    
-    this.options = {
-      layers: [
-        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
-        })
-      ],
-      zoom: 7,
-      center: latLng([ 46.879966, -121.726909 ])
-    };
+
   }
   myClass = new Myclass();
+  
+  ngAfterViewInit(): void {
 
+    // this.initMap()
+  }
+  private initMap(): void {
+    this.map = L.map('map', {
+      center: [ 13.675989, 79.500493 ],
+      zoom: 17
+    });
+    this.options = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      // maxZoom: 30,
+      minZoom: 10,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    this.options.addTo(this.map);
+  }
+
+  ionViewDidEnter(){
+    this.initMap()
+
+  }
   ngOnInit() {
-    this.sliderOpt = {
-      zoom: {
-        maxRatio: 3,
-      },
-    };
+    // this.sliderOpt = {
+    //   zoom: {
+    //     maxRatio: 3,
+    //   },
+    // };
 
-    // this.getDataforSVG();
+  }
+  checkNetConn() {
+    console.log('conn')
+    // watch network for a disconnection
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      console.log('network was disconnected :-(');
+
+    });
+
+  }
+  async getSensorJSON() {
+    const data = await fetch("assets/sensorList.json");
+    const myItems = await data.json()
+    // console.log(myItems)    
+    this.createMarker(myItems)
+  }
+  createMarker(myItems) {
+    var myIcon = L.icon({
+      iconUrl: '../../../assets/mimic-status.svg',
+      iconSize: [25, 45],
+      iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+      // shadowUrl: '../../../assets/mimic-status.svg',
+      // shadowSize: [68, 95],
+      shadowAnchor: [22, 94]
+      // laptop
+      // iconUrl: '../../../assets/mimic-status.svg',
+      // iconSize: [38, 95],
+      // iconAnchor: [22, 94],
+      // popupAnchor: [-3, -76],
+      // shadowUrl: '../../../assets/mimic-status.svg',
+      // shadowSize: [68, 95],
+      // shadowAnchor: [22, 94]
+  });
+  
+    for (let item of myItems) {      
+      var markers = new L.Marker(new L.LatLng(item.lat, item.lng),{icon: myIcon})
+      .bindPopup(item.sensor).addTo(this.map);
+
+    }
   }
   ionViewWillEnter() {
-    console.log('enter')
-    // this.photoViewer.show('https://mysite.com/path/to/image.jpg', 'My image title', {share: false});
+    this.checkNetConn();
+
     this.loadingController.create({
       message: 'Loading...'
     }).then((response) => {
       this.loading = response;
       this.loading.present();
-    // this.interVal = interval(2000).subscribe(res => {
-    //   this.getDataforSVG();
-    // })
-    this.getDataforSVG();
+      // this.interVal = interval(2000).subscribe(res => {
+      //   this.getDataforSVG();
+      // })
+      this.getDataforSVG();
     });
 
     // 
@@ -72,48 +127,62 @@ export class DiagramComponent implements OnInit, OnDestroy {
 
     let params = {}
     this.Subscription = this.ApiService.getSVGData(params).subscribe((response) => {
-      if (response && response.length > 0) {
+      if (response) {
         this.myClass.screenLoader = false
         this.myClass.data = response;
+        this.getSensorJSON()
+
+        var array = [];
+        array = response.id.map((x, i) => {
+          return {
+            sensor: x,
+            lat: response.lat[i],
+            lng: response.lng[i]
+          }
+        })
+        console.log(JSON.stringify(array))
+
+
+
         // console.log(response)
-        this.myClass.response = this.myClass.data.map(item => {
+        // this.myClass.response = this.myClass.data.map(item => {
 
-          item.yPos = 0
-          item.xPos = 0
-          item.zonexPos=0;
-          item.zoneyPos=0;
-          let width = window.innerWidth;
-          console.log(width)
-          if (item.zone.toUpperCase() == 'IBD') {
-            item.yPos = 46
-            item.xPos = 47
-            item.zonexPos=25
+        //   item.yPos = 0
+        //   item.xPos = 0
+        //   item.zonexPos = 0;
+        //   item.zoneyPos = 0;
+        //   let width = window.innerWidth;
+        //   console.log(width)
+        //   if (item.zone.toUpperCase() == 'IBD') {
+        //     item.yPos = 46
+        //     item.xPos = 47
+        //     item.zonexPos = 25
 
-          }
-          else if (item.zone.toUpperCase() == 'SMD') {
-              item.yPos = 28
-              item.xPos = 73
-              item.zoneyPos=-33 
-          } else if (item.zone.toUpperCase() == 'ABD') {
-              item.yPos = 63
-              item.xPos = 28
-              item.zonexPos=25
-          } else if (item.zone.toUpperCase() == 'PLP') {
-            item.yPos = 19
-            item.xPos = 2
-            item.zoneyPos=-44
-          }
-          item.yPos = item.yPos + '%'
-          item.xPos = item.xPos + '%';
-          item.zonexPos=item.zonexPos+ 'px';
-          item.zoneyPos=item.zoneyPos+ 'px';
-          return item;
-        });
+        //   }
+        //   else if (item.zone.toUpperCase() == 'SMD') {
+        //     item.yPos = 28
+        //     item.xPos = 73
+        //     item.zoneyPos = -33
+        //   } else if (item.zone.toUpperCase() == 'ABD') {
+        //     item.yPos = 63
+        //     item.xPos = 28
+        //     item.zonexPos = 25
+        //   } else if (item.zone.toUpperCase() == 'PLP') {
+        //     item.yPos = 19
+        //     item.xPos = 2
+        //     item.zoneyPos = -44
+        //   }
+        //   item.yPos = item.yPos + '%'
+        //   item.xPos = item.xPos + '%';
+        //   item.zonexPos = item.zonexPos + 'px';
+        //   item.zoneyPos = item.zoneyPos + 'px';
+        //   return item;
+        // });
       }
       this.dismissLoader()
 
       // console.log(this.myClass)
-    },(error)=>{
+    }, (error) => {
       this.dismissLoader()
     })
   }

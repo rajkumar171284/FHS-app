@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
 
-  <ion-toolbar color="mytheme">
-    <ion-title size="small">
+  <ion-toolbar color="myhead">
+    <ion-title  size="small">
       Dashboard
     </ion-title>
     <ion-fab horizontal="end" slot="end">
@@ -17,8 +17,8 @@
       <ion-card-subtitle color="dark">Mimic Diagram</ion-card-subtitle>
       <!-- <ion-card-title color="mytext">Fire Hydrant System</ion-card-title> -->
     </ion-card-header>
-    <ion-card-content>
-      <div class="map" leaflet [leafletOptions]="options">
+    <ion-card-content class="ion-no-padding">
+      <div id="map" >
       </div>
     </ion-card-content>
 

@@ -9,10 +9,10 @@ import { Network } from '@ionic-native/network/ngx';
 })
 export class AppComponent {
   constructor(private network: Network) {
-    this.initApp()
+    this.checkNetConn()
   }
 
-  initApp() {
+  checkNetConn() {
     // watch network for a disconnection
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-(');

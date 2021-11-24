@@ -20,7 +20,6 @@ import {comComponentsModule} from './comComponetsModule';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 PlotlyModule.plotlyjs = PlotlyJS;
-import { Network } from '@ionic-native/network/ngx';
 @NgModule({
   declarations: [AppComponent,DiagramComponent],
   entryComponents: [],
@@ -28,7 +27,7 @@ import { Network } from '@ionic-native/network/ngx';
      AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule,
      BrowserAnimationsModule,DialogModule,comComponentsModule
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient,PhotoViewer,Network],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },HttpClient,PhotoViewer],
   bootstrap: [AppComponent],
   exports:[]
 })
