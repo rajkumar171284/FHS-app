@@ -12,7 +12,7 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
   @Input() plotlyData;
   @Input() chartType;
   @Input() graphType;
-  @ViewChild('pressureId') pressureId: ElementRef;
+  @ViewChild('pressureId',{ read: ElementRef, static:false }) pressureId: ElementRef;
   public data: any;
   public layout: any;
   // public data2: any;
@@ -21,11 +21,11 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
   pie_chart;
   /* The plot target container. */
   constructor() { }
+  
 
   ngOnInit() {
   }
-  ngOnChanges(changes: SimpleChanges) {
-
+  ngAfterViewInit(changes: SimpleChanges){
     console.log(this.chartType, 'plotlyData chng', changes)
     if (this.plotlyData && this.chartType == 'pressure') {
       console.log(this.plotlyData.pressureData)
@@ -35,6 +35,18 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
       //  call multi
       this.multiPlot(this.plotlyData.pressureData)
     }
+  }
+  ngOnChanges(changes: SimpleChanges) {
+
+    console.log(this.chartType, 'plotlyData chng', changes)
+    // if (this.plotlyData && this.chartType == 'pressure') {
+    //   console.log(this.plotlyData.pressureData)
+    //   console.log(this.plotlyData)
+    //   // this.showPlot(this.plotlyData);
+    //   // this.showPlot( this.plotlyData.pressureData);
+    //   //  call multi
+    //   this.multiPlot(this.plotlyData.pressureData)
+    // }
 
 
 
@@ -114,51 +126,32 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
     this.graph.data = []
     for (let a of pressureData) {
       this.graph.data.push({
-        x: a.array.map(ele => {
-          return ele.date
-        }),
-        y: a.array.map(ele => {
-          if (ele.values1) {
-            return ele.values1;
-          }
-        }),
+        x: a.array.ts.map(ele =>ele),
+        y: a.array.val.map(ele =>ele),
         mode: 'lines+points',
         name: a.sensor,
         line: {
-          color: 'rgb(55, 128, 191)',
-          width: 1
+          color: a.color,
+          width: 2
         }
 
       }
 
       )
     }
-    this.graph.layout = { width: 300, height: 340, title: this.chartType }
+    this.graph.layout = { autosize: true,  height: 340, title: '',
+    margin: {
+      l: 30,r:30, plot_bgcolor: '#c0d6e4',
+      paper_bgcolor: '#7f7f7f',
+
+    }
+  
+  }
     console.log(this.graph)
-    // return;
-    // var trace1 = {
-    //   x: [1, 2, 3, 4],
-    //   y: [10, 15, 13, 17],
-    //   type: 'scatter'
-    // };
-
-    // var trace2 = {
-    //   x: [1, 2, 3, 4],
-    //   y: [16, 5, 11, 9],
-    //   type: 'scatter'
-    // };
-
     // var data = [trace1, trace2];
-    // // Plotly.newPlot(this.pressureId.nativeElement, data);
-    // this.graph = {
-    //   data: [
-    //     //   { x: [1, 2, 3], y: [2, 6, 3], type: 'line'
-    //     //   , mode: 'lines+points', marker: {color: 'red'} 
-    //     // },
-    //       { x:  [1, 2,  3], y: [2, 5, 3], type:  this.graphType },
-    //   ],
-    //   layout: {width: 420, height: 340, title: this.chartType}
-    // };
+    // if(this.pressureId)
+    Plotly.newPlot(this.pressureId.nativeElement, this.graph.data,this.graph.layout);
+   
   }
 
 }

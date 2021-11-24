@@ -5,7 +5,7 @@ import { LoadingController } from '@ionic/angular';
 
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
 // import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {  FormBuilder, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -16,7 +16,7 @@ import { ManipulateAlertsPage } from '../manipulate-alerts/manipulate-alerts.pag
   selector: 'app-manage-alerts',
   templateUrl: './manage-alerts.page.html',
   styleUrls: ['./manage-alerts.page.scss'],
-  providers: [MessageService]
+  providers: [MessageService,FormBuilder]
 })
 export class ManageAlertsPage implements OnInit {
   @Input() alertList: boolean;

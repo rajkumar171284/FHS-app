@@ -13,10 +13,10 @@
 .info-content{position:relative;
     border-left:2px solid #888
 }
-.icon-content ion-img,.info-content ion-img{
-    // height:30px;margin-top:10px
-    // width: 30px;
-}
+cdk-virtual-scroll-viewport {
+    height: 100%;
+    width: 100%;
+  }
 .spn-pencil{
     position: absolute;z-index: 3;top:2px;right:10px;font-size: 15px;color:#444;
 }

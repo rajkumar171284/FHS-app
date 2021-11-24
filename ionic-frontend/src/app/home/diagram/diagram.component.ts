@@ -10,11 +10,13 @@ import { ApiService } from '../../api.service';
 import { LoginPage } from '../../pages/login/login.page';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
+import { icon, latLng, Map, marker, point, polyline, tileLayer } from 'leaflet';
+
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss'],
-  providers: [PhotoViewer]
+  providers: [PhotoViewer,FormBuilder]
 })
 export class DiagramComponent implements OnInit, OnDestroy {
   loading: any;
@@ -22,10 +24,19 @@ export class DiagramComponent implements OnInit, OnDestroy {
   interVal: Subscription;
   hide: boolean = false;
   sliderOpt;
+  options;
   constructor(private photoViewer: PhotoViewer, private loadingController: LoadingController, private ApiService: ApiService, private fb: FormBuilder,
     public modalController: ModalController) {
-    console.log('h min ')
-
+    
+    this.options = {
+      layers: [
+        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        })
+      ],
+      zoom: 7,
+      center: latLng([ 46.879966, -121.726909 ])
+    };
   }
   myClass = new Myclass();
 
@@ -102,6 +113,8 @@ export class DiagramComponent implements OnInit, OnDestroy {
       this.dismissLoader()
 
       // console.log(this.myClass)
+    },(error)=>{
+      this.dismissLoader()
     })
   }
   ngOnDestroy() {

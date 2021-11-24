@@ -3,18 +3,22 @@ import { HttpHeaders,HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import{map} from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
-const params = new HttpParams()
-const hdr= new HttpHeaders()
-.set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*')
-  .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+let authorizationData = 'Basic ' + btoa('isliot' + ':' + 'isliot');
+// let authorizationData = {username:'isliot',password:'isliot'}
 
+const hdr= new HttpHeaders()
+.set('Content-Type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*')
+  .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+  .set('Authorization',"Basic " +btoa('isliot:isliot'))
+  // .set('Authorization',"Basic " +btoa(authorizationData.username+':'+authorizationData.password))
+  
 
 const option={
   headers:hdr
 }
 // var url="https://rajisltest.s3.ap-south-1.amazonaws.com/sample_data_10L.csv"
-let myurl='http://localhost:3000'
+// let myurl='http://localhost:3000'
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +33,14 @@ export class ApiService {
     }))
   }
   
-  getCSV(params:any):Observable<any>{
-    return this.http.get(myurl+'/api/csv',option).pipe(map(response=>{
-      return response;
-    }))
-  }
+  // getCSV(params:any):Observable<any>{
+  //   return this.http.get(myurl+'/api/csv',option).pipe(map(response=>{
+  //     return response;
+  //   }))
+  // }
 
   getSVGData(params:any):Observable<any>{
-    return this.http.post(environment.url+'/runtime',option).pipe(map(response=>{
+    return this.http.post(environment.influx_url+'/runtime',params,option).pipe(map(response=>{
       return response;
     }))
   }
@@ -58,7 +62,7 @@ export class ApiService {
   }
   // charts
   getChartData(params:any):Observable<any>{
-    return this.http.post(environment.url+'/charts/'+params.chartType,{"time_period" :params.time_period},option).pipe(map(response=>{
+    return this.http.post(environment.influx_url+'/charts/'+params.chartType,{"time_period" :params.time_period},option).pipe(map(response=>{
       return response;
     }))
   }

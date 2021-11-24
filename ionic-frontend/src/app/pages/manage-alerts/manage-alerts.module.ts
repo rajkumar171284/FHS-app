@@ -9,14 +9,18 @@ import { ManageAlertsPageRoutingModule } from './manage-alerts-routing.module';
 import { ManageAlertsPage } from './manage-alerts.page';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import {CdkScrollableModule} from '@angular/cdk/scrolling';
+import {comComponentsModule} from '../../comComponetsModule';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ManageAlertsPageRoutingModule,
-    DialogModule,ReactiveFormsModule
+    ManageAlertsPageRoutingModule,ScrollingModule,CdkScrollableModule,
+    DialogModule,ReactiveFormsModule,comComponentsModule
   ],
   declarations: [ManageAlertsPage]
 })

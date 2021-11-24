@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingController, ToastController } from '@ionic/angular';
@@ -8,11 +8,12 @@ import { ApiService } from '../../api.service';
 // test duplicates
 import {of} from 'rxjs'
 import { distinct, toArray } from 'rxjs/operators';
-
+const newLocal = "home/tabs/mimic";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  providers:[FormBuilder]
 })
 export class LoginPage implements OnInit {
   userDetails: any;
@@ -25,30 +26,30 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     
-    let arr=[
-      {
-          "Id": 1,
-          "Value": "A"
-      },
-      {
-          "Id": 2,
-          "Value": "B"
-      },
-      {
-          "Id": 3,
-          "Value": "C"
-      },
-      {
-          "Id": 4,
-          "Value": "A"
-      }
-  ]
-  of(...arr).pipe(distinct(v => v.Value),toArray()).subscribe(res=>{
-    console.log(res)
-  })
-  of(arr).subscribe(res=>{
-    console.log(res)
-  })
+  //   let arr=[
+  //     {
+  //         "Id": 1,
+  //         "Value": "A"
+  //     },
+  //     {
+  //         "Id": 2,
+  //         "Value": "B"
+  //     },
+  //     {
+  //         "Id": 3,
+  //         "Value": "C"
+  //     },
+  //     {
+  //         "Id": 4,
+  //         "Value": "A"
+  //     }
+  // ]
+  // of(...arr).pipe(distinct(v => v.Value),toArray()).subscribe(res=>{
+  //   console.log(res)
+  // })
+  // of(arr).subscribe(res=>{
+  //   console.log(res)
+  // })
   }
   
 
@@ -77,7 +78,7 @@ export class LoginPage implements OnInit {
               this.presentToast(response)
             }else{
               localStorage.setItem('mySession', JSON.stringify(this.userDetails));
-              const newLocal = "home/tabs/mimic";
+              
               this.router.navigate([newLocal])
             }
   
@@ -87,6 +88,10 @@ export class LoginPage implements OnInit {
           console.log(error)
           this.presentToast('Something went wrong..')
           this.dismissLoader()
+          // testing-remove later
+          localStorage.setItem('mySession', JSON.stringify(this.userDetails));
+              
+          this.router.navigate([newLocal])
         })
       });
 
