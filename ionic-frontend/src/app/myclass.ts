@@ -4,7 +4,7 @@ export class Myclass {
     screenLoader: boolean;
     plotlyData;
     chartType: string;
-
+    sensorList:any;
     operatorList=[
        
         {

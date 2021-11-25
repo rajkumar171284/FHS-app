@@ -1,60 +1,64 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Fire Hydrant System
-    </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content color="mytheme" [fullscreen]="true">
+<ion-content color="light" [fullscreen]="true">
   <form [formGroup]="loginForm" (ngSubmit)="loginFn()">
 
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Amararaja</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-
-  <div id="container">
-    <!-- <ion-card > -->
+    <div id="container">
+      <!-- <ion-card > -->
       <ion-grid>
-        <ion-row>
+        <ion-row color="mytheme">
+          
+          <ion-col class="ion-text-center" size="8" offset="2">
+            <ion-img src="./assets/logo.png"> </ion-img>
+          </ion-col>
+          <ion-col class="ion-padding ion-text-center" size="12">
+            <ion-title color="mytext" size="large" class="lg-title ion-padding">
+              Fire Hydrant System
+            </ion-title>
+
+          </ion-col>
           <ion-col class="lg-card" size="10" offset="1">
             <div class="hero1">
-                  <div class="row">
-                      <div class="col-md-4 offset-md-4 ion-text-left">
-                          
-                          <div class="bg11">
-                              <div class="text-center">
-                                  <i class="fa fa-4x fa-user text-warning"></i>
-                              </div>
-                              <label>Username :</label>
-                              <div class="form-group mb-3">
-                                  <input name="userName" type="text" formControlName="userName" class="form-control" />
-                                  <p class="text-danger" *ngIf="loginForm.get('userName').touched && loginForm.get('userName').hasError('required')">
-                                      user is required</p>
-                              </div>
-                              <label>Password :</label>
-                              <div class="form-group">
-                                  <input type="text" formControlName="passCode" class="form-control" />
-                                  <p class="text-danger" *ngIf="loginForm.get('passCode').touched && loginForm.get('passCode').hasError('required')">
-                                      Passcode is required</p>
-                              </div>
-                          </div>
-  
-                      </div>
+              <div class="row">
+                <div class="col-md-4 offset-md-4 ion-text-left">
+
+                  <div class="bg11">
+                    <div class="text-center">
+                      <i class="fa fa-4x fa-user text-warning"></i>
+                    </div>
+                    <label>Username :</label>
+                    <!-- <ion-img src="./assets/test.png"> </ion-img> -->
+                    <div class="form-group mb-3">
+                      <input name="userName" type="text" formControlName="userName" class="form-control" />
+                      <p class="text-danger"
+                        *ngIf="loginForm.get('userName').touched && loginForm.get('userName').hasError('required')">
+                        user is required</p>
+                    </div>
+                    <label>Password :</label>
+                    <div class="form-group">
+                      <input type="text" formControlName="passCode" class="form-control" />
+                      <p class="text-danger"
+                        *ngIf="loginForm.get('passCode').touched && loginForm.get('passCode').hasError('required')">
+                        Passcode is required</p>
+                    </div>
                   </div>
-  
-          </div>
+
+                </div>
+              </div>
+
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
-    <!-- </ion-card> -->
-  </div>
-  <ion-tab-bar class="text-center" >
-      <ion-input  color="light" type="submit"  value="Sign-In"></ion-input>
-  </ion-tab-bar>
-</form>
+      <!-- </ion-card> -->
+    </div>
+    <ion-tab-bar color="medium" class="text-center">
+      <ion-input color="light" type="submit" value="Sign-In"></ion-input>
+    </ion-tab-bar>
+  </form>
 
 </ion-content>

@@ -30,7 +30,14 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~leaflet/dist/leaflet.css";
 .mycard-hd{
-  background: #c3add8
+  background: #c3add8;
+  // font-family:monospace;
+  text-shadow:0 1px 1px #111111;
+  color:#fff;
+  ion-card-subtitle{
+    color:#444;
+  }
+  
 }
 // :root {
 //     --ion-color-mytheme: #6f6282;

@@ -126,4 +126,12 @@ border-left:2px solid orangered!important ;
     height: calc(100vh - 200px);
     padding: 0;
   }
-
+  /* css to customize Leaflet default styles  */
+#map .leaflet-popup-tip,
+#map .leaflet-popup-content-wrapper,.tsts {
+    background: #e93434;
+    color: #ffffff;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+    background: #e93434 !important;
+}

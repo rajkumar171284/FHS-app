@@ -34,14 +34,13 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
   myClass = new Myclass();
-  
+
   ngAfterViewInit(): void {
 
-    // this.initMap()
   }
   private initMap(): void {
     this.map = L.map('map', {
-      center: [ 13.675989, 79.500493 ],
+      center: [13.675989, 79.500493],
       zoom: 17
     });
     this.options = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -52,7 +51,7 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
     this.options.addTo(this.map);
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.initMap()
 
   }
@@ -76,33 +75,50 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
   async getSensorJSON() {
     const data = await fetch("assets/sensorList.json");
     const myItems = await data.json()
-    // console.log(myItems)    
-    this.createMarker(myItems)
+    // console.log(myItems)   
+    let format = await myItems.map((z, aIndex) => {
+      let newItem = this.myClass.sensorList.status[aIndex]
+      let status = newItem === 'a' ? 'active' : 'inactive';
+      z.status;
+      z.status = status;
+      return z;
+    })
+    this.createMarker(format)
   }
   createMarker(myItems) {
-    var myIcon = L.icon({
-      iconUrl: '../../../assets/mimic-status.svg',
-      iconSize: [25, 45],
-      iconAnchor: [22, 94],
-      popupAnchor: [-3, -76],
-      // shadowUrl: '../../../assets/mimic-status.svg',
-      // shadowSize: [68, 95],
-      shadowAnchor: [22, 94]
-      // laptop
-      // iconUrl: '../../../assets/mimic-status.svg',
-      // iconSize: [38, 95],
-      // iconAnchor: [22, 94],
-      // popupAnchor: [-3, -76],
-      // shadowUrl: '../../../assets/mimic-status.svg',
-      // shadowSize: [68, 95],
-      // shadowAnchor: [22, 94]
-  });
-  
-    for (let item of myItems) {      
-      var markers = new L.Marker(new L.LatLng(item.lat, item.lng),{icon: myIcon})
-      .bindPopup(item.sensor).addTo(this.map);
+
+    // let aIndex=0;
+    console.log(myItems)
+    for (let item of myItems) {
+      var myIcon = null;
+      let setShadowSize;
+      let setShadowAnchor;
+      if (item.status == 'active') {
+        setShadowSize = [28, 55];
+        setShadowAnchor = [-8, 114];
+      }
+      else if (item.status == 'inactive') {
+        setShadowSize = [48, 75];
+        setShadowAnchor = [2, 124];
+      }
+      myIcon = L.icon({
+        iconUrl: '../../../assets/fire-hydrant.svg',
+        iconSize: [35, 55],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowUrl: '../../../assets/' + `${item.status}` + '.svg',
+        shadowSize: setShadowSize,
+        shadowAnchor: setShadowAnchor
+      });
+      var customPopup = "<b class='tsts'>Sensor:"+`${item.sensor}` +"</b><br/><b>Status:"+`${item.status}` +"</b><br/>";
+
+      
+
+      var markers = new L.Marker(new L.LatLng(item.lat, item.lng), { icon: myIcon })
+        .bindPopup(customPopup).addTo(this.map);
 
     }
+    // aIndex++;
   }
   ionViewWillEnter() {
     this.checkNetConn();
@@ -112,10 +128,10 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
     }).then((response) => {
       this.loading = response;
       this.loading.present();
-      // this.interVal = interval(2000).subscribe(res => {
-      //   this.getDataforSVG();
-      // })
-      this.getDataforSVG();
+      this.interVal = interval(10000).subscribe(res => {
+        this.getDataforSVG();
+      })
+      // this.getDataforSVG();
     });
 
     // 
@@ -130,17 +146,18 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
       if (response) {
         this.myClass.screenLoader = false
         this.myClass.data = response;
-        this.getSensorJSON()
+        this.myClass.sensorList = response;
+        this.getSensorJSON();
 
-        var array = [];
-        array = response.id.map((x, i) => {
-          return {
-            sensor: x,
-            lat: response.lat[i],
-            lng: response.lng[i]
-          }
-        })
-        console.log(JSON.stringify(array))
+        // var array = [];
+        // array = response.id.map((x, i) => {
+        //   return {
+        //     sensor: x,
+        //     lat: response.lat[i],
+        //     lng: response.lng[i]
+        //   }
+        // })
+        // console.log(JSON.stringify(array))
 
 
 
