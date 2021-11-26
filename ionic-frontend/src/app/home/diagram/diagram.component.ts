@@ -13,7 +13,6 @@ import { Network } from '@ionic-native/network/ngx';
 
 import { icon, latLng, Map, marker, point, polyline, tileLayer } from 'leaflet';
 import * as L from 'leaflet';
-declare var Leaflet;
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',

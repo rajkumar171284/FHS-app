@@ -39,6 +39,24 @@
   }
   
 }
+:root {
+  --ion-color-mycard: #c3add8;
+  --ion-color-mycard-rgb: 195,173,216;
+  --ion-color-mycard-contrast: #000000;
+  --ion-color-mycard-contrast-rgb: 0,0,0;
+  --ion-color-mycard-shade: #ac98be;
+  --ion-color-mycard-tint: #c9b5dc;
+}
+
+.ion-color-mycard {
+  --ion-color-base: var(--ion-color-mycard);
+  --ion-color-base-rgb: var(--ion-color-mycard-rgb);
+  --ion-color-contrast: var(--ion-color-mycard-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-mycard-contrast-rgb);
+  --ion-color-shade: var(--ion-color-mycard-shade);
+  --ion-color-tint: var(--ion-color-mycard-tint);
+}
+
 // :root {
 //     --ion-color-mytheme: #6f6282;
 //     --ion-color-mytheme-rgb: 111,98,130;

@@ -212,4 +212,7 @@ transform: rotate(-90deg) translate(0px, 0px);
 .t-mng{
     margin-right: 8px;
 }
-
+#map {
+    height: calc(100vh - 400px);
+    padding: 0;
+  }

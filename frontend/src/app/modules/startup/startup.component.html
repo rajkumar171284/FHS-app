@@ -6,7 +6,11 @@
         <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange()" [style]="{'min-width':'140px'}"></p-dropdown> -->
     </div>
 </div>
-<div id="mySvg">
+<div>
+    <div id="map" >
+    </div>
+</div>
+<!-- <div id="mySvg">
     <div class="bgSvg">
         <div *ngFor="let item of myClass.response" class="img-div2" [style.left]="item.xPos"
         [style.top]="item.yPos">
@@ -179,19 +183,12 @@
 
 
 
-                <!-- plastic plant -->
                 {{myClass.response.length>0?getSensorById([],501):''}}
-                <!-- <a>
-                   
-                    AHs
-                </a> -->
-                
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 12l7-7 7 7"/></svg> -->
                 <g><text class="c-tspan8496" x="0" y="0">&#xf040;</text></g>
 
                 <use xlink:href="fa-brands.svg#github"></use>
 
-                <!-- {{myClass.response.length>0 && myClass.response[6]?myClass.response[6].zone:''}} -->
+                {{myClass.response.length>0 && myClass.response[6]?myClass.response[6].zone:''}}
 
 
             </tspan>
@@ -201,7 +198,6 @@
             x="-208.74088" y="153.27338" id="text16655" transform="rotate(-90)">
             <tspan sodipodi:role="line" id="tspan16653" style="font-size:7.05556px;stroke-width:0.264583" x="-208.74088"
                 y="153.27338">
-                <!-- ABD -->
                 {{myClass.response.length>0?getSensorById([],503):''}}
 
             </tspan>
@@ -210,7 +206,6 @@
             style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;display:inline;stroke-width:0.264583"
             x="-142.19133" y="117.52663" id="text30441" transform="rotate(-90)">
             <tspan sodipodi:role="line" id="tspan30439" style="stroke-width:0.264583" x="-142.19133" y="117.52663">
-                <!-- IBD -->
                 {{myClass.response.length>0?getSensorById([],506):''}}
             </tspan>
         </text>
@@ -219,7 +214,6 @@
             x="-55.276627" y="84.228897" id="text31831" transform="rotate(-90)" inkscape:transform-center-x="-5.2502679"
             inkscape:transform-center-y="4.4425344">
             <tspan sodipodi:role="line" id="tspan31829" style="stroke-width:0.264583" x="-55.276627" y="84.228897">
-                <!-- SMD -->
                 {{myClass.response.length>0?getSensorById([],507):''}}
 
             </tspan>
@@ -250,4 +244,4 @@
             id="path46551" />
     </g>
 
-</svg>
+</svg> -->

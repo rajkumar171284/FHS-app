@@ -4,17 +4,32 @@ export class Myclass {
     screenLoader: boolean;
     plotlyData;
     chartType: string;
-
+    sensorList:any;
     operatorList=[
-    {
-        key:'-- > --',value:'greaterthan'
+       
+        {
+        key:'> (Greater than)',value:'greaterthan'
     },
     {
-        key:'-- < --',value:'lessthan'
+        key:'< (Less than)',value:'lessthan'
     }
-]
+    ,
+    {
+        key:'= (Equal to)',value:'equal'
+    }
+];
+chartFilters=[]
     
 }
+export const filters=["Last 5 minutes",
+"Last 15 minutes",
+"Last 30 minutes",
+"Last 1 Hour",
+"Last 3 Hours",
+"Last 6 Hours",
+"Last 24 Hours",
+"Last 7 days",
+"Last 30 days"]
 export class classSensor{
     sensorID="";
     operator="";
@@ -54,14 +69,8 @@ data:[],layout:JSON;
 }
 
 export class ClassPlotlyPattern1{
-    data= [
-        {
-            x: [1, 2, 3], y: [2, 6, 3], type: ''
-                , mode: 'lines+points', marker: { color: 'red' }
-        },
-        // { x: [1, 2, 3], y: [2, 5, 3], type: 'bar' },
-    ];
-    layout= { width: 320, height: 240, title: 'A Fancy Plot' }
+    data= [];
+    layout= { }
 }
 export interface sensorId {
     "sensorid": "",
