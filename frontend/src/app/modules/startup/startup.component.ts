@@ -38,22 +38,6 @@ export class StartupComponent implements OnInit, OnDestroy,AfterViewInit {
     this.options.addTo(this.map);
   }
   ngOnInit(): void {
-    //  console.log(document.querySelector("#path80"))
-    //  let main=document.getElementById("datalist");
-
-    //   let innerDiv = document.createElement("span");
-    //   innerDiv.style.display="inline-block"
-    //   innerDiv.innerHTML="Plant-1"
-    //   innerDiv.style.marginLeft="30px";
-    //   innerDiv.style.width="150px";
-    //   innerDiv.style.height="50px"
-    //   innerDiv.style.borderRadius="3px"
-    //   innerDiv.style.boxShadow="0 1px 2px #000";
-    //   innerDiv.style.background="rgba(0,0,0,.4)";
-    //   innerDiv.style.color="#fff";
-    //   innerDiv.style.padding="10px";
-    //   main.appendChild(innerDiv)
-    // this.loadLabels()
 
 
     this.myClass = new Myclass();
@@ -115,7 +99,7 @@ export class StartupComponent implements OnInit, OnDestroy,AfterViewInit {
   getDataforSVG() {
     let params = {}
     this.Subscription = this.ApiService.getSVGData(params).subscribe((response) => {
-      if (response && response.length > 0) {
+      if (response) {
         this.myClass.screenLoader=false
         this.myClass.data = response;
         this.myClass.sensorList = response;
@@ -169,26 +153,6 @@ export class StartupComponent implements OnInit, OnDestroy,AfterViewInit {
 
   }
 
-  loadLabels() {
-    if (document.getElementById('text8498')) {
-      let tspan8496 = document.getElementById('text8498');
-
-      let innerDiv = document.createElement("tspan");
-      innerDiv.style.display = "inline-block"
-      innerDiv.innerHTML = "Plant-1"
-      innerDiv.style.marginLeft = "30px";
-      innerDiv.style.width = "150px";
-      innerDiv.style.height = "50px"
-      innerDiv.style.borderRadius = "3px"
-      innerDiv.style.boxShadow = "0 1px 2px #000";
-      innerDiv.style.background = "rgba(0,0,0,.4)";
-      innerDiv.style.color = "#fff";
-      innerDiv.style.padding = "10px";
-      tspan8496.appendChild(innerDiv)
-
-
-    }
-  }
    getSensorById(array,id:any){
     if(id){
       array= this.myClass.data.filter((item)=>item.sensorid==id)
