@@ -21,38 +21,70 @@ export class PlotComponent implements OnInit,OnChanges {
   public graph = new ClassPlotlyPattern1();
   pie_chart;
   minHeight;
+  fullData=[]
   /* The plot target container. */
   constructor() { }
   
 
   ngOnInit() {
   }
-  // ngAfterViewInit(){
-  //   // if (this.plotlyData && this.plotlyData.pressureData && this.chartType == 'pressure') {
-  //   //   console.log(this.plotlyData.pressureData)
-  //   //   console.log(this.plotlyData)
-  //   //   // this.showPlot(this.plotlyData);
-  //   //   // this.showPlot( this.plotlyData.pressureData);
-  //   //   //  call multi
-  //   //   this.multiPlot(this.plotlyData.pressureData)
-  //   // }    
-  // }
+  
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes)
-  this.minHeight=window.innerHeight-391
+  this.minHeight=window.innerHeight-395
     // if (this.plotlyData && this.plotlyData.pressureData && this.chartType == 'pressure') {
       console.log(this.plotlyData.pressureData)
       console.log(this.plotlyData)
       //  call multi
-      this.multiPlot(this.plotlyData.pressureData)
-    
+  if(changes.chartType.currentValue=='Pressure'){
+    const arr =changes.plotlyData.currentValue.pressureData
+    this.multiPlot(arr)
+  }
+  if(changes.chartType.currentValue=='Level'){
+    const arr =changes.plotlyData.currentValue.levelData
+    this.multiPlot2(arr)
+  }
+      
   }
 
 
 
-  public multiPlot(pressureData) {
+  public multiPlot(Data) {
     this.graph.data = []
-    for (let a of pressureData) {
+    for (let a of Data) {
+      this.graph.data.push({
+        x: a.array.ts.map(ele =>ele),
+        y: a.array.val.map(ele =>ele),
+        mode: 'lines+points',
+        name: a.sensor,
+        line: {
+          color: a.color,
+          width: 2
+        }
+
+      }
+
+      )
+    }
+    this.graph.layout =
+     { autosize: true,  height: this.minHeight, title: this.chartType,
+      plot_bgcolor: 'rgba(0, 0, 0, 0)',
+      paper_bgcolor: 'rgba(255,255,255,.3)'
+
+    ,margin: {
+      l: 20,r:20,       
+    },
+    marker: {color: 'red'} 
+  
+  }
+  this.fullData.push(this.graph.data)
+
+   console.log(this.graph)
+  }
+
+  public multiPlot2(Data) {
+    // this.graph.data = []
+    for (let a of Data) {
       this.graph.data.push({
         x: a.array.ts.map(ele =>ele),
         y: a.array.val.map(ele =>ele),
@@ -69,14 +101,16 @@ export class PlotComponent implements OnInit,OnChanges {
     }
     this.graph.layout = { autosize: true,  height: this.minHeight, title: this.chartType,
     margin: {
-      l: 30,r:30, plot_bgcolor: '#c0d6e4',
-      paper_bgcolor: '#7f7f7f',
-
+      l: 20,r:20,
     },
-    marker: {color: 'red'} 
-  
+    marker: {color: 'red'} ,
+    plot_bgcolor: 'rgba(0, 0, 0, 0)',
+    paper_bgcolor: 'rgba(255,255,255,.3)',
+    // fig_bgcolor :"red" //not works
   }
-   console.log(this.graph)
-  }
+   
+   this.fullData.push(this.graph.data)
 
+   console.log(this.fullData)
+  }
 }

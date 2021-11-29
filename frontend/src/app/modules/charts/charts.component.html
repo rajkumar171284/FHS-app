@@ -9,12 +9,12 @@
             </select>
 
         </div>
-        <div *ngIf="plotlyData.pressureData" class="col-md-12 card">
+        <div *ngIf="plotlyData.pressureData" class="col-md-12 card1">
             <app-plot [chartId]="'pressure'" [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'Pressure'">
             </app-plot>
 
         </div>
-        <div *ngIf="plotlyData.levelData" class="col-md-12 card">
+        <div *ngIf="plotlyData.levelData" class="col-md-12 card1">
             <app-plot [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'Level'">
 
             </app-plot>

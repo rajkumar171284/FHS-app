@@ -30,7 +30,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-bottom-right-radius:30px;    
   }
   .bgc1{
-    background-color: #fff!important;background: #fff!important;
+    /* background-color: #fff!important;
+    background: #fff!important; */
   }
   .toolbar {
     font-size: 18px;
@@ -55,7 +56,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   
   }
   .bdr1{
-    /* border:1px solid #ddd; */
     padding: 0;overflow: hidden;
     
   }

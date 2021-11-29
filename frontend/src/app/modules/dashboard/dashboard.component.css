@@ -1,6 +1,6 @@
 
   .t-dashboard .card {
-    border: 0px solid #fff!important;
+    /* border: 0px solid #fff!important; */
     margin-bottom: 5px!important;
     -webkit-box-shadow: 0 1px 2px #000;-moz-box-shadow: 0 1px 2px #000;
     -o-box-shadow: 0 1px 2px #000;
@@ -9,4 +9,13 @@
   .toolbar img{
     position: absolute;left: 5px;z-index: 999;
     max-height: 40px;float: left;
+  }
+  .newBdr{
+    border:1px solid #e59400!important;
+    background:linear-gradient(45deg,#2acaea,#e59400)  !important;
+    padding-bottom: 8px;
+    /* background: rgba(255,255,255,.3)!important; */
+
+    /* border: 1px solid #e59400!important; */
+
   }

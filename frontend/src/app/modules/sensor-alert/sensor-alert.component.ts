@@ -37,7 +37,7 @@ export class SensorAlertComponent implements OnInit {
     person_name: ['', Validators.required], phoneNO: ['', Validators.required],
   });
 
-
+ setHeight;
   ngOnInit(): void {
     for (let a = 0; a < 33; a++) {
 
