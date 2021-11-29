@@ -1,0 +1,7 @@
+.filterPane{
+    display: inline-flex;align-items:center;
+}
+.filterPane select.form-control,.filterPane select:focus{
+    border:1px solid #fff !important;    font-weight: 500;
+    border-color: #fff !important;
+}

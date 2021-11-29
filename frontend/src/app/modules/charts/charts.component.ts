@@ -77,16 +77,43 @@ export class ChartsComponent implements OnInit,AfterViewInit {
             this.plotlyData.pressureData=newResponse.map(x=>{
               return x;
             })
+            // level api call
             let params: any = {}
             params.chartType = 'level';
-            // this.ApiService.getChartData(params).subscribe(response2 => {
-            //   console.log(response2)
-            // //   this.plotlyData.levelData;
-            // // this.plotlyData.levelData=response.map(x=>{
-            // //   return x;            
-            // // })
-            //   this.dismissLoader()
-            // })
+            params.time_period = this.chartInterval,
+
+            this.ApiService.getChartData(params).subscribe(response2 => {
+              console.log(response2)
+              let newResponse=Object.keys(response2).map((x,i)=>{
+                let str;
+                if(i==0){
+                  str='#e40000'
+                }         
+                if(i==1){
+                  str='green'
+                }         
+                if(i==2){
+                  str='blue'
+                }         
+                if(i==1){
+                  str='orange'
+                }         
+                if(i==1){
+                  str='yellow'
+                }         
+                return {
+                  sensor:x,
+                  array:Object.values(response2)[i],
+                  color:str
+                }
+              })
+    
+              
+              this.plotlyData.levelData=newResponse.map(x=>{
+                return x;
+              })
+              this.dismissLoader()
+            })
           })
     }
     setInt(e) {

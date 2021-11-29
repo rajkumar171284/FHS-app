@@ -53,13 +53,13 @@
     top: 0;   
     z-index: 96;
     left: 0;
-    padding-top: 60px;
+    padding-top: 70px;
     padding-left: 50px;padding-right: 50px;
     right: 0;
     height: 100%;
     width: 100%;
     align-items: center;
-    background-color: #fefbf4;
+    background: linear-gradient(45deg, #19798c, transparent);
     overflow-y: auto;
 }
 

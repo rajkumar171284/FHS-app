@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   getSVGData(params:any):Observable<any>{
-    return this.http.post(environment.url+'/runtime',option).pipe(map(response=>{
+    return this.http.post(environment.url+'/runtime',params,option).pipe(map(response=>{
       return response;
     }))
   }

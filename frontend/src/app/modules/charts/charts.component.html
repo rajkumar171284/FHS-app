@@ -1,22 +1,23 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <select (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
+        <div class="col-md-12 filterPane">
+            <span><i class="fa fa-caret-down"></i></span>
+            <select class="form-control" (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
                 <option [value]="a.value" *ngFor="let a of chartFilters">{{a.key}}
 
                 </option>
             </select>
 
         </div>
-        <div class="col-md-12 card">
-            <app-plot [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'pressure'">
+        <div *ngIf="plotlyData.pressureData" class="col-md-12 card">
+            <app-plot [chartId]="'pressure'" [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'Pressure'">
             </app-plot>
 
         </div>
-        <div class="col-md-12">
-            <!-- <app-plot [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'level'">
+        <div *ngIf="plotlyData.levelData" class="col-md-12 card">
+            <app-plot [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'Level'">
 
-            </app-plot> -->
+            </app-plot>
 
         </div>
     </div>

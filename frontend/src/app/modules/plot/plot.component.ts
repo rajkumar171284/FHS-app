@@ -1,15 +1,15 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { InterfacePlotlyPattern1, ClassPlotlyPattern1 } from '../../myclass'
-declare var Plotly: any;
+import { InterfacePlotlyPattern1, ClassPlotlyPattern1 } from '../../myclass';
+declare let Plotly: any;
+
 @Component({
   selector: 'app-plot',
   templateUrl: './plot.component.html',
-  styleUrls: ['./plot.component.css'],
-  // template: '',
-
+  styleUrls: ['./plot.component.css']
 })
 export class PlotComponent implements OnInit,OnChanges {
+  @Input() chartId:string;
   @Input() plotlyData;
   @Input() chartType;
   @Input() graphType;
@@ -20,26 +20,32 @@ export class PlotComponent implements OnInit,OnChanges {
   // public layout2: any;
   public graph = new ClassPlotlyPattern1();
   pie_chart;
+  minHeight;
   /* The plot target container. */
   constructor() { }
   
 
   ngOnInit() {
   }
-  ngAfterViewInit(changes: SimpleChanges){
-    console.log(this.chartType, 'plotlyData chng', changes)
-    
-  }
+  // ngAfterViewInit(){
+  //   // if (this.plotlyData && this.plotlyData.pressureData && this.chartType == 'pressure') {
+  //   //   console.log(this.plotlyData.pressureData)
+  //   //   console.log(this.plotlyData)
+  //   //   // this.showPlot(this.plotlyData);
+  //   //   // this.showPlot( this.plotlyData.pressureData);
+  //   //   //  call multi
+  //   //   this.multiPlot(this.plotlyData.pressureData)
+  //   // }    
+  // }
   ngOnChanges(changes: SimpleChanges) {
-
-    if (this.plotlyData && this.chartType == 'pressure') {
+    console.log(changes)
+  this.minHeight=window.innerHeight-391
+    // if (this.plotlyData && this.plotlyData.pressureData && this.chartType == 'pressure') {
       console.log(this.plotlyData.pressureData)
       console.log(this.plotlyData)
-      // this.showPlot(this.plotlyData);
-      // this.showPlot( this.plotlyData.pressureData);
       //  call multi
       this.multiPlot(this.plotlyData.pressureData)
-    }
+    
   }
 
 
@@ -61,19 +67,16 @@ export class PlotComponent implements OnInit,OnChanges {
 
       )
     }
-    this.graph.layout = { autosize: true,  height: 340, title: '',
+    this.graph.layout = { autosize: true,  height: this.minHeight, title: this.chartType,
     margin: {
       l: 30,r:30, plot_bgcolor: '#c0d6e4',
       paper_bgcolor: '#7f7f7f',
 
-    }
+    },
+    marker: {color: 'red'} 
   
   }
-    console.log(this.graph)
-    // var data = [trace1, trace2];
-    // if(this.pressureId)
-    Plotly.newPlot(this.pressureId.nativeElement, this.graph.data,this.graph.layout);
-   
+   console.log(this.graph)
   }
 
 }
