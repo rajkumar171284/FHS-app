@@ -77,16 +77,40 @@ export class ChartsPage implements OnInit {
           this.plotlyData.pressureData=newResponse.map(x=>{
             return x;
           })
-          let params: any = {}
+          
           params.chartType = 'level';
-          // this.ApiService.getChartData(params).subscribe(response2 => {
-          //   console.log(response2)
-          // //   this.plotlyData.levelData;
-          // // this.plotlyData.levelData=response.map(x=>{
-          // //   return x;            
-          // // })
-          //   this.dismissLoader()
-          // })
+          this.ApiService.getChartData(params).subscribe(response2 => {
+            // console.log(response2)
+            this.plotlyData.levelData=Object.keys(response2).map((x,i)=>{
+              let str;
+              if(i==0){
+                str='#e40000'
+              }         
+              if(i==1){
+                str='green'
+              }         
+              if(i==2){
+                str='blue'
+              }         
+              if(i==1){
+                str='orange'
+              }         
+              if(i==1){
+                str='yellow'
+              }         
+              return {
+                sensor:x,
+                array:Object.values(response2)[i],
+                color:str
+              }
+            })
+  
+            
+            // this.plotlyData.levelData=newResponse.map(x=>{
+            //   return x;
+            // })
+            this.dismissLoader()
+          })
         })
     }
     )

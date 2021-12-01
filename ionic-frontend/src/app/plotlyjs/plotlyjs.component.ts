@@ -28,12 +28,14 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
   ngAfterViewInit(changes: SimpleChanges){
     console.log(this.chartType, 'plotlyData chng', changes)
     if (this.plotlyData && this.chartType == 'pressure') {
-      console.log(this.plotlyData.pressureData)
-      console.log(this.plotlyData)
-      // this.showPlot(this.plotlyData);
-      // this.showPlot( this.plotlyData.pressureData);
+      
       //  call multi
       this.multiPlot(this.plotlyData.pressureData)
+    }
+    if (this.plotlyData && this.chartType == 'level') {
+      
+      //  call multi
+      this.multiPlot(this.plotlyData.levelData)
     }
   }
   ngOnChanges(changes: SimpleChanges) {

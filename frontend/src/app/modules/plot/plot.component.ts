@@ -83,7 +83,6 @@ export class PlotComponent implements OnInit,OnChanges {
   }
 
   public multiPlot2(Data) {
-    // this.graph.data = []
     for (let a of Data) {
       this.graph.data.push({
         x: a.array.ts.map(ele =>ele),
@@ -101,7 +100,7 @@ export class PlotComponent implements OnInit,OnChanges {
     }
     this.graph.layout = { autosize: true,  height: this.minHeight, title: this.chartType,
     margin: {
-      l: 20,r:20,
+      l: 25,r:20,
     },
     marker: {color: 'red'} ,
     plot_bgcolor: 'rgba(0, 0, 0, 0)',
