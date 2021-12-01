@@ -207,6 +207,7 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.interVal) {
       this.interVal.unsubscribe()
     }
+    this.map.remove()
   }
   ionViewWillLeave() {
     console.log('left')
@@ -216,6 +217,7 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.interVal) {
       this.interVal.unsubscribe()
     }
+    this.map.remove();
   }
 
   // Simple loader

@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar color="mytheme">
+  <ion-toolbar color="light">
     <ion-title size="small">
       {{modeType?'Add new Alert':'Edit Alert'}}
     </ion-title>
-    <ion-fab horizontal="end" slot="end" >
+    <ion-fab horizontal="end" slot="end">
       <app-logout></app-logout>
-  </ion-fab>
+    </ion-fab>
   </ion-toolbar>
 
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
   <form [formGroup]="newForm">
     <!-- <ion-card fill="outline" class=""> -->
@@ -20,79 +20,67 @@
         <ion-img size="2" src="../../../assets/sensor.png" ></ion-img>
 
       </ion-item> -->
-      
-          <ion-item  class="">
-            <div class="form-group">
-              <ion-label>Sensor Id</ion-label>
-              <div class="form-input">
-                <ion-input  type="text" formControlName="sensorID"></ion-input>             
-              </div>
-              </div>
-              </ion-item>
-          <ion-item class="col-md-6">
-            <div class="form-group">
-              <ion-label>Operator</ion-label>
-              <div class="form-input">
-                <ion-select  formControlName="operator">
-                  <ion-select-option [value]="a.value" *ngFor="let a of myClass.operatorList">{{a.key}}
 
-                  </ion-select-option>
-                </ion-select>
+      <ion-item class="">
+        <ion-label>Sensor Id</ion-label>
+        <div class="form-input">
+          <ion-input type="text" formControlName="sensorID"></ion-input>
+        </div>
 
-              </div>
-            </div>
+      </ion-item>
 
-          </ion-item>
-          <ion-item class="col-md-6">
-            <div class="form-group">
-              <ion-label>Value</ion-label>
-              <div class="form-input">
-                <ion-input  type="text" formControlName="value"></ion-input>
+      <ion-item class="col-md-6">
+        <ion-label>Select Operator</ion-label>
+        <ion-select class="custom-options" interface="action-sheet" formControlName="operator">
+          <ion-select-option [value]="a.value" *ngFor="let a of myClass.operatorList">{{a.key}}
 
-              </div>
-            </div>
+          </ion-select-option>
+        </ion-select>
 
-          </ion-item>
-          <ion-item class="col-md-6">
-            <div class="form-group">
-              <ion-label>Name</ion-label>
-              <div class="form-input">
-                <ion-input  type="text" formControlName="person_name"></ion-input>
 
-              </div>
-            </div>
+      </ion-item>
+      <ion-item class="col-md-6">
+        <ion-label>Value</ion-label>
+        <div class="form-input">
+          <ion-input type="text" formControlName="value"></ion-input>
+        </div>
 
-          </ion-item>
-          <ion-item class="col-md-6">
-            <div class="form-group">
-              <ion-label>Phone no</ion-label>
-              <div class="form-input">
-                <ion-input type="text" formControlName="phoneNO"></ion-input>
 
-              </div>
-            </div>
+      </ion-item>
+      <ion-item class="col-md-6">
+        <ion-label>Name</ion-label>
+        <div class="form-input">
+          <ion-input type="text" formControlName="person_name"></ion-input>
 
-          </ion-item>
-          <ion-item class="" *ngIf="!modeType">
-            <ion-list class="ion-no-padding">
-              <ion-radio-group  (ionChange)="onChangeHandler($event)" formControlName="status">
-                <ion-list-header class="ion-no-padding">
-                  <ion-label>Status</ion-label>
-                </ion-list-header>
-            
-                <ion-item>
-                  <ion-label>Active</ion-label>
-                  <ion-radio slot="start"  [value]="isActive"></ion-radio>
-                </ion-item>
-            
-                <ion-item lines="none">
-                  <ion-label>In-Active</ion-label>
-                  <ion-radio slot="start" [value]="isInactive"></ion-radio>
-                </ion-item>                            
-              </ion-radio-group>
-            </ion-list>
-          </ion-item>
-        
+        </div>
+      </ion-item>
+      <ion-item class="col-md-6">
+        <ion-label>Phone no</ion-label>
+        <div class="form-input">
+          <ion-input type="text" formControlName="phoneNO"></ion-input>
+
+        </div>
+      </ion-item>
+      <ion-item class="" *ngIf="!modeType">
+        <ion-list class="ion-no-padding">
+          <ion-radio-group (ionChange)="onChangeHandler($event)" formControlName="status">
+            <ion-list-header class="ion-no-padding">
+              <ion-label>Status</ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>Active</ion-label>
+              <ion-radio slot="start" [value]="isActive"></ion-radio>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label>In-Active</ion-label>
+              <ion-radio slot="start" [value]="isInactive"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-item>
+
     </ion-list>
     <!-- </ion-card> -->
 

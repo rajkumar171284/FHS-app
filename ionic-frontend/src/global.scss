@@ -33,7 +33,7 @@
   background: #c3add8;
   // font-family:monospace;
   text-shadow:0 1px 1px #111111;
-  color:#fff;
+  color:#fff!important;
   ion-card-subtitle{
     color:#444;
   }
@@ -94,12 +94,12 @@
 //   --ion-color-tint: var(--ion-color-mytext-tint);
 // }
 :root {
-  --ion-color-mytheme: #8FCE00;
-  --ion-color-mytheme-rgb: 143,206,0;
-  --ion-color-mytheme-contrast: #000000;
-  --ion-color-mytheme-contrast-rgb: 0,0,0;
-  --ion-color-mytheme-shade: #7eb500;
-  --ion-color-mytheme-tint: #9ad31a;
+  --ion-color-mytheme: #35194f;
+  --ion-color-mytheme-rgb: 53,25,79;
+  --ion-color-mytheme-contrast: #ffffff;
+  --ion-color-mytheme-contrast-rgb: 255,255,255;
+  --ion-color-mytheme-shade: #2f1646;
+  --ion-color-mytheme-tint: #493061;
 }
 
 .ion-color-mytheme {
@@ -174,3 +174,36 @@
   ion-select{
     width: 100%!important;
   }
+   // custome select starts
+
+    /* Popover Interface: set color for the popover using Item's CSS variables */
+.my-custom-interface .select-interface-option {
+  --color: #971e49;
+  --color-hover: #79193b;
+}
+
+/* Action Sheet Interface: set color for the action sheet using its button CSS variables */
+.my-custom-interface .select-interface-option {
+  --button-color: #971e49;
+  --button-color-hover: #79193b;
+}
+
+/* Alert Interface: set color for alert options (single selection) */
+.my-custom-interface .select-interface-option .alert-radio-label {
+  color: #971e49;
+}
+
+/* Alert Interface: set color for alert options (multiple selection) */
+.my-custom-interface .select-interface-option .alert-checkbox-label {
+  color: #971e49;
+}
+
+/* Alert Interface: set color for checked alert options (single selection) */
+.my-custom-interface .select-interface-option[aria-checked=true] .alert-radio-label {
+  color: #79193b;
+}
+
+/* Alert Interface: set color for checked alert options (multiple selection) */
+.my-custom-interface .select-interface-option[aria-checked=true] .alert-checkbox-label {
+  color: #79193b;
+}

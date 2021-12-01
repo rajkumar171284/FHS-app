@@ -135,7 +135,7 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
         line: {
           color: a.color,
           width: 2
-        }
+        },
 
       }
 
@@ -145,8 +145,10 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
     margin: {
       l: 30,r:30, plot_bgcolor: '#c0d6e4',
       paper_bgcolor: '#7f7f7f',
-
-    }
+    },
+    
+    showlegend: true,
+    legend: {"orientation": "h"}
   
   }
     console.log(this.graph)

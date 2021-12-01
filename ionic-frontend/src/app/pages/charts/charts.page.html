@@ -12,7 +12,7 @@
 <ion-content>
   <ion-list>
     <ion-item lines="none" class="col-md-6">
-      <ion-select (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
+      <ion-select class="my-custom-interface" interface="action-sheet" (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
         <ion-select-option [value]="a.value" *ngFor="let a of chartFilters">{{a.key}}
 
         </ion-select-option>
@@ -24,7 +24,7 @@
       <ion-card color="none" class="ion-no-padding" *ngIf="plotlyData.pressureData">
 
         <ion-card-header class="mycard-hd">
-          <ion-card-subtitle color="dark">Pressure</ion-card-subtitle>
+          Pressure
           
         </ion-card-header>
         <ion-card-content class="ion-no-padding">
@@ -38,7 +38,7 @@
       <ion-card class="ion-no-padding" *ngIf="plotlyData.levelData">
         <ion-card-header class="mycard-hd">
           
-          <ion-card-subtitle color="dark">Level</ion-card-subtitle>
+          Level
 
         </ion-card-header>
         <ion-card-content class="ion-no-padding">
