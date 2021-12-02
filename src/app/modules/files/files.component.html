@@ -1,0 +1,28 @@
+<div class="container card mt-5">
+
+    <p-virtualScroller [value]="datafromparent" scrollHeight="400px" [rows]="10" [itemSize]="30">
+        <ng-template pTemplate="item" let-car>
+           <div class="row">
+               <div class="col-md-3">
+                {{car.zone}}
+
+               </div>
+               <div class="col-md-3">
+                {{car.sensorid}}
+
+            </div>
+
+            </div>
+        </ng-template>
+    </p-virtualScroller>
+    <!-- <ng-container *ngIf="data"> -->
+
+        <!-- <cdk-virtual-scroll-viewport [itemSize]="100" class="viewport" autosize>
+            <div *cdkVirtualFor="let a of data">
+                <div>{{a.x}}</div>
+
+            </div>
+
+        </cdk-virtual-scroll-viewport> -->
+    <!-- </ng-container> -->
+</div>

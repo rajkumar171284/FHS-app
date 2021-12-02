@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '~font-awesome/css/font-awesome.css'; */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~primeicons/primeicons.css';
+@import '~primeflex/themes/arya-blue.css';
+@import '~primeng-lts/resources/primeng.min.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.crs{
+  cursor: pointer  ;
+}
+.list-header{
+    background: #e59400   ;
+    color: #fff;
+    padding-right: 10px;text-align: right!important;
+  }
+  .a-tleft-bdr{
+    border-top-left-radius:30px;    
+    
+  }
+  .a-tright-bdr{
+    border-top-right-radius:30px;    
+  }
+  .a-bleft-bdr{
+    border-bottom-left-radius:30px;    
+  }
+  .a-bright-bdr{
+    border-bottom-right-radius:30px;    
+  }
+  .bgc1{
+    /* background-color: #fff!important;
+    background: #fff!important; */
+  }
+  .toolbar {
+    font-size: 18px;
+    letter-spacing: 1px;
+    position: fixed;
+    top: 0;z-index: 99;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #2acaea;
+    color: #fff;width: 100%;
+    text-transform: uppercase;
+    font-weight: 800;justify-content: center;
+    box-shadow: 0 1px 2px #000;
+    text-shadow:0 3px 5px #000;
+  }
+  .panel{
+    background: transparent;
+    border-color: transparent;
+  
+  }
+  .bdr1{
+    padding: 0;overflow: hidden;
+    
+  }
+  .row-eq-height{
+    margin-bottom: 5px!important;
+  }
