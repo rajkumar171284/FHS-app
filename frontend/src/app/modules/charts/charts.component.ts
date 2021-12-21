@@ -60,11 +60,21 @@ export class ChartsComponent implements OnInit,AfterViewInit {
               if(i==2){
                 str='blue'
               }         
-              if(i==1){
+              if(i==3){
                 str='orange'
               }         
-              if(i==1){
+              if(i==4){
                 str='yellow'
+              }   
+                  
+              if(i==5){
+                str='black'
+              }         
+              if(i==6){
+                str='#cc0080'
+              }         
+              if(i==7){
+                str='#762987'
               }         
               return {
                 sensor:x,

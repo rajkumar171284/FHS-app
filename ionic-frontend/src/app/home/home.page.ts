@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
 
-// import { MessageService } from 'primeng/api';
-@Component({
+import { ApiService } from '../api.service';
+import { Subscription } from 'rxjs';
+import { ModalController,ToastController  } from '@ionic/angular';@Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  providers:[ApiService]
 })
 export class HomePage {
 
-  constructor() {
+  constructor() { }
+  buttonVal1:any;
+  ngOnInit() {
+    // console.log('form')
   }
+
+  
   
 }

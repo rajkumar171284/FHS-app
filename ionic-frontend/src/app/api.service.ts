@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
+
 let authorizationData = 'Basic ' + btoa('isliot' + ':' + 'isliot');
 // let authorizationData = {username:'isliot',password:'isliot'}
 

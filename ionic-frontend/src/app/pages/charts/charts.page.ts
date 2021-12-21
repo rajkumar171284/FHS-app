@@ -60,12 +60,22 @@ export class ChartsPage implements OnInit {
             if(i==2){
               str='blue'
             }         
-            if(i==1){
+            if(i==3){
               str='orange'
             }         
-            if(i==1){
+            if(i==4){
               str='yellow'
+            }   
+                
+            if(i==5){
+              str='black'
             }         
+            if(i==6){
+              str='#cc0080'
+            }         
+            if(i==7){
+              str='#762987'
+            }
             return {
               sensor:x,
               array:Object.values(response)[i],
@@ -83,21 +93,8 @@ export class ChartsPage implements OnInit {
             // console.log(response2)
             this.plotlyData.levelData=Object.keys(response2).map((x,i)=>{
               let str;
-              if(i==0){
                 str='#e40000'
-              }         
-              if(i==1){
-                str='green'
-              }         
-              if(i==2){
-                str='blue'
-              }         
-              if(i==1){
-                str='orange'
-              }         
-              if(i==1){
-                str='yellow'
-              }         
+                
               return {
                 sensor:x,
                 array:Object.values(response2)[i],

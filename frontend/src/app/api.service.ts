@@ -8,9 +8,9 @@ const params = new HttpParams()
   // .set('sort', SortOn);
 
 const hdr= new HttpHeaders()
-.set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*')
-  .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+// .set('content-type', 'application/json')
+//   .set('Access-Control-Allow-Origin', '*')
+//   .set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
   .set('Authorization',"Basic " +btoa('isliot:isliot'))
 
 

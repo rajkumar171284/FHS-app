@@ -75,9 +75,20 @@ export class DiagramComponent implements OnInit, AfterViewInit, OnDestroy {
     const data = await fetch("assets/sensorList.json");
     const myItems = await data.json()
     // console.log(myItems)   
+    // let format = await myItems.map((z, aIndex) => {
+    //   let newItem = this.myClass.sensorList.status[aIndex]
+    //   let status = newItem === 'a' ? 'active' : 'inactive';
+    //   z.status;
+    //   z.status = status;
+    //   return z;
+    // })
+    let that=this;
     let format = await myItems.map((z, aIndex) => {
-      let newItem = this.myClass.sensorList.status[aIndex]
-      let status = newItem === 'a' ? 'active' : 'inactive';
+      let newItem = that.myClass.sensorList.filter(res=>{
+        return res.sensor==z.sensor;
+      })
+      let newStatus=newItem[0]?newItem[0].status:'';
+      let status = newStatus === 'a' ? 'active' : 'inactive';
       z.status;
       z.status = status;
       return z;

@@ -11,7 +11,7 @@
     max-height: 40px;float: left;
   }
   .newBdr{
-    border:1px solid #e59400!important;
+    /* border:1px solid #e59400!important; */
     background:linear-gradient(45deg,#2acaea,#e59400)  !important;
     padding-bottom: 8px;
     /* background: rgba(255,255,255,.3)!important; */

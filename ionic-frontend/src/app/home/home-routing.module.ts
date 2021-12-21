@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DiagramComponent } from '../home/diagram/diagram.component';
+import {DiagramComponent} from './diagram/diagram.component';
 const routes: Routes = [
 
   {
@@ -12,7 +11,6 @@ const routes: Routes = [
       {
         path: 'mimic',
         component: DiagramComponent
-       
       },
       {
         path: 'manage-alerts',
@@ -29,12 +27,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../pages/charts/charts.module').then( m => m.ChartsPageModule)
+            loadChildren: () => import('../pages/charts/charts-routing.module').then(m => m.ChartsPageRoutingModule)
           }
         ]
 
-      },
-      
+      }
     ]
   },
   

@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, ViewChild, ElementR
 import { Subscription } from 'rxjs';
 import { InterfacePlotlyPattern1, ClassPlotlyPattern1 } from '../myclass'
 declare var Plotly: any;
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-plotlyjs',
   templateUrl: './plotlyjs.component.html',
@@ -35,7 +35,7 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
     if (this.plotlyData && this.chartType == 'level') {
       
       //  call multi
-      this.multiPlot(this.plotlyData.levelData)
+      // this.multiPlot(this.plotlyData.levelData)
     }
   }
   ngOnChanges(changes: SimpleChanges) {
@@ -124,22 +124,32 @@ export class PlotlyjsComponent implements OnInit, OnChanges {
   }
 
 
-  public multiPlot(pressureData) {
+  public multiPlot(Data) {
     this.graph.data = []
-    for (let a of pressureData) {
-      this.graph.data.push({
-        x: a.array.ts.map(ele =>ele),
-        y: a.array.val.map(ele =>ele),
+    for (let a of Data) {
+      // old 
+      // let item={
+      //   x: a.array.ts.map(ele =>ele),
+      //   y: a.array.val.map(ele =>ele),
+      //   mode: 'lines+points',
+      //   name: a.sensor,
+      //   line: {
+      //     color: a.color,
+      //     width: 2
+      //   },
+
+      // }
+      let item = {
+        x: Data[0].array.array.map(a =>moment(a.date).format("HH:mm:ss")),
+        y: a.array.array.map(ele =>ele.values1?ele.values1:0),
         mode: 'lines+points',
-        name: a.sensor,
+        name: 'Sensor-'+a.sensor,
         line: {
           color: a.color,
-          width: 2
-        },
-
+          width: 4
+        }
       }
-
-      )
+      this.graph.data.push(item)
     }
     this.graph.layout = { autosize: true,  height: 340, title: '',
     margin: {
