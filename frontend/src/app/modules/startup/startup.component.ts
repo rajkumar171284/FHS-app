@@ -42,7 +42,7 @@ export class StartupComponent implements OnInit, OnDestroy,AfterViewInit {
 
     this.myClass = new Myclass();
     this.myClass.screenLoader=true;
-    // this.interVal = interval(10000).subscribe(res => {
+    // this.interVal = interval(2000).subscribe(res => {
     //   this.getDataforSVG();
     // })
     this.getDataforSVG();
@@ -51,24 +51,22 @@ export class StartupComponent implements OnInit, OnDestroy,AfterViewInit {
   async getSensorJSON() {
     const data = await fetch("assets/sensorList.json");
     const myItems = await data.json()
-    console.log(myItems)
-    // let format=[];
-    // await myItems.forEach(element => {
-    //   let index=this.myClass.sensorList.findIndex(s=>s.)
-      
-    // });
-    // let format = await myItems.filter(z=>{
-    //   return z.sensor==
-    // })
+    // console.log(myItems)
+   
     let that=this;
     let format = await myItems.map((z, aIndex) => {
       let newItem = that.myClass.sensorList.filter(res=>{
-        return res.sensor==z.sensor;
+        // console.log(res,z)
+        return res.sensorid==z.sensor;
       })
+      // console.log(newItem)
       let newStatus=newItem[0]?newItem[0].status:'';
-      let status = newStatus === 'a' ? 'active' : 'inactive';
+      let status = newStatus === 'active' ? 'active' : 'inactive';
       z.status;
       z.status = status;
+      z.unit=newItem[0].unit;
+      z.values1=newItem[0].values1;
+      z.type=newItem[0].type;
       return z;
     })
     this.createMarker(format)
@@ -98,7 +96,9 @@ export class StartupComponent implements OnInit, OnDestroy,AfterViewInit {
         shadowSize: setShadowSize,
         shadowAnchor: setShadowAnchor
       });
-      var customPopup = "<b class='tsts'>Sensor:"+`${item.sensor}` +"</b><br/><b>Status:"+`${item.status}` +"</b><br/>";
+      let statusColor=item.status=='active'?'text-success':'text-danger';
+      console.log(statusColor)
+      var customPopup = "<b class='text-primary'>Sensor:</b><b>"+`${item.sensor}` +"</b>&nbsp;&nbsp<b class='text-primary'>Status:</b><b class='text-uppercase " +`${statusColor}` +"'>"+`${item.status}` +"</b></b><br/><b class='text-primary'>Type:</b><b>"+`${item.type}` +"</b>&nbsp;&nbsp<b class='text-primary'>Unit:</b><b>"+`${item.unit}` +"</b>&nbsp;&nbsp<b class='text-primary'>Value:</b><b>"+`${item.values1}` +"</b>";
 
       
 

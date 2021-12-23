@@ -5,6 +5,7 @@
 @import '~primeflex/themes/arya-blue.css';
 @import '~primeng-lts/resources/primeng.min.css';
 
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -13,8 +14,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .list-header{
     background: #e59400   ;
-    color: #fff;
-    padding-right: 10px;text-align: right!important;
+    color: #fff;  
+      font-weight: 500;
+    padding: 10px;text-align: left!important;
   }
   .a-tleft-bdr{
     border-top-left-radius:30px;    

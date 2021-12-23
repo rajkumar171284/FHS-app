@@ -4,41 +4,43 @@ export class Myclass {
     screenLoader: boolean;
     plotlyData;
     chartType: string;
-    sensorList:any;
-    operatorList=[
-       
+    sensorList: any;
+    operatorList = [
         {
-        key:'> (Greater than)',value:'greaterthan'
-    },
-    {
-        key:'< (Less than)',value:'lessthan'
-    }
-    ,
-    {
-        key:'= (Equal to)',value:'equal'
-    }
-];
-chartFilters=[]
-    
+            key: 'Please Select', value: '', icon: ''
+        },
+        {
+            key: 'Greater than', value: 'greaterthan', icon: 'fa-long-arrow-up text-success'
+        },
+        {
+            key: 'Less than', value: 'lessthan', icon: 'fa-long-arrow-down text-danger'
+        }
+        ,
+        // {
+        //     key: '= (Equal to)', value: 'equal',icon:'fa-arrow-up'
+        // }
+    ];
+    chartFilters = []
+
 }
-export const filters=["Last 5 minutes",
-"Last 15 minutes",
-"Last 30 minutes",
-"Last 1 Hour",
-"Last 3 Hours",
-"Last 6 Hours",
-"Last 24 Hours",
-"Last 7 days",
-"Last 30 days"]
-export class classSensor{
-    sensorID="";
-    operator="";
-    value="";
-    person_name="";
-    phoneNO="";
+export const filters = ["Last 5 minutes",
+    "Last 15 minutes",
+    "Last 30 minutes",
+    "Last 1 Hour",
+    "Last 3 Hours",
+    "Last 6 Hours",
+    "Last 24 Hours",
+    "Last 7 days",
+    "Last 30 days"]
+export class classSensor {
+    sensorID = "";
+    operator = "";
+    value = "";
+    person_name = "";
+    phoneNO = "";
     status;
 }
-export interface interfaceEditAlert{
+export interface interfaceEditAlert {
     sensorID;
     operator;
     value;
@@ -47,7 +49,7 @@ export interface interfaceEditAlert{
     status;
     id;
 }
-export interface interfaceSensor{
+export interface interfaceSensor {
     sensorID;
     operator;
     value;
@@ -55,7 +57,7 @@ export interface interfaceSensor{
     phoneNO;
     status;
 }
-export interface interfaceSensorList{
+export interface interfaceSensorList {
     sensorid;
     operator;
     value;
@@ -64,13 +66,13 @@ export interface interfaceSensorList{
     status;
     alertid;
 }
-export interface InterfacePlotlyPattern1{
-data:[],layout:JSON;
+export interface InterfacePlotlyPattern1 {
+    data: [], layout: JSON;
 }
 
-export class ClassPlotlyPattern1{
-    data= [];
-    layout= { }
+export class ClassPlotlyPattern1 {
+    data = [];
+    layout = {}
 }
 export interface sensorId {
     "sensorid": "",

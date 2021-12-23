@@ -48,18 +48,22 @@
     display: flex;
     align-items: center;
   }
+  .t-rbr{
+    border-right: 1px solid #333;
+  }
 .wrapper{
     position: fixed;
     top: 0;   
     z-index: 96;
     left: 0;
     padding-top: 70px;
-    padding-left: 50px;padding-right: 50px;
+    padding-left: 1em;padding-right: 1em;
     right: 0;
     height: 100%;
     width: 100%;
     align-items: center;
-    background: linear-gradient(45deg, #19798c, transparent);
+    background: #fff;
+    /* background: linear-gradient(45deg, #19798c, transparent); */
     overflow-y: auto;
 }
 
@@ -116,3 +120,34 @@
   background-color: #a9e9f6;
 }
 
+
+/* custome primeng dialog bg */
+:host ::ng-deep .ui-dialog-mask.ui-widget-overlay{
+  background: rgba(0,0,0,0.75); 
+}
+:host ::ng-deep .ui-dialog{
+ overflow: hidden;
+}
+
+:host ::ng-deep .ui-dialog-titlebar{
+  text-align: center;
+  background: #e59400;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 2px #000;
+  /* text-decoration: overline; */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+:host ::ng-deep .ui-widget-content{
+  background: #ddd;
+  overflow: hidden;
+
+}
+:host ::ng-deep .custom-toast .ui-toast-message {
+  /* color: #ffffff; */
+  background: #FC466B;
+  background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+  background: linear-gradient(to right, #3F5EFB, #FC466B);
+  }

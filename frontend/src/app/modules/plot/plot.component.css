@@ -1,4 +1,5 @@
-#pressureId{
-    height: calc(100vh - 300px);
+div{
+    height:calc(100%-45vh);
+    /* height:39.5vh; */
     width: 100%;
 }

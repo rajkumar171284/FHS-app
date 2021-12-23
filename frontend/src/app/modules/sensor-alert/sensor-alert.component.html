@@ -1,8 +1,10 @@
-<p-toast position="bottom-center"></p-toast>
+<p-toast styleClass="custom-toast" position="bottom-right"></p-toast>
+<p-dialog header="Loading..." closable="false" closeOnEscape="false" modal="true" [(visible)]="myClass.screenLoader">
+    <p-progressSpinner></p-progressSpinner>
 
+</p-dialog>
 
-
-<p-dialog [header]="addTab?'Add New':'Edit'"  [style]="{overflow:'hidden',padding:'30px',background:'#fff'}" [modal]="true"
+<p-dialog styleClass="activedialog" [modal]="true" [header]="addTab?'Add New Alert':'Edit'" [modal]="true"
     [(visible)]="display">
     <form [formGroup]="newForm">
         <div class="row">
@@ -23,7 +25,9 @@
                             <label>Operator:</label>
                             <div class="form-input">
                                 <select class="form-control" formControlName="operator">
-                                    <option [value]="a.value" *ngFor="let a of myClass.operatorList">{{a.key}}
+                                    <option [value]="a.value" *ngFor="let a of myClass.operatorList">
+
+                                        {{a.key}}
 
                                     </option>
                                 </select>
@@ -62,10 +66,30 @@
                         </div>
 
                     </div>
+                    <div class="col-md-6" *ngIf="!addTab">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="form-input">
+
+                                <label>
+                                    <input name="status" formControlName="status" type="radio" [value]="setActive" />
+                                    Active
+                                </label>
+                                <label style="margin-left: 10px;">
+                                    <input type="radio" name="status" formControlName="status" [value]="setInActive" />
+                                    In-Active
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="row">
                     <div class="mb-2 mt-3 col-md-4 offset-md-4 text-center">
-                        <button (click)="addTab?saveForm('add'):saveForm('edit')" class="btn btn-success btn-sm btn-block">{{addTab?'Create':'Update'}}</button>
+                        <button (click)="addTab?saveForm('add'):saveForm('edit')"
+                            class="btn btn-success btn-sm ">{{addTab?'Create':'Update'}}</button>
+
+                        <button class="btn btn-secondary btn-sm " (click)="display=false">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -78,65 +102,84 @@
     <div class="col-md-12">
         <div class="row-fluid list-header ">
             <div class="title-container">
+                <span class="  pull-right t-mng crs" (click)="addNew()">
+                    <i class="fa fa-plus"></i> Add New
+                </span>
+
                 List of Sensor Alerts
+                <span class="t-refresh-btn" (click)="reloadAlert()"><i class="fa fa-refresh"></i></span>
             </div>
             <div class="sort-container">
                 <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange()" [style]="{'min-width':'140px'}"></p-dropdown> -->
             </div>
         </div>
         <div class="row">
-            
-            <div  class="col-md-12">
 
-                <!-- <div *ngIf="!myClass.data|| myClass.data.length==0" class="card minht">
-                    <p-progressBar [style]="{'height': '16px'}" mode="indeterminate"></p-progressBar>
-                    <p-progressBar [style]="{'height': '26px'}" mode="indeterminate"></p-progressBar>
-                    <p-progressBar [style]="{'height': '36px'}" mode="indeterminate"></p-progressBar>
+            <div class="col-md-12">
+                <div class="">
 
-                </div> -->
-
-                <div  class="">
-
-                    <p-virtualScroller [value]="myClass.data" scrollHeight="215px" [itemSize]="60">
-                        <!-- <p-header>
-
-                        </p-header> -->
+                    <p-virtualScroller [value]="myClass.data" scrollHeight="33vh" [itemSize]="60">
                         <ng-template let-sensor pTemplate="item" let-i="index">
                             <div class="m-2 card sensor-details">
                                 <div class="row">
-                                    <div class="col-md-2 icon-content text-center">
-                                        <img src="../../../assets/sensor.png" />
-                                        <i class="fa fa-2x"
-                                            [ngClass]="{'text-success':sensor.status,'text-danger':!sensor.status,'fa-check':sensor.status,'fa-times':!sensor.status}"></i>
 
-                                    </div>
                                     <div class="col-md-10 info-content text-left">
-                                        <span (click)="edit(sensor)" class="spn-pencil crs"><i class="fa fa-edit"></i></span>
-
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <h6 class="text-warning">{{sensor.name?sensor.name:''}}</h6>
-                                                <i class="fa fa-tag text-primary mr-2"></i>{{sensor.value?sensor.value:sensor.values1}} -
-                                                <span><i class="fa fa-phone text-info mr-2"></i> {{sensor.phoneno?sensor.phoneno:''}}</span>
-        
+                                            <div class="col-md-5 t-rbr">
+                                                <h6>{{sensor.name?sensor.name:''}}</h6>
+                                                <i><i class="fa fa-phone text-info mr-2"></i>
+                                                    {{sensor.phoneno?sensor.phoneno:''}}</i>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="mflex">
+                                                    <div class="text-black">
+                                                        <i> {{sensor.value?sensor.value:sensor.values1}}</i>
+                                                    </div>
+                                                    <div>
+                                                        Level
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="">
+                                                    <span class="t-badge  p-1">
+                                                        <i class="fa {{sensor.formattedOperated}}"></i>
+    
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 icon-content text-center">
+                                                <span [ngClass]="{'text-success':sensor.status,'text-danger':!sensor.status,'fa-check':sensor.status,'fa-times':!sensor.status}"
+                                                    class="tp-img-active">
+                                                    <img src="../../../assets/sensor.png" />
+                                                </span>
                                             </div>
                                         </div>
-                                       
+
                                     </div>
-                                </div>                                
+                                    <div class="col-md-2 text-right">
+                                        <span (click)="edit(sensor)" class="text-primary spn-pencil crs">
+                                            <i class="fa fa-edit"></i></span>
+                                        <span (click)="deleteAlert(sensor)" class="spn-rm crs text-danger ">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </ng-template>
-                        <p-footer>
+                        <p-footer *ngIf="myClass.data.length==0">
                             {{myClass.data.length==0?'No Data':''}}
                         </p-footer>
                     </p-virtualScroller>
 
 
                 </div>
-                <div class="text-right pr-3">
-                    <span class="btn-link  pull-right t-mng crs" (click)="addNew()">Manage</span>
+                <!-- <div class="text-right pr-3">
+                    <span class="btn-link  pull-right t-mng crs" (click)="addNew()">Add New Alert</span>
 
-                </div>
+                </div> -->
             </div>
 
         </div>

@@ -3,7 +3,7 @@ import { ApiService } from '../../api.service';
 import { Myclass, sensorId, classSensor, interfaceSensor, interfaceSensorList, interfaceEditAlert } from '../../myclass'
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { FormsModule, FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -18,6 +18,7 @@ export class SensorAlertComponent implements OnInit {
   @Input() alertList: boolean;
   constructor(private ApiService: ApiService, private fb: FormBuilder, private messageService: MessageService) { }
   myClass = new Myclass();
+  modeType: boolean
   sortKey: string;
   list = []
   sortOptions: SelectItem[];
@@ -26,74 +27,97 @@ export class SensorAlertComponent implements OnInit {
   objectKeys = Object.keys;
   objectValues = Object.values;
   data1;
-  newLabel: any = []
-  newValues: any = []
   addTab: boolean = true;
+  setActive: boolean = true;
+  setInActive: boolean = false;
   newForm = this.fb.group({
     id: [''],
     sensorID: ['', Validators.required],
     operator: ['', Validators.required],
     value: ['', Validators.required],
     person_name: ['', Validators.required], phoneNO: ['', Validators.required],
+    status: ['']
   });
 
- setHeight;
+  setHeight;
   ngOnInit(): void {
-    for (let a = 0; a < 33; a++) {
 
-      //   this.myClass.data.push({
-      //     "sensorid":"502",
-      //     "operator":"lessthan",
-      //     "value":2.2,
-      //     "name":"krmk",
-      //     "phoneNO":"9884000157"
-      // })
-    }
     this.sortOptions = [
       { label: 'Newest First', value: '!year' },
       { label: 'Oldest First', value: 'year' }
     ];
-    // console.log(Object.keys(this.newSensor))
-    // this.newLabel = Object.keys(this.newSensor)
-    // this.newValues = Object.values(this.newSensor)
     // get All alerts
     this.getSensorAlerts()
 
   }
+  reloadAlert() {
+    this.getSensorAlerts();
+  }
   getSensorAlerts() {
     //  console.log(this.alertList)
+    this.myClass.screenLoader = true;
+
     this.ApiService.getAlertList({}).subscribe(respone => {
-      this.myClass.data = respone;
-      console.log(this.myClass.data)
+      this.myClass.data = respone.map(obj => {
+        obj.formattedOperated;
+        let that = this;
+        let newOpeartor = that.myClass.operatorList.filter(x => x.value.toLocaleLowerCase() == obj.operator.toLocaleLowerCase());
+        obj.formattedOperated = newOpeartor[0] ? newOpeartor[0].icon : '';
+        return obj;
+      });
+
+      // console.log(this.myClass.data)
       this.alertList = false;
+      this.myClass.screenLoader = false;
     })
 
 
     //     this.myClass.data= Array.from({length: 10000}).map(() => this.ApiService.getAlertList({}));
     console.log(this.myClass.data)
   }
-  onSortChange() {
-    if (this.sortKey.indexOf('!') === 0)
-      this.sort(-1);
-    else
-      this.sort(1);
-  }
+  // onSortChange() {
+  //   if (this.sortKey.indexOf('!') === 0)
+  //     this.sort(-1);
+  //   else
+  //     this.sort(1);
+  // }
 
-  sort(order: number): void {
-    let list = [...this.list];
-    list.sort((data1, data2) => {
-      let value1 = data1.year;
-      let value2 = data2.year;
-      let result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+  // sort(order: number): void {
+  //   let list = [...this.list];
+  //   list.sort((data1, data2) => {
+  //     let value1 = data1.year;
+  //     let value2 = data2.year;
+  //     let result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
 
-      return (order * result);
-    });
+  //     return (order * result);
+  //   });
 
-    this.list = list;
+  //   this.list = list;
+  // }
+  deleteAlert(sensor) {
+    this.myClass.screenLoader = true;
+
+    this.ApiService.deleteAlert({id:sensor.alertid}).subscribe(res => {
+      console.log(res)
+     
+      this.myClass.screenLoader = false;
+      this.addSingle('success', res)
+      let newInterval= setInterval(()=>{
+        this.display = false;
+        this.getSensorAlerts()
+        clearInterval(newInterval);
+      },1000);
+      
+    }, (error) => {
+      console.log(error)
+      this.addSingle('warning', 'Something went wrong..')
+      this.myClass.screenLoader = false;
+
+    })
   }
   edit(sensor) {
-    console.log(sensor.alertid)
-    this.addTab = false;
+    console.log(sensor)
+    this.addTab = false;//editing sensors
     let opt = this.myClass.operatorList.filter(x => x.value.toLocaleLowerCase() == sensor.operator.toLocaleLowerCase())
     // update details in formgroup
     this.newForm.patchValue({
@@ -102,9 +126,10 @@ export class SensorAlertComponent implements OnInit {
       value: sensor.values1 ? sensor.values1 : sensor.value,
       person_name: sensor.name,
       phoneNO: sensor.phoneno,
-      id: sensor.alertid
+      id: sensor.alertid,
+      status: sensor.status
     })
-    this.display = true;
+    this.display = true;//open form
     console.log(this.newForm)
   }
   saveForm(type: any) {
@@ -112,10 +137,9 @@ export class SensorAlertComponent implements OnInit {
     let msg: any;
     if (type == 'add') {
       if (!this.newForm.valid) {
-        this.addSingle('error', 'All fields are mandatory..');
+        this.addSingle('success', 'All fields are mandatory..');
         return;
       }
-      // console.log(this.newValues, this.data1, this.newForm)
 
 
       this.myClass.screenLoader = true;
@@ -130,10 +154,16 @@ export class SensorAlertComponent implements OnInit {
 
       this.ApiService.addSensorAlert(params).subscribe(res => {
         console.log(res)
-        this.addSingle('success', res)
+
         this.myClass.screenLoader = false;
-
-
+        this.addSingle('success', res);
+        
+        let newInterval= setInterval(()=>{
+          this.display = false;
+          this.getSensorAlerts()
+          clearInterval(newInterval);
+        },1000);
+        
       }, (error) => {
         console.log(error)
       })
@@ -151,14 +181,20 @@ export class SensorAlertComponent implements OnInit {
       params.value = this.newForm.get('value').value;
       params.person_name = this.newForm.get('person_name').value;
       params.phoneNO = this.newForm.get('phoneNO').value;
-      params.status=true;//static as per API
+      params.status = this.newForm.get('status').value;//static as per API
       console.log(params)
+      this.myClass.screenLoader = true;
       this.ApiService.editSensorAlert(params).subscribe(res => {
         console.log(res)
-        this.addSingle('success', res)
+       
         this.myClass.screenLoader = false;
-
-        this.getSensorAlerts()
+        this.addSingle('success', res)
+        let newInterval= setInterval(()=>{
+          this.display = false;
+          this.getSensorAlerts()
+          clearInterval(newInterval);
+        },1000);
+        
       }, (error) => {
         console.log(error)
         this.addSingle('warning', 'Something went wrong..')

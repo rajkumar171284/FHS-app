@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 filterPane">
             <span><i class="fa fa-caret-down"></i></span>
-            <select class="form-control" (ionChange)="setInt($event)" [(ngModel)]="chartInterval">
+            <select class="form-control" (change)="setInt($event)" [(ngModel)]="chartInterval">
                 <option [value]="a.value" *ngFor="let a of chartFilters">{{a.key}}
 
                 </option>
@@ -15,9 +15,9 @@
 
         </div>
         <div *ngIf="plotlyData.levelData" class="col-md-12 card1">
-            <!-- <app-plot [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'Level'">
+            <app-plot [chartId]="'level'" [plotlyData]="plotlyData" [graphType]="'line'" [chartType]="'Level'">
 
-            </app-plot> -->
+            </app-plot>
 
         </div>
     </div>

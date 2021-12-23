@@ -60,6 +60,12 @@ export class ApiService {
       return response;
     }))
   }
+  deleteAlert(params:any):Observable<any>{
+
+    return this.http.post(environment.url+'/alert/delete',{id:params.id},option).pipe(map(response=>{
+      return response;
+    }))
+  }
     // charts
     getChartData(params:any):Observable<any>{
       return this.http.post(environment.url+'/charts/'+params.chartType,{"time_period" :params.time_period},option).pipe(map(response=>{

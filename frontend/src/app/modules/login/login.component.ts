@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         
       //   this.router.navigate([newLocal])
       // })
+      localStorage.setItem('mySession', JSON.stringify(this.userDetails));
       this.router.navigate([newLocal])
     }
   }
