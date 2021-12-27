@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   // url:'http://10.1.1.16:4107',// linux pc
-  url:'http://10.1.1.134:4107' ,//ksrh
-  // url:'http://127.0.0.1:4107'
+  // url:'http://10.1.1.134:4107' ,//ksrh
+  url:'http://127.0.0.1:4107',//local
   // url: 'http://3.23.238.254:4107'
 };
 

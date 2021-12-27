@@ -61,8 +61,13 @@ export class ApiService {
     }))
   }
   deleteAlert(params:any):Observable<any>{
-
-    return this.http.post(environment.url+'/alert/delete',{id:params.id},option).pipe(map(response=>{
+    const option2={
+      headers:hdr,
+      body: {
+        id: params.id
+      },
+    }
+    return this.http.delete(environment.url+'/alert/delete',option2).pipe(map(response=>{
       return response;
     }))
   }
